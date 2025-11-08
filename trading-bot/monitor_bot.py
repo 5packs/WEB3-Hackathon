@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Simple Crypto Roostoo Account Balance Monitor Bot
-Runs test_get_balance every 5 minutes continuously
+Runs comprehensive trading cycle every 5 minutes continuously
 """
 import time
 import sys
@@ -13,7 +13,7 @@ import os
 
 # Configuration
 MONITOR_INTERVAL = 300  # 5 minutes in seconds
-PURCHASE_DELAY = 5  # 5 seconds between purchases
+PURCHASE_DELAY = 5  # 5 seconds between purchases  
 STARTUP_WAIT_TIME = 300  # Total wait time (5 minutes) including trades before starting monitoring loop
 DRY_RUN_PURCHASES = True  # Set to False for real purchases, True for testing
 
@@ -49,6 +49,19 @@ os.chdir(submodule_path)
 try:
     # Import the functions we want to monitor from the submodule
     from balance import test_get_balance, get_balance
+    from trades import place_order
+    
+    # Import trading strategy functions from sma-prediction
+    sma_prediction_path = os.path.join(parent_dir, 'sma-prediction')
+    sys.path.insert(0, sma_prediction_path)
+    from trading_strategy import make_optimized_trading_decision
+    from prices import fetch_kraken_ohlc_recent
+    
+    # Import purchase_by_value from our local module
+    import sys
+    sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+    from purchase_by_value import purchase_by_value, get_current_price, update_portfolio_allocation_after_purchase
+    
     import_success = True
     import_error = None
 except ImportError as e:
@@ -173,40 +186,381 @@ class MonitorBot:
         logger.info(f"Received signal {signum}. Initiating graceful shutdown...")
         self.running = False
         
-    def run_exchange_info_check(self):
-        """Run the balance check with error handling"""
+        # Sell all currencies before shutdown (only if not already done)
+        if not hasattr(self, '_shutdown_sell_completed'):
+            self.sell_all_currencies_on_shutdown()
+            self._shutdown_sell_completed = True
+        
+    def sell_all_currencies_on_shutdown(self):
+        """Sell all owned currencies when shutting down"""
         try:
-            logger.info("Starting account balance check...")
+            logger.info("=" * 60)
+            logger.info("EMERGENCY SELL ALL CURRENCIES ON SHUTDOWN")
+            logger.info("=" * 60)
             
             # Change to submodule directory for API calls
             original_cwd = os.getcwd()
             os.chdir(submodule_path)
             
             try:
-                # Also get raw data for logging
+                # Get current account balance
+                logger.info("Fetching current account balance for shutdown sell...")
                 balance = get_balance()
-                if balance:
-                    spot_wallet = balance.get('SpotWallet', {})
-                    coins_count = len(spot_wallet)
-                    logger.info(f"Account balance retrieved successfully. Coins in wallet: {coins_count}")
-                    
-                    # Log some balance details
-                    if spot_wallet:
-                        for coin, details in list(spot_wallet.items())[:5]:  # Log first 5 coins
-                            free = details.get('Free', '0')
-                            locked = details.get('Lock', '0')
-                            if float(free) > 0 or float(locked) > 0:
-                                logger.info(f"  {coin}: Free={free}, Locked={locked}")
-                else:
-                    logger.warning("Failed to get balance data")
+                if not balance:
+                    logger.error("Failed to get account balance for shutdown sell")
+                    return
+                
+                spot_wallet = balance.get('SpotWallet', {})
+                if not spot_wallet:
+                    logger.warning("No spot wallet data found for shutdown sell")
+                    return
+                
+                # Filter out USD and get owned currencies with positive balance
+                owned_currencies = {}
+                for coin, details in spot_wallet.items():
+                    if coin.upper() != 'USD':
+                        free_amount = float(details.get('Free', 0))
+                        if free_amount > 0:
+                            owned_currencies[coin] = free_amount
+                
+                if not owned_currencies:
+                    logger.info("No currencies to sell on shutdown")
+                    return
+                
+                logger.info(f"Found {len(owned_currencies)} currencies to sell on shutdown:")
+                for coin, amount in owned_currencies.items():
+                    logger.info(f"  {coin}: {amount}")
+                
+                # Sell all owned currencies
+                sell_count = 0
+                for coin, quantity in owned_currencies.items():
+                    try:
+                        logger.info(f"SHUTDOWN SELL: Selling {quantity} {coin}")
+                        
+                        if not DRY_RUN_PURCHASES:
+                            # Place immediate market sell order
+                            result = place_order(
+                                pair_or_coin=coin,
+                                side="SELL",
+                                quantity=quantity,
+                                order_type="MARKET"
+                            )
+                            
+                            logger.info(f"SHUTDOWN SELL: Order placed for {coin}")
+                            sell_count += 1
+                            
+                            # Update portfolio allocation to 0 for sold currency
+                            try:
+                                portfolio_file = os.path.join(
+                                    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                    "output", 
+                                    "simple_portfolio_allocation.json"
+                                )
+                                
+                                if os.path.exists(portfolio_file):
+                                    with open(portfolio_file, 'r') as f:
+                                        portfolio_data = json.load(f)
+                                    
+                                    if coin.upper() in portfolio_data:
+                                        portfolio_data[coin.upper()] = 0
+                                        
+                                        with open(portfolio_file, 'w') as f:
+                                            json.dump(portfolio_data, f, indent=2)
+                                        
+                                        logger.info(f"SHUTDOWN SELL: Updated portfolio allocation for {coin} to $0")
+                                        
+                            except Exception as portfolio_error:
+                                logger.error(f"Error updating portfolio for {coin}: {portfolio_error}")
+                        else:
+                            logger.info(f"SHUTDOWN SELL (DRY RUN): Would sell {quantity} {coin}")
+                            sell_count += 1
+                        
+                        # Small delay between orders
+                        time.sleep(1)
+                        
+                    except Exception as sell_error:
+                        logger.error(f"Error selling {coin} on shutdown: {sell_error}")
+                        continue
+                
+                logger.info(f"SHUTDOWN SELL COMPLETE: {sell_count} currencies processed")
+                
+            except Exception as balance_error:
+                logger.error(f"Error during shutdown sell process: {balance_error}")
             finally:
                 os.chdir(original_cwd)
                 
-            logger.info("Account balance check completed successfully")
-            return True
-            
         except Exception as e:
-            logger.error(f"Error during balance check: {e}")
+            logger.error(f"Critical error during shutdown sell: {e}")
+        finally:
+            logger.info("=" * 60)
+            logger.info("SHUTDOWN SELL PROCESS COMPLETED")
+            logger.info("=" * 60)
+        
+    def run_exchange_info_check(self):
+        """Run comprehensive trading cycle with balance check and optimized trading decisions"""
+        cycle_start_time = datetime.now()
+        
+        try:
+            logger.info("Starting trading cycle...")
+            
+            # Create recent_crypto_data folder in project root if it doesn't exist
+            recent_data_dir = os.path.join(parent_dir, 'recent_crypto_data')
+            os.makedirs(recent_data_dir, exist_ok=True)
+            
+            # Change to submodule directory for API calls
+            original_cwd = os.getcwd()
+            os.chdir(submodule_path)
+            
+            try:
+                # Step 1: Get current account balance
+                logger.info("Fetching current account balance...")
+                balance = get_balance()
+                if not balance:
+                    logger.error("Failed to get account balance")
+                    return False
+                
+                spot_wallet = balance.get('SpotWallet', {})
+                if not spot_wallet:
+                    logger.warning("No spot wallet data found")
+                    return False
+                
+                # Filter out USD and get owned currencies with positive balance
+                owned_currencies = {}
+                for coin, details in spot_wallet.items():
+                    if coin.upper() != 'USD':
+                        free_amount = float(details.get('Free', 0))
+                        if free_amount > 0:
+                            owned_currencies[coin] = {
+                                'free': free_amount,
+                                'locked': float(details.get('Lock', 0))
+                            }
+                
+                logger.info(f"Found {len(owned_currencies)} owned currencies with positive balance")
+                for coin, data in owned_currencies.items():
+                    logger.info(f"  {coin}: {data['free']} free, {data['locked']} locked")
+                
+                # Step 2: Load portfolio allocation
+                portfolio_file = os.path.join(
+                    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                    "output", 
+                    "simple_portfolio_allocation.json"
+                )
+                
+                if not os.path.exists(portfolio_file):
+                    logger.error(f"Portfolio allocation file not found: {portfolio_file}")
+                    return False
+                
+                with open(portfolio_file, 'r') as f:
+                    portfolio_allocation = json.load(f)
+                
+                logger.info(f"Loaded portfolio allocation for {len(portfolio_allocation)} currencies")
+                
+                # Track trading actions and timing
+                trading_start_time = datetime.now()
+                sell_actions = 0
+                buy_actions = 0
+                
+                # Step 3: Check owned currencies for SELL decisions
+                logger.info("Checking owned currencies for sell decisions...")
+                for coin in owned_currencies.keys():
+                    if not self.running:  # Check if bot should stop
+                        break
+                        
+                    try:
+                        logger.info(f"Making trading decision for owned currency: {coin}")
+                        
+                        # Get current price for the coin
+                        current_price = get_current_price(coin)
+                        if not current_price:
+                            logger.warning(f"Could not fetch current price for {coin}, skipping...")
+                            continue
+                        
+                        # Get historical prices for the coin (100 recent 5-minute candles)
+                        try:
+                            # Convert coin symbol to Kraken format if needed
+                            kraken_pair = f"{coin}USD" if coin != "BTC" else "XBTUSD"
+                            historical_data = fetch_kraken_ohlc_recent(pair=kraken_pair, interval=5, count=100)
+                            
+                            if not historical_data:
+                                logger.warning(f"Could not fetch historical prices for {coin}, skipping...")
+                                continue
+                            
+                            # Save historical data to recent_crypto_data folder (overwrite each run)
+                            data_filename = os.path.join(recent_data_dir, f"{coin}_recent_5min_data.json")
+                            try:
+                                with open(data_filename, 'w') as f:
+                                    json.dump({
+                                        'coin': coin,
+                                        'kraken_pair': kraken_pair,
+                                        'interval': 5,
+                                        'count': len(historical_data),
+                                        'timestamp': datetime.now().isoformat(),
+                                        'data': historical_data
+                                    }, f, indent=2)
+                                logger.info(f"Saved {len(historical_data)} historical data points for {coin} to {data_filename}")
+                            except Exception as save_error:
+                                logger.warning(f"Could not save historical data for {coin}: {save_error}")
+                                
+                            # Extract close prices from OHLC data
+                            past_prices = [float(candle[4]) for candle in historical_data]  # Index 4 is close price
+                            logger.info(f"Fetched {len(past_prices)} historical prices for {coin}")
+                            
+                        except Exception as price_error:
+                            logger.error(f"Error fetching historical prices for {coin}: {price_error}")
+                            continue
+                        
+                        # Make optimized trading decision with current and historical prices
+                        decision = make_optimized_trading_decision(
+                            currency=coin,
+                            past_prices=past_prices,
+                            current_price=current_price
+                        )
+                        logger.info(f"Trading decision for {coin} at ${current_price:.4f}: {decision}")
+                        
+                        if decision == "SELL":
+                            # Sell the entire quantity
+                            quantity = owned_currencies[coin]['free']
+                            logger.info(f"Executing SELL order for {quantity} {coin}")
+                            
+                            if not DRY_RUN_PURCHASES:
+                                result = place_order(
+                                    pair_or_coin=coin,
+                                    side="SELL", 
+                                    quantity=quantity,
+                                    order_type="MARKET"
+                                )
+                                logger.info(f"SELL order result for {coin}: {result}")
+                                
+                                # Update portfolio allocation based on API response
+                                # For now, we'll set it to 0 on successful sell
+                                update_portfolio_allocation_after_purchase(coin, success=True)
+                            else:
+                                logger.info(f"DRY RUN: Would sell {quantity} {coin}")
+                                update_portfolio_allocation_after_purchase(coin, success=True)
+                            
+                            sell_actions += 1
+                            
+                        elif decision in ["HOLD", "BUY"]:
+                            logger.info(f"Holding {coin} (decision: {decision})")
+                        
+                        # Wait 5 seconds between actions
+                        if sell_actions > 0 and self.running:
+                            logger.info("Waiting 5 seconds before next action...")
+                            time.sleep(5)
+                            
+                    except Exception as e:
+                        logger.error(f"Error processing sell decision for {coin}: {e}")
+                        continue
+                
+                # Step 4: Check unowned currencies from portfolio for BUY decisions
+                logger.info("Checking unowned currencies for buy decisions...")
+                unowned_currencies = []
+                for coin in portfolio_allocation.keys():
+                    if coin not in owned_currencies and portfolio_allocation[coin] > 0:
+                        unowned_currencies.append(coin)
+                
+                logger.info(f"Found {len(unowned_currencies)} unowned currencies with allocation")
+                
+                for coin in unowned_currencies:
+                    if not self.running:  # Check if bot should stop
+                        break
+                        
+                    try:
+                        logger.info(f"Making trading decision for unowned currency: {coin}")
+                        
+                        # Get current price for the coin
+                        current_price = get_current_price(coin)
+                        if not current_price:
+                            logger.warning(f"Could not fetch current price for {coin}, skipping...")
+                            continue
+                        
+                        # Get historical prices for the coin (100 recent 5-minute candles)
+                        try:
+                            # Convert coin symbol to Kraken format if needed
+                            kraken_pair = f"{coin}USD" if coin != "BTC" else "XBTUSD"
+                            historical_data = fetch_kraken_ohlc_recent(pair=kraken_pair, interval=5, count=100)
+                            
+                            if not historical_data:
+                                logger.warning(f"Could not fetch historical prices for {coin}, skipping...")
+                                continue
+                            
+                            # Save historical data to recent_crypto_data folder (overwrite each run)
+                            data_filename = os.path.join(recent_data_dir, f"{coin}_recent_5min_data.json")
+                            try:
+                                with open(data_filename, 'w') as f:
+                                    json.dump({
+                                        'coin': coin,
+                                        'kraken_pair': kraken_pair,
+                                        'interval': 5,
+                                        'count': len(historical_data),
+                                        'timestamp': datetime.now().isoformat(),
+                                        'data': historical_data
+                                    }, f, indent=2)
+                                logger.info(f"Saved {len(historical_data)} historical data points for {coin} to {data_filename}")
+                            except Exception as save_error:
+                                logger.warning(f"Could not save historical data for {coin}: {save_error}")
+                                
+                            # Extract close prices from OHLC data
+                            past_prices = [float(candle[4]) for candle in historical_data]  # Index 4 is close price
+                            logger.info(f"Fetched {len(past_prices)} historical prices for {coin}")
+                            
+                        except Exception as price_error:
+                            logger.error(f"Error fetching historical prices for {coin}: {price_error}")
+                            continue
+                        
+                        # Make optimized trading decision with current and historical prices
+                        decision = make_optimized_trading_decision(
+                            currency=coin,
+                            past_prices=past_prices,
+                            current_price=current_price
+                        )
+                        logger.info(f"Trading decision for {coin} at ${current_price:.4f}: {decision}")
+                        
+                        if decision == "BUY":
+                            # Buy using value from portfolio allocation
+                            allocation_value = portfolio_allocation[coin]
+                            logger.info(f"Executing BUY order for ${allocation_value} worth of {coin}")
+                            
+                            # Use purchase_by_value function
+                            result = purchase_by_value(
+                                coin=coin,
+                                total_value=allocation_value,
+                                dry_run=DRY_RUN_PURCHASES
+                            )
+                            
+                            if result:
+                                logger.info(f"BUY order successful for {coin}")
+                            else:
+                                logger.error(f"BUY order failed for {coin}")
+                            
+                            buy_actions += 1
+                            
+                        elif decision in ["HOLD", "SELL"]:
+                            logger.info(f"Not buying {coin} (decision: {decision})")
+                        
+                        # Wait 5 seconds between actions
+                        if buy_actions > 0 and self.running:
+                            logger.info("Waiting 5 seconds before next action...")
+                            time.sleep(5)
+                            
+                    except Exception as e:
+                        logger.error(f"Error processing buy decision for {coin}: {e}")
+                        continue
+                
+                # Calculate timing and remaining sleep
+                trading_end_time = datetime.now()
+                trading_duration = (trading_end_time - trading_start_time).total_seconds()
+                
+                logger.info(f"Trading cycle completed: {sell_actions} sells, {buy_actions} buys")
+                logger.info(f"Trading actions took {trading_duration:.2f} seconds")
+                
+                return True
+                
+            finally:
+                os.chdir(original_cwd)
+                
+        except Exception as e:
+            logger.error(f"Error in trading cycle: {e}")
             return False
     
     def run(self):
@@ -333,24 +687,37 @@ class MonitorBot:
                     else:
                         logger.error(f"FAILED: Cycle #{self.cycle_count} failed after {duration:.2f} seconds")
                     
-                    if self.running:
-                        logger.info(f"Sleeping for {MONITOR_INTERVAL} seconds until next check...")
+                    # Calculate remaining time to reach 5-minute cycle
+                    remaining_time = MONITOR_INTERVAL - duration
+                    
+                    if remaining_time > 0:
+                        logger.info(f"Cycle completed in {duration:.2f} seconds, waiting {remaining_time:.2f} seconds to complete {MONITOR_INTERVAL/60:.1f} minute cycle...")
                         
-                        # Sleep in smaller chunks to allow for responsive shutdown
-                        for i in range(MONITOR_INTERVAL):
+                        # Sleep in 1-second chunks to allow for responsive shutdown
+                        for i in range(int(remaining_time)):
                             if not self.running:
                                 break
                             time.sleep(1)
+                        
+                        # Handle fractional seconds
+                        fractional_time = remaining_time - int(remaining_time)
+                        if fractional_time > 0 and self.running:
+                            time.sleep(fractional_time)
+                            
+                        logger.info(f"5-minute cycle completed, starting next cycle...")
+                    else:
+                        logger.warning(f"Cycle took {duration:.2f} seconds (longer than {MONITOR_INTERVAL/60:.1f} minute target), starting next cycle immediately...")
                             
                 except Exception as cycle_error:
                     # Log the error but continue running - don't let individual cycle errors stop the bot
                     logger.error(f"ERROR in cycle #{self.cycle_count}: {cycle_error}")
                     logger.info("Bot will continue running despite the error...")
                     
-                    # Still sleep between cycles even after errors
+                    # Sleep for reduced time on errors before retrying
                     if self.running:
-                        logger.info(f"Sleeping for {MONITOR_INTERVAL} seconds before retry...")
-                        for i in range(MONITOR_INTERVAL):
+                        error_sleep_time = 60  # 1 minute on errors
+                        logger.info(f"Sleeping for {error_sleep_time} seconds before retry...")
+                        for i in range(error_sleep_time):
                             if not self.running:
                                 break
                             time.sleep(1)
@@ -367,6 +734,12 @@ class MonitorBot:
             logger.error("This should only happen for critical system-level issues")
             self.running = False
         finally:
+            # Ensure all currencies are sold before final shutdown
+            if not hasattr(self, '_shutdown_sell_completed'):
+                logger.info("Final shutdown - ensuring all currencies are sold...")
+                self.sell_all_currencies_on_shutdown()
+                self._shutdown_sell_completed = True
+                
             logger.info("="*60)
             logger.info(f"Monitor Bot shutting down after {self.cycle_count} cycles")
             logger.info("="*60)
