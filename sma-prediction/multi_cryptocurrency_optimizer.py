@@ -42,8 +42,9 @@ class MultiCryptoOptimizer:
         # Ensure data directory exists
         os.makedirs(self.data_dir, exist_ok=True)
         
-        # Ensure output directory exists for JSON files
-        self.output_dir = "output"
+        # Set output directory to main project output folder
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.output_dir = os.path.join(project_root, "output")
         os.makedirs(self.output_dir, exist_ok=True)
         
         # Extended cryptocurrency mapping for Kraken API
@@ -467,7 +468,8 @@ class MultiCryptoOptimizer:
         if not self.results:
             return
         
-        # Save to output directory
+        # Ensure output directory exists and save to it
+        os.makedirs(self.output_dir, exist_ok=True)
         filepath = os.path.join(self.output_dir, filename)
             
         # Convert to serializable format
@@ -496,7 +498,8 @@ class MultiCryptoOptimizer:
             print("⚠️ No optimization results available to save parameters")
             return
         
-        # Save to output directory
+        # Ensure output directory exists and save to it
+        os.makedirs(self.output_dir, exist_ok=True)
         filepath = os.path.join(self.output_dir, filename)
             
         # Create clean parameter structure for trading bot
