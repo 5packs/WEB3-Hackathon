@@ -9,6 +9,9 @@ python-dotenv>=1.0.0
 pandas>=2.0.0
 numpy>=1.24.0
 
+# Visualization and Plotting
+matplotlib>=3.5.0
+
 # Standard library modules used (no pip install needed):
 # - os, sys, time, signal, logging, datetime
 # - hmac, hashlib, json

@@ -6,7 +6,9 @@ Enhanced with regime-aware trading decisions.
 """
 
 import numpy as np
-from typing import List, Dict, Optional
+import json
+import os
+from typing import List, Dict, Optional, Tuple
 
 def sma_trading_decision(past_prices: List[float], current_price: float, 
                         short_window: int = 25, long_window: int = 45) -> str:
@@ -139,6 +141,100 @@ def get_sma_signals_info(past_prices: List[float], current_price: float,
     }
 
 
+def load_optimal_sma_parameters(filepath: str = "output/optimal_sma_parameters.json") -> Dict:
+    """
+    Load optimal SMA parameters for all currencies from the optimizer output.
+    
+    Args:
+        filepath: Path to the optimal parameters JSON file
+        
+    Returns:
+        Dictionary containing optimal parameters for each currency
+    """
+    try:
+        with open(filepath, 'r') as f:
+            data = json.load(f)
+        
+        if "parameters" in data:
+            print(f"✅ Loaded optimal SMA parameters for {len(data['parameters'])} currencies")
+            return data["parameters"]
+        else:
+            print("⚠️ Invalid parameters file format")
+            return {}
+            
+    except FileNotFoundError:
+        print(f"❌ Parameters file not found: {filepath}")
+        return {}
+    except json.JSONDecodeError:
+        print(f"❌ Invalid JSON in parameters file: {filepath}")
+        return {}
+
+
+def load_simple_sma_parameters(filepath: str = "output/simple_sma_parameters.json") -> Dict:
+    """
+    Load simplified SMA parameters (just short/long windows) for bot usage.
+    
+    Args:
+        filepath: Path to the simple parameters JSON file
+        
+    Returns:
+        Dictionary with short/long window parameters for each currency
+    """
+    try:
+        with open(filepath, 'r') as f:
+            data = json.load(f)
+        
+        print(f"✅ Loaded simplified SMA parameters for {len(data)} currencies")
+        return data
+            
+    except FileNotFoundError:
+        print(f"❌ Simple parameters file not found: {filepath}")
+        return {}
+    except json.JSONDecodeError:
+        print(f"❌ Invalid JSON in simple parameters file: {filepath}")
+        return {}
+
+
+def get_optimal_parameters_for_currency(currency: str, 
+                                       parameters_file: str = "output/simple_sma_parameters.json") -> Tuple[int, int]:
+    """
+    Get optimal SMA parameters for a specific currency.
+    
+    Args:
+        currency: Currency symbol (e.g., 'BTC', 'ETH')
+        parameters_file: Path to parameters file
+        
+    Returns:
+        Tuple of (short_window, long_window). Returns (10, 50) as default if not found.
+    """
+    params = load_simple_sma_parameters(parameters_file)
+    
+    if currency in params:
+        return params[currency]["short"], params[currency]["long"]
+    else:
+        print(f"⚠️ No optimal parameters found for {currency}, using defaults (10, 50)")
+        return 10, 50
+
+
+def make_optimized_trading_decision(currency: str, past_prices: List[float], 
+                                  current_price: float,
+                                  parameters_file: str = "output/simple_sma_parameters.json") -> str:
+    """
+    Make trading decision using optimized SMA parameters for the specific currency.
+    
+    Args:
+        currency: Currency symbol (e.g., 'BTC', 'ETH')
+        past_prices: List of historical prices
+        current_price: Current price
+        parameters_file: Path to optimized parameters file
+        
+    Returns:
+        Trading decision: 'BUY', 'SELL', or 'HOLD'
+    """
+    short_window, long_window = get_optimal_parameters_for_currency(currency, parameters_file)
+    return sma_trading_decision(past_prices, current_price, short_window, long_window)
+
+
 # Example usage and testing
 if __name__ == "__main__":
     # Example usage of the SMA trading decision function
@@ -154,12 +250,15 @@ if __name__ == "__main__":
     
     current_price = 152.0
     
-    # Get trading decision
+    # Standard trading decision with default parameters
     decision = sma_trading_decision(example_past_prices, current_price, 
                                   short_window=10, long_window=20)
     
-    print(f"Based on past prices and current price of {current_price}")
-    print(f"Trading Decision: {decision}")
+    print(f"Standard Decision (SMA 10/20): {decision}")
+    
+    # Test optimized trading decision (will use defaults if no file exists)
+    optimized_decision = make_optimized_trading_decision("BTC", example_past_prices, current_price)
+    print(f"Optimized Decision for BTC: {optimized_decision}")
     
     # Get detailed signal information
     signal_info = get_sma_signals_info(example_past_prices, current_price,
@@ -171,3 +270,22 @@ if __name__ == "__main__":
     print(f"Momentum: {signal_info['momentum']:.2f}%")
     print(f"Bullish Crossover: {signal_info['bullish_crossover']}")
     print(f"Bearish Crossover: {signal_info['bearish_crossover']}")
+    
+    # Test parameter loading functions
+    print(f"\nTesting Parameter Loading Functions:")
+    print("-" * 40)
+    
+    # Try to load optimal parameters
+    optimal_params = load_optimal_sma_parameters()
+    if optimal_params:
+        print(f"Found optimal parameters for currencies: {list(optimal_params.keys())[:5]}...")
+    
+    # Try to load simple parameters  
+    simple_params = load_simple_sma_parameters()
+    if simple_params:
+        print(f"Found simple parameters for currencies: {list(simple_params.keys())[:5]}...")
+        
+    # Test getting parameters for specific currencies
+    for currency in ['BTC', 'ETH', 'XRP']:
+        short, long = get_optimal_parameters_for_currency(currency)
+        print(f"{currency}: SMA({short}, {long})")

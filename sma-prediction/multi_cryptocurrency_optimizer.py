@@ -42,6 +42,10 @@ class MultiCryptoOptimizer:
         # Ensure data directory exists
         os.makedirs(self.data_dir, exist_ok=True)
         
+        # Ensure output directory exists for JSON files
+        self.output_dir = "output"
+        os.makedirs(self.output_dir, exist_ok=True)
+        
         # Extended cryptocurrency mapping for Kraken API
         # Format: 'DISPLAY_NAME': 'KRAKEN_PAIR'
         self.crypto_pairs = {
@@ -214,11 +218,12 @@ class MultiCryptoOptimizer:
             print(f"Fetching {symbol} ({kraken_pair})...")
             
             try:
+                # Fetch all available data from Kraken API (up to 721 entries for backtesting)
                 ohlc_data = fetch_kraken_ohlc(kraken_pair, interval)
                 
-                if ohlc_data and len(ohlc_data) > 100:  # Ensure enough data
+                if ohlc_data and len(ohlc_data) > 100:  # Ensure enough data for SMA
                     save_prices_to_csv(ohlc_data, filename, append=False)
-                    print(f"✅ {symbol}: {len(ohlc_data)} records saved to {filename}")
+                    print(f"✅ {symbol}: {len(ohlc_data)} records saved to {filename} (full dataset for backtesting)")
                 else:
                     print(f"❌ {symbol}: Insufficient data ({len(ohlc_data) if ohlc_data else 0} records)")
                     
@@ -458,9 +463,12 @@ class MultiCryptoOptimizer:
         return "\n".join(lines)
         
     def save_results(self, filename: str = "multi_crypto_results.json"):
-        """Save optimization results to JSON file."""
+        """Save optimization results to JSON file in output directory."""
         if not self.results:
             return
+        
+        # Save to output directory
+        filepath = os.path.join(self.output_dir, filename)
             
         # Convert to serializable format
         serializable_results = {}
@@ -474,10 +482,312 @@ class MultiCryptoOptimizer:
                 'data_points': result.data_points
             }
             
-        with open(filename, 'w') as f:
+        with open(filepath, 'w') as f:
             json.dump(serializable_results, f, indent=2)
             
-        print(f"💾 Results saved to {filename}")
+        print(f"💾 Results saved to {filepath}")
+
+    def save_optimal_parameters(self, filename: str = "optimal_sma_parameters.json"):
+        """
+        Save only the optimal SMA parameters for trading bot usage.
+        Creates a clean file with just the short and long window values in output directory.
+        """
+        if not self.results:
+            print("⚠️ No optimization results available to save parameters")
+            return
+        
+        # Save to output directory
+        filepath = os.path.join(self.output_dir, filename)
+            
+        # Create clean parameter structure for trading bot
+        optimal_params = {
+            "metadata": {
+                "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "total_currencies": len(self.results),
+                "optimizer_settings": {
+                    "initial_capital": self.initial_capital,
+                    "commission": self.commission
+                }
+            },
+            "parameters": {}
+        }
+        
+        # Add parameters for each currency, sorted by profitability
+        sorted_results = sorted(self.results.items(), 
+                               key=lambda x: x[1].return_pct, 
+                               reverse=True)
+        
+        for symbol, result in sorted_results:
+            optimal_params["parameters"][symbol] = {
+                "short_window": result.best_params[0],
+                "long_window": result.best_params[1],
+                "expected_return_pct": round(result.return_pct, 2),
+                "sharpe_ratio": round(result.sharpe_ratio, 3),
+                "max_drawdown_pct": round(result.max_drawdown, 2),
+                "risk_level": self._get_risk_level(result.max_drawdown),
+                "tier": self.get_crypto_tier(symbol)
+            }
+        
+        # Save to file
+        with open(filepath, 'w') as f:
+            json.dump(optimal_params, f, indent=2)
+            
+        print(f"🎯 Optimal trading parameters saved to {filepath}")
+        print(f"   📊 {len(optimal_params['parameters'])} currencies with optimal SMA parameters")
+        
+        # Also create a simplified version for quick bot access
+        simple_params = {}
+        for symbol, result in sorted_results:
+            simple_params[symbol] = {
+                "short": result.best_params[0],
+                "long": result.best_params[1]
+            }
+            
+        simple_filename = "simple_sma_parameters.json"
+        simple_filepath = os.path.join(self.output_dir, simple_filename)
+        with open(simple_filepath, 'w') as f:
+            json.dump(simple_params, f, indent=2)
+            
+        print(f"🤖 Simplified parameters for bot saved to {simple_filepath}")
+        
+    def save_portfolio_allocation(self, initial_investment: float = 49000, filename: str = "portfolio_allocation.json"):
+        """
+        Generate optimal portfolio allocation with risk-reward optimization.
+        
+        Args:
+            initial_investment: Total amount to invest (default: $49,000)
+            filename: Output filename for portfolio allocation
+        """
+        if not self.results:
+            print("⚠️ No optimization results available to generate portfolio")
+            return
+            
+        # Save to output directory in main project folder
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        main_output_dir = os.path.join(project_root, "output")
+        os.makedirs(main_output_dir, exist_ok=True)
+        filepath = os.path.join(main_output_dir, filename)
+        
+        # Filter profitable cryptocurrencies (positive returns)
+        profitable_results = {
+            symbol: result for symbol, result in self.results.items()
+            if result.return_pct > 0 and result.sharpe_ratio > 0
+        }
+        
+        if not profitable_results:
+            print("⚠️ No profitable cryptocurrencies found for portfolio allocation")
+            return
+            
+        # Calculate risk-adjusted scores for each cryptocurrency
+        scores = {}
+        total_score = 0
+        
+        for symbol, result in profitable_results.items():
+            # Risk-adjusted score: Return + Sharpe bonus - Drawdown penalty
+            return_score = max(0, result.return_pct)
+            sharpe_bonus = max(0, result.sharpe_ratio) * 3  # Weight Sharpe ratio heavily
+            drawdown_penalty = abs(result.max_drawdown) * 0.5  # Penalize high drawdown
+            
+            # Bonus for tier 1 and tier 2 cryptocurrencies (more stable)
+            tier = self.get_crypto_tier(symbol)
+            tier_bonus = 2 if tier == 'tier_1' else 1 if tier == 'tier_2' else 0
+            
+            score = return_score + sharpe_bonus - drawdown_penalty + tier_bonus
+            scores[symbol] = max(0, score)  # Ensure non-negative scores
+            total_score += scores[symbol]
+        
+        if total_score == 0:
+            print("⚠️ No valid scores for portfolio allocation")
+            return
+            
+        # Calculate allocation percentages and amounts
+        allocations = {}
+        total_allocated = 0
+        
+        for symbol, score in scores.items():
+            percentage = score / total_score
+            allocation_amount = initial_investment * percentage
+            
+            # Minimum allocation of $500, maximum of 25% of total
+            min_allocation = 500
+            max_allocation = initial_investment * 0.25
+            
+            allocation_amount = max(min_allocation, min(allocation_amount, max_allocation))
+            
+            allocations[symbol] = {
+                "allocation_amount": round(allocation_amount, 2),
+                "percentage": round(percentage * 100, 2),
+                "score": round(score, 2)
+            }
+            total_allocated += allocation_amount
+        
+        # Normalize allocation to use full initial investment
+        # First, handle case where total exceeds investment (scale down)
+        if total_allocated > initial_investment:
+            adjustment_factor = initial_investment / total_allocated
+            for symbol in allocations:
+                allocations[symbol]["allocation_amount"] = round(
+                    allocations[symbol]["allocation_amount"] * adjustment_factor, 2
+                )
+                allocations[symbol]["percentage"] = round(
+                    (allocations[symbol]["allocation_amount"] / initial_investment) * 100, 2
+                )
+            total_allocated = sum(allocations[symbol]["allocation_amount"] for symbol in allocations)
+        
+        # Second, handle case where total is less than investment (scale up proportionally)
+        elif total_allocated < initial_investment:
+            remaining_funds = initial_investment - total_allocated
+            
+            # Calculate total score of allocated cryptocurrencies for proportional distribution
+            allocated_score_total = sum(scores[symbol] for symbol in allocations)
+            
+            # Distribute remaining funds proportionally based on scores
+            for symbol in allocations:
+                if allocated_score_total > 0:
+                    additional_allocation = remaining_funds * (scores[symbol] / allocated_score_total)
+                    allocations[symbol]["allocation_amount"] = round(
+                        allocations[symbol]["allocation_amount"] + additional_allocation, 2
+                    )
+                    allocations[symbol]["percentage"] = round(
+                        (allocations[symbol]["allocation_amount"] / initial_investment) * 100, 2
+                    )
+            
+            total_allocated = sum(allocations[symbol]["allocation_amount"] for symbol in allocations)
+            
+            # Final adjustment to ensure exact total (handle rounding errors)
+            if total_allocated != initial_investment:
+                difference = initial_investment - total_allocated
+                # Add difference to the largest allocation
+                largest_symbol = max(allocations.keys(), key=lambda x: allocations[x]["allocation_amount"])
+                allocations[largest_symbol]["allocation_amount"] = round(
+                    allocations[largest_symbol]["allocation_amount"] + difference, 2
+                )
+                allocations[largest_symbol]["percentage"] = round(
+                    (allocations[largest_symbol]["allocation_amount"] / initial_investment) * 100, 2
+                )
+                total_allocated = initial_investment
+        
+        # Calculate expected portfolio performance
+        expected_portfolio_return = sum(
+            (allocations[symbol]["allocation_amount"] / initial_investment) * self.results[symbol].return_pct
+            for symbol in allocations
+        )
+        
+        weighted_sharpe = sum(
+            (allocations[symbol]["allocation_amount"] / initial_investment) * self.results[symbol].sharpe_ratio
+            for symbol in allocations
+        )
+        
+        weighted_drawdown = sum(
+            (allocations[symbol]["allocation_amount"] / initial_investment) * self.results[symbol].max_drawdown
+            for symbol in allocations
+        )
+        
+        # Create portfolio structure
+        portfolio_data = {
+            "metadata": {
+                "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "initial_investment": initial_investment,
+                "total_allocated": round(total_allocated, 2),
+                "remaining_cash": round(initial_investment - total_allocated, 2),
+                "num_cryptocurrencies": len(allocations),
+                "allocation_strategy": "Risk-Adjusted Return Optimization"
+            },
+            "portfolio_performance": {
+                "expected_monthly_return_pct": round(expected_portfolio_return, 2),
+                "expected_monthly_profit": round(initial_investment * expected_portfolio_return / 100, 2),
+                "weighted_sharpe_ratio": round(weighted_sharpe, 3),
+                "weighted_max_drawdown_pct": round(weighted_drawdown, 2),
+                "risk_level": self._get_portfolio_risk_level(weighted_drawdown)
+            },
+            "allocations": {}
+        }
+        
+        # Sort allocations by amount (largest first)
+        sorted_allocations = sorted(allocations.items(), 
+                                   key=lambda x: x[1]["allocation_amount"], 
+                                   reverse=True)
+        
+        for symbol, allocation in sorted_allocations:
+            result = self.results[symbol]
+            portfolio_data["allocations"][symbol] = {
+                "allocation_amount": allocation["allocation_amount"],
+                "percentage_of_portfolio": allocation["percentage"],
+                "expected_monthly_return_pct": result.return_pct,
+                "expected_monthly_profit": round(allocation["allocation_amount"] * result.return_pct / 100, 2),
+                "sharpe_ratio": result.sharpe_ratio,
+                "max_drawdown_pct": result.max_drawdown,
+                "risk_level": self._get_risk_level(result.max_drawdown),
+                "tier": self.get_crypto_tier(symbol),
+                "optimal_sma_params": {
+                    "short_window": result.best_params[0],
+                    "long_window": result.best_params[1]
+                },
+                "score": allocation["score"]
+            }
+        
+        # Save detailed portfolio allocation to file
+        with open(filepath, 'w') as f:
+            json.dump(portfolio_data, f, indent=2)
+            
+        # Create and save simple portfolio allocation (just coin amounts)
+        simple_allocation = {}
+        for symbol, allocation in sorted_allocations:
+            simple_allocation[symbol] = allocation["allocation_amount"]
+        
+        # Add summary info
+        simple_portfolio_data = {
+            "summary": {
+                "total_investment": initial_investment,
+                "total_allocated": round(total_allocated, 2),
+                "remaining_cash": round(initial_investment - total_allocated, 2),
+                "number_of_coins": len(allocations)
+            },
+            "allocations": simple_allocation
+        }
+        
+        # Save simple allocation file
+        simple_filename = filename.replace('.json', '_simple.json')
+        simple_filepath = os.path.join(main_output_dir, simple_filename)
+        with open(simple_filepath, 'w') as f:
+            json.dump(simple_portfolio_data, f, indent=2)
+            
+        print(f"💼 Portfolio allocation saved to {filepath}")
+        print(f"📋 Simple allocation saved to {simple_filepath}")
+        print(f"   💰 ${initial_investment:,.0f} allocated across {len(allocations)} cryptocurrencies")
+        print(f"   📈 Expected monthly return: {expected_portfolio_return:+.2f}% (${initial_investment * expected_portfolio_return / 100:+,.0f})")
+        print(f"   📊 Portfolio Sharpe ratio: {weighted_sharpe:.3f}")
+        print(f"   ⚠️ Maximum drawdown: {weighted_drawdown:.2f}%")
+
+        # Also save a minimal simple allocation file (symbol -> allocation_amount) for programmatic use
+        try:
+            minimal_simple = {symbol: allocation["allocation_amount"] for symbol, allocation in sorted_allocations}
+            minimal_path = os.path.join(main_output_dir, "simple_portfolio_allocation.json")
+            with open(minimal_path, 'w') as msf:
+                json.dump(minimal_simple, msf, indent=2)
+            print(f"🔍 Minimal simple allocation saved to {minimal_path}")
+        except Exception as e:
+            print(f"⚠️ Failed to write minimal simple allocation: {e}")
+        
+    def _get_portfolio_risk_level(self, weighted_drawdown: float) -> str:
+        """Classify portfolio risk level based on weighted maximum drawdown."""
+        if weighted_drawdown >= -5:
+            return "low"
+        elif weighted_drawdown >= -10:
+            return "medium"
+        elif weighted_drawdown >= -15:
+            return "high"
+        else:
+            return "very_high"
+        
+    def _get_risk_level(self, max_drawdown: float) -> str:
+        """Classify risk level based on maximum drawdown."""
+        if max_drawdown >= -3:
+            return "low"
+        elif max_drawdown >= -7:
+            return "medium"
+        else:
+            return "high"
 
 
 def main():
@@ -511,30 +821,30 @@ def main():
         print(f"   {i}. {name} - {count} cryptos from {tiers}")
     
     # Use aggressive strategy by default (can be modified)
-    selected_strategy = 2  # Aggressive approach
+    selected_strategy = 0
     strategy_name, crypto_count, include_tiers = strategies[selected_strategy]
     
     print(f"\n🎲 Using: {strategy_name}")
     test_cryptos = optimizer.select_top_cryptos(crypto_count, include_tiers)
     
-    # Step 2: Check data availability
-    print(f"\n� Step 2: Checking data availability")
+    # Step 2: Always fetch fresh data for all selected cryptocurrencies
+    print(f"\n📊 Step 2: Fetching fresh data for selected cryptocurrencies")
+    print(f"📡 Fetching latest data for {len(test_cryptos)} cryptocurrencies...")
+    optimizer.fetch_crypto_data(test_cryptos, interval=5)
+    
+    # Check data availability after fresh fetch
     valid_cryptos = optimizer.quick_data_check(test_cryptos)
     
     if not valid_cryptos:
         print("❌ No valid cryptocurrencies found. Fetching fresh data...")
         
-        # Fetch data for top cryptos
-        priority_cryptos = optimizer.priority_tiers['tier_1'][:8]  # Top 8 as backup
-        print(f"\n📊 Fetching data for priority cryptocurrencies: {priority_cryptos}")
-        optimizer.fetch_crypto_data(priority_cryptos, interval=5)
+        # Fetch data for ALL available cryptocurrencies as backup
+        all_cryptos = list(optimizer.crypto_pairs.keys())
+        print(f"\n📊 Fetching fresh data for ALL {len(all_cryptos)} available cryptocurrencies...")
+        optimizer.fetch_crypto_data(all_cryptos, interval=5)
         
-        # Wait to avoid rate limits
-        print("⏳ Waiting 30 seconds to avoid API rate limits...")
-        time.sleep(30)
-        
-        # Recheck
-        valid_cryptos = optimizer.quick_data_check(priority_cryptos)
+        # Recheck with all available cryptocurrencies
+        valid_cryptos = optimizer.quick_data_check(all_cryptos)
     
     if not valid_cryptos:
         print("❌ Unable to get sufficient data. Please check your data files.")
@@ -612,6 +922,12 @@ def main():
     
     # Step 6: Save results
     optimizer.save_results("most_profitable_cryptos.json")
+    
+    # Save optimal parameters for trading bot usage
+    optimizer.save_optimal_parameters("optimal_sma_parameters.json")
+    
+    # Generate portfolio allocation for $49,000 investment
+    optimizer.save_portfolio_allocation(10000, "portfolio_allocation.json")
     
     # Step 7: Implementation guide
     if profitable_cryptos:

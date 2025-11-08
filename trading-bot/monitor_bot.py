@@ -133,6 +133,34 @@ class MonitorBot:
         signal.signal(signal.SIGTERM, self.signal_handler)
         
         logger.info("Bot started successfully. Press CTRL+C to stop.")
+
+        # Run SMA optimizer once at startup (non-blocking to monitoring loop flow)
+        try:
+            optimizer_dir = os.path.join(parent_dir, 'sma-prediction')
+            if os.path.isdir(optimizer_dir):
+                # Ensure the optimizer directory is importable
+                if optimizer_dir not in sys.path:
+                    sys.path.insert(0, optimizer_dir)
+
+                try:
+                    import multi_cryptocurrency_optimizer as mco
+                    logger.info("Starting one-time SMA optimizer run at startup (may take a while)...")
+                    prev_cwd = os.getcwd()
+                    os.chdir(optimizer_dir)
+                    try:
+                        # main() runs the optimization and saves outputs
+                        mco.main()
+                        logger.info("One-time SMA optimizer run completed")
+                    except Exception as e:
+                        logger.error(f"Error while running SMA optimizer at startup: {e}")
+                    finally:
+                        os.chdir(prev_cwd)
+                except Exception as e:
+                    logger.warning(f"Could not import/run SMA optimizer: {e}")
+            else:
+                logger.debug(f"SMA optimizer directory not present: {optimizer_dir}")
+        except Exception as e:
+            logger.error(f"Unexpected error when attempting startup optimizer run: {e}")
         
         try:
             while self.running:
