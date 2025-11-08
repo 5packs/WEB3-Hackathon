@@ -1,0 +1,15 @@
+# WEB3-Hackathon Python Requirements
+# All dependencies needed for the complete project
+
+# Core API and Bot Dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+
+# Data Analysis and Trading Strategy Dependencies
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Standard library modules used (no pip install needed):
+# - os, sys, time, signal, logging, datetime
+# - hmac, hashlib, json
+# - typing, dataclasses

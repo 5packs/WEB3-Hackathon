@@ -1,3 +1,4 @@
 [submodule "crypto-roostoo-api"]
 	path = crypto-roostoo-api
 	url = https://github.com/5packs/crypto-roostoo-api.git
+	branch = main
