@@ -1,0 +1,1619 @@
+2025-11-09 06:36:16,614 - INFO - Purchase by value function imported successfully
+2025-11-09 06:36:16,615 - INFO - ============================================================
+2025-11-09 06:36:16,615 - INFO - Crypto Roostoo Account Balance Monitor Bot Starting
+2025-11-09 06:36:16,615 - INFO - ============================================================
+2025-11-09 06:36:16,615 - INFO - Monitor interval: 300 seconds (5 minutes)
+2025-11-09 06:36:16,615 - INFO - Log file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/trading-bot/logs/monitor_bot.log
+2025-11-09 06:36:16,615 - INFO - Logs directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/trading-bot/logs
+2025-11-09 06:36:16,615 - INFO - Submodule path: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:36:16,615 - INFO - Bot started successfully. Press CTRL+C to stop.
+2025-11-09 06:36:16,615 - INFO - Purchase mode: LIVE TRADING (real purchases)
+2025-11-09 06:36:16,615 - INFO - Startup process: Optimization -> Trades -> 5.0 min total wait -> Monitoring loop
+2025-11-09 06:36:16,978 - INFO - Starting one-time SMA optimizer run at startup (may take a while)...
+2025-11-09 06:37:37,110 - INFO - One-time SMA optimizer run completed
+2025-11-09 06:37:37,110 - INFO - Starting automated portfolio purchases...
+2025-11-09 06:37:37,111 - INFO - ============================================================
+2025-11-09 06:37:37,111 - INFO - STARTING AUTOMATED PORTFOLIO PURCHASES
+2025-11-09 06:37:37,111 - INFO - ============================================================
+2025-11-09 06:37:37,111 - INFO - Found 24 cryptocurrencies to purchase
+2025-11-09 06:37:37,111 - INFO - Mode: LIVE TRADING (real purchases)
+2025-11-09 06:37:37,111 - INFO - Total investment amount: $30,000.03
+2025-11-09 06:37:37,111 - INFO - 
+--- Purchase 1/24: FIL ---
+2025-11-09 06:37:37,111 - INFO - Purchasing $6,393.57 worth of FIL
+2025-11-09 06:37:37,111 - INFO - Starting purchase by value: $6393.57 worth of FIL
+2025-11-09 06:37:37,111 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 06:37:37,409 - INFO - Primary API price for FIL/USD: $3.0850
+2025-11-09 06:37:37,410 - INFO - Calculated quantity: 2072.47 coins for $6393.57 at $3.085/coin (precision: 3 decimals)
+2025-11-09 06:37:37,411 - INFO - Order details:
+2025-11-09 06:37:37,411 - INFO -   Coin: FIL
+2025-11-09 06:37:37,411 - INFO -   Quantity: 2072.47
+2025-11-09 06:37:37,411 - INFO -   Order Type: MARKET
+2025-11-09 06:37:37,411 - INFO -   Price Used: $3.0850
+2025-11-09 06:37:37,412 - INFO -   Estimated Cost: $6,393.57
+2025-11-09 06:37:37,412 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:37:37,412 - INFO - Coin price $3.0850 < $10, starting with 1 decimal precision
+2025-11-09 06:37:37,412 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:37:37,413 - INFO - Calculated quantity: 2072.4 coins for $6393.57 at $3.085/coin (precision: 1 decimals)
+2025-11-09 06:37:37,413 - INFO - Attempt 1/4: Precision 1 decimals, quantity 2072.4
+2025-11-09 06:37:37,670 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:37:37,670 - INFO - API Response indicates success
+2025-11-09 06:37:37,670 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:37:37,670 - INFO - Final quantity: 2072.4 FIL
+2025-11-09 06:37:37,671 - INFO - Attempts required: 1
+2025-11-09 06:37:37,671 - INFO - Updated portfolio allocation: FIL value changed from $6393.57 to $0
+2025-11-09 06:37:37,672 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:37:37,672 - INFO - Portfolio allocation updated (REAL PURCHASE): FIL value set to $0
+2025-11-09 06:37:37,672 - INFO - SUCCESS: Successfully initiated purchase of FIL
+2025-11-09 06:37:37,673 - INFO -    Quantity: 2072.4 FIL
+2025-11-09 06:37:37,673 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:37:42,673 - INFO - 
+--- Purchase 2/24: FET ---
+2025-11-09 06:37:42,674 - INFO - Purchasing $3,683.04 worth of FET
+2025-11-09 06:37:42,674 - INFO - Starting purchase by value: $3683.04 worth of FET
+2025-11-09 06:37:42,674 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 06:37:42,893 - INFO - Primary API price for FET/USD: $0.3425
+2025-11-09 06:37:42,893 - INFO - Calculated quantity: 10753.401 coins for $3683.04 at $0.3425/coin (precision: 3 decimals)
+2025-11-09 06:37:42,893 - INFO - Order details:
+2025-11-09 06:37:42,893 - INFO -   Coin: FET
+2025-11-09 06:37:42,893 - INFO -   Quantity: 10753.401
+2025-11-09 06:37:42,893 - INFO -   Order Type: MARKET
+2025-11-09 06:37:42,893 - INFO -   Price Used: $0.3425
+2025-11-09 06:37:42,893 - INFO -   Estimated Cost: $3,683.04
+2025-11-09 06:37:42,893 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:37:42,893 - INFO - Coin price $0.3425 < $10, starting with 1 decimal precision
+2025-11-09 06:37:42,894 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:37:42,894 - INFO - Calculated quantity: 10753.4 coins for $3683.04 at $0.3425/coin (precision: 1 decimals)
+2025-11-09 06:37:42,894 - INFO - Attempt 1/4: Precision 1 decimals, quantity 10753.4
+2025-11-09 06:37:43,156 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:37:43,157 - INFO - API Response indicates success
+2025-11-09 06:37:43,157 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:37:43,157 - INFO - Final quantity: 10753.4 FET
+2025-11-09 06:37:43,157 - INFO - Attempts required: 1
+2025-11-09 06:37:43,158 - INFO - Updated portfolio allocation: FET value changed from $3683.04 to $0
+2025-11-09 06:37:43,158 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:37:43,158 - INFO - Portfolio allocation updated (REAL PURCHASE): FET value set to $0
+2025-11-09 06:37:43,159 - INFO - SUCCESS: Successfully initiated purchase of FET
+2025-11-09 06:37:43,159 - INFO -    Quantity: 10753.4 FET
+2025-11-09 06:37:43,159 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:37:48,160 - INFO - 
+--- Purchase 3/24: NEAR ---
+2025-11-09 06:37:48,160 - INFO - Purchasing $2,540.06 worth of NEAR
+2025-11-09 06:37:48,160 - INFO - Starting purchase by value: $2540.06 worth of NEAR
+2025-11-09 06:37:48,160 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 06:37:48,542 - INFO - Primary API price for NEAR/USD: $2.8490
+2025-11-09 06:37:48,543 - INFO - Calculated quantity: 891.561 coins for $2540.06 at $2.849/coin (precision: 3 decimals)
+2025-11-09 06:37:48,543 - INFO - Order details:
+2025-11-09 06:37:48,543 - INFO -   Coin: NEAR
+2025-11-09 06:37:48,543 - INFO -   Quantity: 891.561
+2025-11-09 06:37:48,544 - INFO -   Order Type: MARKET
+2025-11-09 06:37:48,544 - INFO -   Price Used: $2.8490
+2025-11-09 06:37:48,544 - INFO -   Estimated Cost: $2,540.06
+2025-11-09 06:37:48,544 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:37:48,544 - INFO - Coin price $2.8490 < $10, starting with 1 decimal precision
+2025-11-09 06:37:48,544 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:37:48,545 - INFO - Calculated quantity: 891.5 coins for $2540.06 at $2.849/coin (precision: 1 decimals)
+2025-11-09 06:37:48,545 - INFO - Attempt 1/4: Precision 1 decimals, quantity 891.5
+2025-11-09 06:37:48,773 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:37:48,773 - INFO - API Response indicates success
+2025-11-09 06:37:48,774 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:37:48,774 - INFO - Final quantity: 891.5 NEAR
+2025-11-09 06:37:48,774 - INFO - Attempts required: 1
+2025-11-09 06:37:48,775 - INFO - Updated portfolio allocation: NEAR value changed from $2540.06 to $0
+2025-11-09 06:37:48,775 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:37:48,776 - INFO - Portfolio allocation updated (REAL PURCHASE): NEAR value set to $0
+2025-11-09 06:37:48,776 - INFO - SUCCESS: Successfully initiated purchase of NEAR
+2025-11-09 06:37:48,776 - INFO -    Quantity: 891.5 NEAR
+2025-11-09 06:37:48,776 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:37:53,777 - INFO - 
+--- Purchase 4/24: ICP ---
+2025-11-09 06:37:53,777 - INFO - Purchasing $1,673.79 worth of ICP
+2025-11-09 06:37:53,777 - INFO - Starting purchase by value: $1673.79 worth of ICP
+2025-11-09 06:37:53,777 - INFO - Fetching current price for ICP/USD from primary API
+2025-11-09 06:37:54,174 - INFO - Primary API price for ICP/USD: $8.9250
+2025-11-09 06:37:54,175 - INFO - Calculated quantity: 187.539 coins for $1673.79 at $8.925/coin (precision: 3 decimals)
+2025-11-09 06:37:54,175 - INFO - Order details:
+2025-11-09 06:37:54,176 - INFO -   Coin: ICP
+2025-11-09 06:37:54,176 - INFO -   Quantity: 187.539
+2025-11-09 06:37:54,176 - INFO -   Order Type: MARKET
+2025-11-09 06:37:54,176 - INFO -   Price Used: $8.9250
+2025-11-09 06:37:54,176 - INFO -   Estimated Cost: $1,673.79
+2025-11-09 06:37:54,176 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:37:54,176 - INFO - Coin price $8.9250 < $10, starting with 1 decimal precision
+2025-11-09 06:37:54,177 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:37:54,177 - INFO - Calculated quantity: 187.5 coins for $1673.79 at $8.925/coin (precision: 1 decimals)
+2025-11-09 06:37:54,177 - INFO - Attempt 1/4: Precision 1 decimals, quantity 187.5
+2025-11-09 06:37:54,426 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:37:54,426 - INFO - API Response indicates success
+2025-11-09 06:37:54,426 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:37:54,427 - INFO - Final quantity: 187.5 ICP
+2025-11-09 06:37:54,427 - INFO - Attempts required: 1
+2025-11-09 06:37:54,427 - INFO - Updated portfolio allocation: ICP value changed from $1673.79 to $0
+2025-11-09 06:37:54,427 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:37:54,428 - INFO - Portfolio allocation updated (REAL PURCHASE): ICP value set to $0
+2025-11-09 06:37:54,428 - INFO - SUCCESS: Successfully initiated purchase of ICP
+2025-11-09 06:37:54,428 - INFO -    Quantity: 187.5 ICP
+2025-11-09 06:37:54,428 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:37:59,428 - INFO - 
+--- Purchase 5/24: DOT ---
+2025-11-09 06:37:59,429 - INFO - Purchasing $1,563.90 worth of DOT
+2025-11-09 06:37:59,429 - INFO - Starting purchase by value: $1563.9 worth of DOT
+2025-11-09 06:37:59,429 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 06:37:59,821 - INFO - Primary API price for DOT/USD: $3.2110
+2025-11-09 06:37:59,822 - INFO - Calculated quantity: 487.044 coins for $1563.9 at $3.211/coin (precision: 3 decimals)
+2025-11-09 06:37:59,822 - INFO - Order details:
+2025-11-09 06:37:59,823 - INFO -   Coin: DOT
+2025-11-09 06:37:59,823 - INFO -   Quantity: 487.044
+2025-11-09 06:37:59,823 - INFO -   Order Type: MARKET
+2025-11-09 06:37:59,823 - INFO -   Price Used: $3.2110
+2025-11-09 06:37:59,823 - INFO -   Estimated Cost: $1,563.90
+2025-11-09 06:37:59,824 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:37:59,824 - INFO - Coin price $3.2110 < $10, starting with 1 decimal precision
+2025-11-09 06:37:59,824 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:37:59,824 - INFO - Calculated quantity: 487.0 coins for $1563.9 at $3.211/coin (precision: 1 decimals)
+2025-11-09 06:37:59,824 - INFO - Attempt 1/4: Precision 1 decimals, quantity 487.0
+2025-11-09 06:38:00,120 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:00,120 - INFO - API Response indicates success
+2025-11-09 06:38:00,120 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:00,120 - INFO - Final quantity: 487.0 DOT
+2025-11-09 06:38:00,121 - INFO - Attempts required: 1
+2025-11-09 06:38:00,121 - INFO - Updated portfolio allocation: DOT value changed from $1563.9 to $0
+2025-11-09 06:38:00,122 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:00,122 - INFO - Portfolio allocation updated (REAL PURCHASE): DOT value set to $0
+2025-11-09 06:38:00,122 - INFO - SUCCESS: Successfully initiated purchase of DOT
+2025-11-09 06:38:00,122 - INFO -    Quantity: 487.0 DOT
+2025-11-09 06:38:00,123 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:05,123 - INFO - 
+--- Purchase 6/24: LTC ---
+2025-11-09 06:38:05,123 - INFO - Purchasing $1,152.49 worth of LTC
+2025-11-09 06:38:05,124 - INFO - Starting purchase by value: $1152.49 worth of LTC
+2025-11-09 06:38:05,124 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 06:38:05,349 - INFO - Primary API price for LTC/USD: $101.5200
+2025-11-09 06:38:05,349 - INFO - Calculated quantity: 11.352 coins for $1152.49 at $101.52/coin (precision: 3 decimals)
+2025-11-09 06:38:05,349 - INFO - Order details:
+2025-11-09 06:38:05,349 - INFO -   Coin: LTC
+2025-11-09 06:38:05,349 - INFO -   Quantity: 11.352
+2025-11-09 06:38:05,349 - INFO -   Order Type: MARKET
+2025-11-09 06:38:05,349 - INFO -   Price Used: $101.5200
+2025-11-09 06:38:05,349 - INFO -   Estimated Cost: $1,152.46
+2025-11-09 06:38:05,349 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:05,349 - INFO - Coin price $101.5200 >= $10, starting with 3 decimal precision
+2025-11-09 06:38:05,350 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:05,350 - INFO - Calculated quantity: 11.352 coins for $1152.49 at $101.52/coin (precision: 3 decimals)
+2025-11-09 06:38:05,350 - INFO - Attempt 1/4: Precision 3 decimals, quantity 11.352
+2025-11-09 06:38:05,596 - INFO - Order placed successfully with 3 decimal precision
+2025-11-09 06:38:05,597 - INFO - API Response indicates success
+2025-11-09 06:38:05,597 - INFO - SUCCESS: Order placed with 3 decimal precision
+2025-11-09 06:38:05,597 - INFO - Final quantity: 11.352 LTC
+2025-11-09 06:38:05,597 - INFO - Attempts required: 1
+2025-11-09 06:38:05,597 - INFO - Updated portfolio allocation: LTC value changed from $1152.49 to $0
+2025-11-09 06:38:05,597 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:05,597 - INFO - Portfolio allocation updated (REAL PURCHASE): LTC value set to $0
+2025-11-09 06:38:05,597 - INFO - SUCCESS: Successfully initiated purchase of LTC
+2025-11-09 06:38:05,597 - INFO -    Quantity: 11.352 LTC
+2025-11-09 06:38:05,597 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:10,598 - INFO - 
+--- Purchase 7/24: SEI ---
+2025-11-09 06:38:10,598 - INFO - Purchasing $1,094.60 worth of SEI
+2025-11-09 06:38:10,598 - INFO - Starting purchase by value: $1094.6 worth of SEI
+2025-11-09 06:38:10,598 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 06:38:10,951 - INFO - Primary API price for SEI/USD: $0.1814
+2025-11-09 06:38:10,951 - INFO - Calculated quantity: 6034.178 coins for $1094.6 at $0.1814/coin (precision: 3 decimals)
+2025-11-09 06:38:10,951 - INFO - Order details:
+2025-11-09 06:38:10,951 - INFO -   Coin: SEI
+2025-11-09 06:38:10,951 - INFO -   Quantity: 6034.178
+2025-11-09 06:38:10,951 - INFO -   Order Type: MARKET
+2025-11-09 06:38:10,951 - INFO -   Price Used: $0.1814
+2025-11-09 06:38:10,952 - INFO -   Estimated Cost: $1,094.60
+2025-11-09 06:38:10,952 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:10,952 - INFO - Coin price $0.1814 < $10, starting with 1 decimal precision
+2025-11-09 06:38:10,952 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:10,952 - INFO - Calculated quantity: 6034.1 coins for $1094.6 at $0.1814/coin (precision: 1 decimals)
+2025-11-09 06:38:10,952 - INFO - Attempt 1/4: Precision 1 decimals, quantity 6034.1
+2025-11-09 06:38:11,160 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:11,161 - INFO - API Response indicates success
+2025-11-09 06:38:11,161 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:11,161 - INFO - Final quantity: 6034.1 SEI
+2025-11-09 06:38:11,161 - INFO - Attempts required: 1
+2025-11-09 06:38:11,161 - INFO - Updated portfolio allocation: SEI value changed from $1094.6 to $0
+2025-11-09 06:38:11,161 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:11,161 - INFO - Portfolio allocation updated (REAL PURCHASE): SEI value set to $0
+2025-11-09 06:38:11,161 - INFO - SUCCESS: Successfully initiated purchase of SEI
+2025-11-09 06:38:11,161 - INFO -    Quantity: 6034.1 SEI
+2025-11-09 06:38:11,161 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:16,162 - INFO - 
+--- Purchase 8/24: APT ---
+2025-11-09 06:38:16,162 - INFO - Purchasing $1,069.94 worth of APT
+2025-11-09 06:38:16,162 - INFO - Starting purchase by value: $1069.94 worth of APT
+2025-11-09 06:38:16,163 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 06:38:16,453 - INFO - Primary API price for APT/USD: $3.0800
+2025-11-09 06:38:16,453 - INFO - Calculated quantity: 347.383 coins for $1069.94 at $3.08/coin (precision: 3 decimals)
+2025-11-09 06:38:16,453 - INFO - Order details:
+2025-11-09 06:38:16,453 - INFO -   Coin: APT
+2025-11-09 06:38:16,453 - INFO -   Quantity: 347.383
+2025-11-09 06:38:16,453 - INFO -   Order Type: MARKET
+2025-11-09 06:38:16,453 - INFO -   Price Used: $3.0800
+2025-11-09 06:38:16,454 - INFO -   Estimated Cost: $1,069.94
+2025-11-09 06:38:16,454 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:16,454 - INFO - Coin price $3.0800 < $10, starting with 1 decimal precision
+2025-11-09 06:38:16,454 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:16,454 - INFO - Calculated quantity: 347.3 coins for $1069.94 at $3.08/coin (precision: 1 decimals)
+2025-11-09 06:38:16,454 - INFO - Attempt 1/4: Precision 1 decimals, quantity 347.3
+2025-11-09 06:38:16,719 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:16,719 - INFO - API Response indicates success
+2025-11-09 06:38:16,719 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:16,719 - INFO - Final quantity: 347.3 APT
+2025-11-09 06:38:16,719 - INFO - Attempts required: 1
+2025-11-09 06:38:16,720 - INFO - Updated portfolio allocation: APT value changed from $1069.94 to $0
+2025-11-09 06:38:16,761 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:16,761 - INFO - Portfolio allocation updated (REAL PURCHASE): APT value set to $0
+2025-11-09 06:38:16,761 - INFO - SUCCESS: Successfully initiated purchase of APT
+2025-11-09 06:38:16,761 - INFO -    Quantity: 347.3 APT
+2025-11-09 06:38:16,761 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:21,762 - INFO - 
+--- Purchase 9/24: ARB ---
+2025-11-09 06:38:21,762 - INFO - Purchasing $973.47 worth of ARB
+2025-11-09 06:38:21,762 - INFO - Starting purchase by value: $973.47 worth of ARB
+2025-11-09 06:38:21,763 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 06:38:22,150 - INFO - Primary API price for ARB/USD: $0.2958
+2025-11-09 06:38:22,152 - INFO - Calculated quantity: 3290.973 coins for $973.47 at $0.2958/coin (precision: 3 decimals)
+2025-11-09 06:38:22,152 - INFO - Order details:
+2025-11-09 06:38:22,152 - INFO -   Coin: ARB
+2025-11-09 06:38:22,152 - INFO -   Quantity: 3290.973
+2025-11-09 06:38:22,152 - INFO -   Order Type: MARKET
+2025-11-09 06:38:22,153 - INFO -   Price Used: $0.2958
+2025-11-09 06:38:22,153 - INFO -   Estimated Cost: $973.47
+2025-11-09 06:38:22,153 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:22,153 - INFO - Coin price $0.2958 < $10, starting with 1 decimal precision
+2025-11-09 06:38:22,153 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:22,153 - INFO - Calculated quantity: 3290.9 coins for $973.47 at $0.2958/coin (precision: 1 decimals)
+2025-11-09 06:38:22,154 - INFO - Attempt 1/4: Precision 1 decimals, quantity 3290.9
+2025-11-09 06:38:22,407 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:22,407 - INFO - API Response indicates success
+2025-11-09 06:38:22,407 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:22,407 - INFO - Final quantity: 3290.9 ARB
+2025-11-09 06:38:22,407 - INFO - Attempts required: 1
+2025-11-09 06:38:22,408 - INFO - Updated portfolio allocation: ARB value changed from $973.47 to $0
+2025-11-09 06:38:22,408 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:22,408 - INFO - Portfolio allocation updated (REAL PURCHASE): ARB value set to $0
+2025-11-09 06:38:22,408 - INFO - SUCCESS: Successfully initiated purchase of ARB
+2025-11-09 06:38:22,408 - INFO -    Quantity: 3290.9 ARB
+2025-11-09 06:38:22,408 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:27,409 - INFO - 
+--- Purchase 10/24: CRV ---
+2025-11-09 06:38:27,409 - INFO - Purchasing $941.75 worth of CRV
+2025-11-09 06:38:27,409 - INFO - Starting purchase by value: $941.75 worth of CRV
+2025-11-09 06:38:27,466 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 06:38:28,723 - INFO - Primary API price for CRV/USD: $0.4786
+2025-11-09 06:38:28,724 - INFO - Calculated quantity: 1967.718 coins for $941.75 at $0.4786/coin (precision: 3 decimals)
+2025-11-09 06:38:28,724 - INFO - Order details:
+2025-11-09 06:38:28,724 - INFO -   Coin: CRV
+2025-11-09 06:38:28,724 - INFO -   Quantity: 1967.718
+2025-11-09 06:38:28,724 - INFO -   Order Type: MARKET
+2025-11-09 06:38:28,724 - INFO -   Price Used: $0.4786
+2025-11-09 06:38:28,724 - INFO -   Estimated Cost: $941.75
+2025-11-09 06:38:28,724 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:28,724 - INFO - Coin price $0.4786 < $10, starting with 1 decimal precision
+2025-11-09 06:38:28,724 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:28,724 - INFO - Calculated quantity: 1967.7 coins for $941.75 at $0.4786/coin (precision: 1 decimals)
+2025-11-09 06:38:28,724 - INFO - Attempt 1/4: Precision 1 decimals, quantity 1967.7
+2025-11-09 06:38:29,008 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:29,009 - INFO - API Response indicates success
+2025-11-09 06:38:29,009 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:29,009 - INFO - Final quantity: 1967.7 CRV
+2025-11-09 06:38:29,009 - INFO - Attempts required: 1
+2025-11-09 06:38:29,009 - INFO - Updated portfolio allocation: CRV value changed from $941.75 to $0
+2025-11-09 06:38:29,010 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:29,010 - INFO - Portfolio allocation updated (REAL PURCHASE): CRV value set to $0
+2025-11-09 06:38:29,010 - INFO - SUCCESS: Successfully initiated purchase of CRV
+2025-11-09 06:38:29,011 - INFO -    Quantity: 1967.7 CRV
+2025-11-09 06:38:29,011 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:34,011 - INFO - 
+--- Purchase 11/24: AVAX ---
+2025-11-09 06:38:34,012 - INFO - Purchasing $893.42 worth of AVAX
+2025-11-09 06:38:34,012 - INFO - Starting purchase by value: $893.42 worth of AVAX
+2025-11-09 06:38:34,012 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 06:38:34,421 - INFO - Primary API price for AVAX/USD: $17.4100
+2025-11-09 06:38:34,423 - INFO - Calculated quantity: 51.316 coins for $893.42 at $17.41/coin (precision: 3 decimals)
+2025-11-09 06:38:34,423 - INFO - Order details:
+2025-11-09 06:38:34,423 - INFO -   Coin: AVAX
+2025-11-09 06:38:34,423 - INFO -   Quantity: 51.316
+2025-11-09 06:38:34,423 - INFO -   Order Type: MARKET
+2025-11-09 06:38:34,423 - INFO -   Price Used: $17.4100
+2025-11-09 06:38:34,424 - INFO -   Estimated Cost: $893.41
+2025-11-09 06:38:34,424 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:34,424 - INFO - Coin price $17.4100 >= $10, starting with 3 decimal precision
+2025-11-09 06:38:34,424 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:34,424 - INFO - Calculated quantity: 51.316 coins for $893.42 at $17.41/coin (precision: 3 decimals)
+2025-11-09 06:38:34,424 - INFO - Attempt 1/4: Precision 3 decimals, quantity 51.316
+2025-11-09 06:38:34,643 - WARNING - Quantity step size error detected from API response
+2025-11-09 06:38:34,644 - WARNING - API Error: quantity step size error
+2025-11-09 06:38:34,644 - INFO - Reducing precision to 2 decimals and retrying...
+2025-11-09 06:38:34,644 - INFO - Calculated quantity: 51.31 coins for $893.42 at $17.41/coin (precision: 2 decimals)
+2025-11-09 06:38:34,644 - INFO - Attempt 2/4: Precision 2 decimals, quantity 51.31
+2025-11-09 06:38:35,890 - INFO - Order placed successfully with 2 decimal precision
+2025-11-09 06:38:35,890 - INFO - API Response indicates success
+2025-11-09 06:38:35,890 - INFO - SUCCESS: Order placed with 2 decimal precision
+2025-11-09 06:38:35,890 - INFO - Final quantity: 51.31 AVAX
+2025-11-09 06:38:35,890 - INFO - Attempts required: 2
+2025-11-09 06:38:35,890 - INFO - Updated portfolio allocation: AVAX value changed from $893.42 to $0
+2025-11-09 06:38:35,891 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:35,891 - INFO - Portfolio allocation updated (REAL PURCHASE): AVAX value set to $0
+2025-11-09 06:38:35,891 - INFO - SUCCESS: Successfully initiated purchase of AVAX
+2025-11-09 06:38:35,891 - INFO -    Quantity: 51.31 AVAX
+2025-11-09 06:38:35,891 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:40,891 - INFO - 
+--- Purchase 12/24: UNI ---
+2025-11-09 06:38:40,891 - INFO - Purchasing $845.94 worth of UNI
+2025-11-09 06:38:40,891 - INFO - Starting purchase by value: $845.94 worth of UNI
+2025-11-09 06:38:40,891 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 06:38:41,194 - INFO - Primary API price for UNI/USD: $5.9960
+2025-11-09 06:38:41,194 - INFO - Calculated quantity: 141.084 coins for $845.94 at $5.996/coin (precision: 3 decimals)
+2025-11-09 06:38:41,194 - INFO - Order details:
+2025-11-09 06:38:41,194 - INFO -   Coin: UNI
+2025-11-09 06:38:41,194 - INFO -   Quantity: 141.084
+2025-11-09 06:38:41,194 - INFO -   Order Type: MARKET
+2025-11-09 06:38:41,194 - INFO -   Price Used: $5.9960
+2025-11-09 06:38:41,194 - INFO -   Estimated Cost: $845.94
+2025-11-09 06:38:41,194 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:41,195 - INFO - Coin price $5.9960 < $10, starting with 1 decimal precision
+2025-11-09 06:38:41,195 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:41,195 - INFO - Calculated quantity: 141.0 coins for $845.94 at $5.996/coin (precision: 1 decimals)
+2025-11-09 06:38:41,195 - INFO - Attempt 1/4: Precision 1 decimals, quantity 141.0
+2025-11-09 06:38:41,519 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:41,519 - INFO - API Response indicates success
+2025-11-09 06:38:41,519 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:41,520 - INFO - Final quantity: 141.0 UNI
+2025-11-09 06:38:41,520 - INFO - Attempts required: 1
+2025-11-09 06:38:41,520 - INFO - Updated portfolio allocation: UNI value changed from $845.94 to $0
+2025-11-09 06:38:41,520 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:41,520 - INFO - Portfolio allocation updated (REAL PURCHASE): UNI value set to $0
+2025-11-09 06:38:41,521 - INFO - SUCCESS: Successfully initiated purchase of UNI
+2025-11-09 06:38:41,521 - INFO -    Quantity: 141.0 UNI
+2025-11-09 06:38:41,521 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:46,521 - INFO - 
+--- Purchase 13/24: LINK ---
+2025-11-09 06:38:46,521 - INFO - Purchasing $838.99 worth of LINK
+2025-11-09 06:38:46,522 - INFO - Starting purchase by value: $838.99 worth of LINK
+2025-11-09 06:38:46,522 - INFO - Fetching current price for LINK/USD from primary API
+2025-11-09 06:38:46,731 - INFO - Primary API price for LINK/USD: $15.4500
+2025-11-09 06:38:46,731 - INFO - Calculated quantity: 54.303 coins for $838.99 at $15.45/coin (precision: 3 decimals)
+2025-11-09 06:38:46,731 - INFO - Order details:
+2025-11-09 06:38:46,731 - INFO -   Coin: LINK
+2025-11-09 06:38:46,732 - INFO -   Quantity: 54.303
+2025-11-09 06:38:46,732 - INFO -   Order Type: MARKET
+2025-11-09 06:38:46,732 - INFO -   Price Used: $15.4500
+2025-11-09 06:38:46,732 - INFO -   Estimated Cost: $838.98
+2025-11-09 06:38:46,732 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:46,732 - INFO - Coin price $15.4500 >= $10, starting with 3 decimal precision
+2025-11-09 06:38:46,732 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:46,732 - INFO - Calculated quantity: 54.303 coins for $838.99 at $15.45/coin (precision: 3 decimals)
+2025-11-09 06:38:46,732 - INFO - Attempt 1/4: Precision 3 decimals, quantity 54.303
+2025-11-09 06:38:46,943 - WARNING - Quantity step size error detected from API response
+2025-11-09 06:38:46,944 - WARNING - API Error: quantity step size error
+2025-11-09 06:38:46,944 - INFO - Reducing precision to 2 decimals and retrying...
+2025-11-09 06:38:46,944 - INFO - Calculated quantity: 54.3 coins for $838.99 at $15.45/coin (precision: 2 decimals)
+2025-11-09 06:38:46,944 - INFO - Attempt 2/4: Precision 2 decimals, quantity 54.3
+2025-11-09 06:38:47,161 - INFO - Order placed successfully with 2 decimal precision
+2025-11-09 06:38:47,161 - INFO - API Response indicates success
+2025-11-09 06:38:47,162 - INFO - SUCCESS: Order placed with 2 decimal precision
+2025-11-09 06:38:47,162 - INFO - Final quantity: 54.3 LINK
+2025-11-09 06:38:47,162 - INFO - Attempts required: 2
+2025-11-09 06:38:47,162 - INFO - Updated portfolio allocation: LINK value changed from $838.99 to $0
+2025-11-09 06:38:47,163 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:47,163 - INFO - Portfolio allocation updated (REAL PURCHASE): LINK value set to $0
+2025-11-09 06:38:47,163 - INFO - SUCCESS: Successfully initiated purchase of LINK
+2025-11-09 06:38:47,163 - INFO -    Quantity: 54.3 LINK
+2025-11-09 06:38:47,163 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:52,164 - INFO - 
+--- Purchase 14/24: SHIB ---
+2025-11-09 06:38:52,164 - INFO - Purchasing $798.23 worth of SHIB
+2025-11-09 06:38:52,165 - INFO - Starting purchase by value: $798.23 worth of SHIB
+2025-11-09 06:38:52,165 - INFO - Fetching current price for SHIB/USD from primary API
+2025-11-09 06:38:52,443 - INFO - Primary API price for SHIB/USD: $0.0000
+2025-11-09 06:38:52,444 - INFO - Calculated quantity: 80466733.87 coins for $798.23 at $9.92e-06/coin (precision: 3 decimals)
+2025-11-09 06:38:52,444 - INFO - Order details:
+2025-11-09 06:38:52,444 - INFO -   Coin: SHIB
+2025-11-09 06:38:52,444 - INFO -   Quantity: 80466733.87
+2025-11-09 06:38:52,444 - INFO -   Order Type: MARKET
+2025-11-09 06:38:52,444 - INFO -   Price Used: $0.0000
+2025-11-09 06:38:52,444 - INFO -   Estimated Cost: $798.23
+2025-11-09 06:38:52,444 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:52,444 - INFO - Coin price $0.0000 < $10, starting with 1 decimal precision
+2025-11-09 06:38:52,444 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:52,444 - INFO - Calculated quantity: 80466733.8 coins for $798.23 at $9.92e-06/coin (precision: 1 decimals)
+2025-11-09 06:38:52,444 - INFO - Attempt 1/4: Precision 1 decimals, quantity 80466733.8
+2025-11-09 06:38:52,685 - WARNING - Quantity step size error detected from API response
+2025-11-09 06:38:52,686 - WARNING - API Error: quantity step size error
+2025-11-09 06:38:52,686 - INFO - Reducing precision to 0 decimals and retrying...
+2025-11-09 06:38:52,686 - INFO - Calculated quantity: 80466733.8 coins for $798.23 at $9.92e-06/coin (precision: 0 decimals)
+2025-11-09 06:38:52,686 - INFO - Attempt 2/4: Precision 0 decimals, quantity 80466733.8
+2025-11-09 06:38:52,884 - INFO - Order placed successfully with 0 decimal precision
+2025-11-09 06:38:52,884 - INFO - API Response indicates success
+2025-11-09 06:38:52,885 - INFO - SUCCESS: Order placed with 0 decimal precision
+2025-11-09 06:38:52,885 - INFO - Final quantity: 80466733.8 SHIB
+2025-11-09 06:38:52,885 - INFO - Attempts required: 2
+2025-11-09 06:38:52,885 - INFO - Updated portfolio allocation: SHIB value changed from $798.23 to $0
+2025-11-09 06:38:52,885 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:52,885 - INFO - Portfolio allocation updated (REAL PURCHASE): SHIB value set to $0
+2025-11-09 06:38:52,886 - INFO - SUCCESS: Successfully initiated purchase of SHIB
+2025-11-09 06:38:52,886 - INFO -    Quantity: 80466733.8 SHIB
+2025-11-09 06:38:52,886 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:38:57,886 - INFO - 
+--- Purchase 15/24: ADA ---
+2025-11-09 06:38:57,887 - INFO - Purchasing $774.95 worth of ADA
+2025-11-09 06:38:57,887 - INFO - Starting purchase by value: $774.95 worth of ADA
+2025-11-09 06:38:57,887 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 06:38:58,180 - INFO - Primary API price for ADA/USD: $0.5663
+2025-11-09 06:38:58,180 - INFO - Calculated quantity: 1368.444 coins for $774.95 at $0.5663/coin (precision: 3 decimals)
+2025-11-09 06:38:58,180 - INFO - Order details:
+2025-11-09 06:38:58,180 - INFO -   Coin: ADA
+2025-11-09 06:38:58,180 - INFO -   Quantity: 1368.444
+2025-11-09 06:38:58,180 - INFO -   Order Type: MARKET
+2025-11-09 06:38:58,180 - INFO -   Price Used: $0.5663
+2025-11-09 06:38:58,180 - INFO -   Estimated Cost: $774.95
+2025-11-09 06:38:58,180 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:38:58,180 - INFO - Coin price $0.5663 < $10, starting with 1 decimal precision
+2025-11-09 06:38:58,180 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:38:58,180 - INFO - Calculated quantity: 1368.4 coins for $774.95 at $0.5663/coin (precision: 1 decimals)
+2025-11-09 06:38:58,180 - INFO - Attempt 1/4: Precision 1 decimals, quantity 1368.4
+2025-11-09 06:38:58,518 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:38:58,518 - INFO - API Response indicates success
+2025-11-09 06:38:58,518 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:38:58,518 - INFO - Final quantity: 1368.4 ADA
+2025-11-09 06:38:58,518 - INFO - Attempts required: 1
+2025-11-09 06:38:58,519 - INFO - Updated portfolio allocation: ADA value changed from $774.95 to $0
+2025-11-09 06:38:58,519 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:38:58,519 - INFO - Portfolio allocation updated (REAL PURCHASE): ADA value set to $0
+2025-11-09 06:38:58,519 - INFO - SUCCESS: Successfully initiated purchase of ADA
+2025-11-09 06:38:58,519 - INFO -    Quantity: 1368.4 ADA
+2025-11-09 06:38:58,520 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:03,520 - INFO - 
+--- Purchase 16/24: DOGE ---
+2025-11-09 06:39:03,521 - INFO - Purchasing $770.27 worth of DOGE
+2025-11-09 06:39:03,521 - INFO - Starting purchase by value: $770.27 worth of DOGE
+2025-11-09 06:39:03,521 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 06:39:03,828 - INFO - Primary API price for DOGE/USD: $0.1755
+2025-11-09 06:39:03,829 - INFO - Calculated quantity: 4388.502 coins for $770.27 at $0.17552/coin (precision: 3 decimals)
+2025-11-09 06:39:03,829 - INFO - Order details:
+2025-11-09 06:39:03,829 - INFO -   Coin: DOGE
+2025-11-09 06:39:03,829 - INFO -   Quantity: 4388.502
+2025-11-09 06:39:03,829 - INFO -   Order Type: MARKET
+2025-11-09 06:39:03,829 - INFO -   Price Used: $0.1755
+2025-11-09 06:39:03,829 - INFO -   Estimated Cost: $770.27
+2025-11-09 06:39:03,829 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:03,829 - INFO - Coin price $0.1755 < $10, starting with 1 decimal precision
+2025-11-09 06:39:03,829 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:03,829 - INFO - Calculated quantity: 4388.5 coins for $770.27 at $0.17552/coin (precision: 1 decimals)
+2025-11-09 06:39:03,829 - INFO - Attempt 1/4: Precision 1 decimals, quantity 4388.5
+2025-11-09 06:39:04,138 - WARNING - Quantity step size error detected from API response
+2025-11-09 06:39:04,138 - WARNING - API Error: quantity step size error
+2025-11-09 06:39:04,138 - INFO - Reducing precision to 0 decimals and retrying...
+2025-11-09 06:39:04,138 - INFO - Calculated quantity: 4388.5 coins for $770.27 at $0.17552/coin (precision: 0 decimals)
+2025-11-09 06:39:04,138 - INFO - Attempt 2/4: Precision 0 decimals, quantity 4388.5
+2025-11-09 06:39:04,338 - INFO - Order placed successfully with 0 decimal precision
+2025-11-09 06:39:04,338 - INFO - API Response indicates success
+2025-11-09 06:39:04,338 - INFO - SUCCESS: Order placed with 0 decimal precision
+2025-11-09 06:39:04,338 - INFO - Final quantity: 4388.5 DOGE
+2025-11-09 06:39:04,338 - INFO - Attempts required: 2
+2025-11-09 06:39:04,338 - INFO - Updated portfolio allocation: DOGE value changed from $770.27 to $0
+2025-11-09 06:39:04,339 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:04,339 - INFO - Portfolio allocation updated (REAL PURCHASE): DOGE value set to $0
+2025-11-09 06:39:04,339 - INFO - SUCCESS: Successfully initiated purchase of DOGE
+2025-11-09 06:39:04,339 - INFO -    Quantity: 4388.5 DOGE
+2025-11-09 06:39:04,339 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:09,339 - INFO - 
+--- Purchase 17/24: XRP ---
+2025-11-09 06:39:09,340 - INFO - Purchasing $563.83 worth of XRP
+2025-11-09 06:39:09,340 - INFO - Starting purchase by value: $563.83 worth of XRP
+2025-11-09 06:39:09,396 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 06:39:09,710 - INFO - Primary API price for XRP/USD: $2.2825
+2025-11-09 06:39:09,711 - INFO - Calculated quantity: 247.023 coins for $563.83 at $2.2825/coin (precision: 3 decimals)
+2025-11-09 06:39:09,711 - INFO - Order details:
+2025-11-09 06:39:09,711 - INFO -   Coin: XRP
+2025-11-09 06:39:09,711 - INFO -   Quantity: 247.023
+2025-11-09 06:39:09,711 - INFO -   Order Type: MARKET
+2025-11-09 06:39:09,711 - INFO -   Price Used: $2.2825
+2025-11-09 06:39:09,711 - INFO -   Estimated Cost: $563.83
+2025-11-09 06:39:09,711 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:09,711 - INFO - Coin price $2.2825 < $10, starting with 1 decimal precision
+2025-11-09 06:39:09,711 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:09,711 - INFO - Calculated quantity: 247.0 coins for $563.83 at $2.2825/coin (precision: 1 decimals)
+2025-11-09 06:39:09,711 - INFO - Attempt 1/4: Precision 1 decimals, quantity 247.0
+2025-11-09 06:39:10,034 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:39:10,034 - INFO - API Response indicates success
+2025-11-09 06:39:10,034 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:39:10,034 - INFO - Final quantity: 247.0 XRP
+2025-11-09 06:39:10,035 - INFO - Attempts required: 1
+2025-11-09 06:39:10,035 - INFO - Updated portfolio allocation: XRP value changed from $563.83 to $0
+2025-11-09 06:39:10,035 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:10,035 - INFO - Portfolio allocation updated (REAL PURCHASE): XRP value set to $0
+2025-11-09 06:39:10,035 - INFO - SUCCESS: Successfully initiated purchase of XRP
+2025-11-09 06:39:10,035 - INFO -    Quantity: 247.0 XRP
+2025-11-09 06:39:10,035 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:15,036 - INFO - 
+--- Purchase 18/24: TON ---
+2025-11-09 06:39:15,036 - INFO - Purchasing $532.73 worth of TON
+2025-11-09 06:39:15,036 - INFO - Starting purchase by value: $532.73 worth of TON
+2025-11-09 06:39:15,093 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 06:39:15,476 - INFO - Primary API price for TON/USD: $2.0910
+2025-11-09 06:39:15,477 - INFO - Calculated quantity: 254.772 coins for $532.73 at $2.091/coin (precision: 3 decimals)
+2025-11-09 06:39:15,478 - INFO - Order details:
+2025-11-09 06:39:15,478 - INFO -   Coin: TON
+2025-11-09 06:39:15,478 - INFO -   Quantity: 254.772
+2025-11-09 06:39:15,478 - INFO -   Order Type: MARKET
+2025-11-09 06:39:15,478 - INFO -   Price Used: $2.0910
+2025-11-09 06:39:15,478 - INFO -   Estimated Cost: $532.73
+2025-11-09 06:39:15,479 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:15,479 - INFO - Coin price $2.0910 < $10, starting with 1 decimal precision
+2025-11-09 06:39:15,479 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:15,479 - INFO - Calculated quantity: 254.7 coins for $532.73 at $2.091/coin (precision: 1 decimals)
+2025-11-09 06:39:15,479 - INFO - Attempt 1/4: Precision 1 decimals, quantity 254.7
+2025-11-09 06:39:15,700 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:39:15,701 - INFO - API Response indicates success
+2025-11-09 06:39:15,701 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:39:15,701 - INFO - Final quantity: 254.7 TON
+2025-11-09 06:39:15,701 - INFO - Attempts required: 1
+2025-11-09 06:39:15,702 - INFO - Updated portfolio allocation: TON value changed from $532.73 to $0
+2025-11-09 06:39:15,702 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:15,702 - INFO - Portfolio allocation updated (REAL PURCHASE): TON value set to $0
+2025-11-09 06:39:15,703 - INFO - SUCCESS: Successfully initiated purchase of TON
+2025-11-09 06:39:15,703 - INFO -    Quantity: 254.7 TON
+2025-11-09 06:39:15,703 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:20,703 - INFO - 
+--- Purchase 19/24: BTC ---
+2025-11-09 06:39:20,757 - INFO - Purchasing $482.51 worth of BTC
+2025-11-09 06:39:20,757 - INFO - Starting purchase by value: $482.51 worth of BTC
+2025-11-09 06:39:20,758 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 06:39:21,095 - INFO - Primary API price for BTC/USD: $102,230.6700
+2025-11-09 06:39:21,095 - INFO - Calculated quantity: 0.004 coins for $482.51 at $102230.67/coin (precision: 3 decimals)
+2025-11-09 06:39:21,096 - INFO - Order details:
+2025-11-09 06:39:21,096 - INFO -   Coin: BTC
+2025-11-09 06:39:21,096 - INFO -   Quantity: 0.004
+2025-11-09 06:39:21,096 - INFO -   Order Type: MARKET
+2025-11-09 06:39:21,096 - INFO -   Price Used: $102,230.6700
+2025-11-09 06:39:21,096 - INFO -   Estimated Cost: $408.92
+2025-11-09 06:39:21,096 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:21,096 - INFO - Coin price $102230.6700 >= $10, starting with 3 decimal precision
+2025-11-09 06:39:21,096 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:21,096 - INFO - Calculated quantity: 0.004 coins for $482.51 at $102230.67/coin (precision: 3 decimals)
+2025-11-09 06:39:21,096 - INFO - Attempt 1/4: Precision 3 decimals, quantity 0.004
+2025-11-09 06:39:21,349 - INFO - Order placed successfully with 3 decimal precision
+2025-11-09 06:39:21,349 - INFO - API Response indicates success
+2025-11-09 06:39:21,349 - INFO - SUCCESS: Order placed with 3 decimal precision
+2025-11-09 06:39:21,350 - INFO - Final quantity: 0.004 BTC
+2025-11-09 06:39:21,350 - INFO - Attempts required: 1
+2025-11-09 06:39:21,350 - INFO - Updated portfolio allocation: BTC value changed from $482.51 to $0
+2025-11-09 06:39:21,351 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:21,351 - INFO - Portfolio allocation updated (REAL PURCHASE): BTC value set to $0
+2025-11-09 06:39:21,351 - INFO - SUCCESS: Successfully initiated purchase of BTC
+2025-11-09 06:39:21,351 - INFO -    Quantity: 0.004 BTC
+2025-11-09 06:39:21,352 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:26,352 - INFO - 
+--- Purchase 20/24: ETH ---
+2025-11-09 06:39:26,389 - INFO - Purchasing $482.51 worth of ETH
+2025-11-09 06:39:26,390 - INFO - Starting purchase by value: $482.51 worth of ETH
+2025-11-09 06:39:26,390 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 06:39:26,682 - INFO - Primary API price for ETH/USD: $3,399.8800
+2025-11-09 06:39:26,682 - INFO - Calculated quantity: 0.141 coins for $482.51 at $3399.88/coin (precision: 3 decimals)
+2025-11-09 06:39:26,682 - INFO - Order details:
+2025-11-09 06:39:26,682 - INFO -   Coin: ETH
+2025-11-09 06:39:26,682 - INFO -   Quantity: 0.141
+2025-11-09 06:39:26,682 - INFO -   Order Type: MARKET
+2025-11-09 06:39:26,682 - INFO -   Price Used: $3,399.8800
+2025-11-09 06:39:26,682 - INFO -   Estimated Cost: $479.38
+2025-11-09 06:39:26,682 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:26,682 - INFO - Coin price $3399.8800 >= $10, starting with 3 decimal precision
+2025-11-09 06:39:26,682 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:26,683 - INFO - Calculated quantity: 0.141 coins for $482.51 at $3399.88/coin (precision: 3 decimals)
+2025-11-09 06:39:26,683 - INFO - Attempt 1/4: Precision 3 decimals, quantity 0.141
+2025-11-09 06:39:26,990 - INFO - Order placed successfully with 3 decimal precision
+2025-11-09 06:39:26,990 - INFO - API Response indicates success
+2025-11-09 06:39:26,990 - INFO - SUCCESS: Order placed with 3 decimal precision
+2025-11-09 06:39:26,990 - INFO - Final quantity: 0.141 ETH
+2025-11-09 06:39:26,991 - INFO - Attempts required: 1
+2025-11-09 06:39:26,991 - INFO - Updated portfolio allocation: ETH value changed from $482.51 to $0
+2025-11-09 06:39:26,991 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:26,991 - INFO - Portfolio allocation updated (REAL PURCHASE): ETH value set to $0
+2025-11-09 06:39:26,991 - INFO - SUCCESS: Successfully initiated purchase of ETH
+2025-11-09 06:39:26,991 - INFO -    Quantity: 0.141 ETH
+2025-11-09 06:39:26,991 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:31,992 - INFO - 
+--- Purchase 21/24: SOL ---
+2025-11-09 06:39:31,992 - INFO - Purchasing $482.51 worth of SOL
+2025-11-09 06:39:32,049 - INFO - Starting purchase by value: $482.51 worth of SOL
+2025-11-09 06:39:32,049 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 06:39:32,429 - INFO - Primary API price for SOL/USD: $157.6600
+2025-11-09 06:39:32,430 - INFO - Calculated quantity: 3.06 coins for $482.51 at $157.66/coin (precision: 3 decimals)
+2025-11-09 06:39:32,430 - INFO - Order details:
+2025-11-09 06:39:32,430 - INFO -   Coin: SOL
+2025-11-09 06:39:32,430 - INFO -   Quantity: 3.06
+2025-11-09 06:39:32,431 - INFO -   Order Type: MARKET
+2025-11-09 06:39:32,431 - INFO -   Price Used: $157.6600
+2025-11-09 06:39:32,431 - INFO -   Estimated Cost: $482.44
+2025-11-09 06:39:32,431 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:32,431 - INFO - Coin price $157.6600 >= $10, starting with 3 decimal precision
+2025-11-09 06:39:32,431 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:32,432 - INFO - Calculated quantity: 3.06 coins for $482.51 at $157.66/coin (precision: 3 decimals)
+2025-11-09 06:39:32,432 - INFO - Attempt 1/4: Precision 3 decimals, quantity 3.06
+2025-11-09 06:39:32,692 - INFO - Order placed successfully with 3 decimal precision
+2025-11-09 06:39:32,692 - INFO - API Response indicates success
+2025-11-09 06:39:32,692 - INFO - SUCCESS: Order placed with 3 decimal precision
+2025-11-09 06:39:32,692 - INFO - Final quantity: 3.06 SOL
+2025-11-09 06:39:32,692 - INFO - Attempts required: 1
+2025-11-09 06:39:32,692 - INFO - Updated portfolio allocation: SOL value changed from $482.51 to $0
+2025-11-09 06:39:32,692 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:32,693 - INFO - Portfolio allocation updated (REAL PURCHASE): SOL value set to $0
+2025-11-09 06:39:32,693 - INFO - SUCCESS: Successfully initiated purchase of SOL
+2025-11-09 06:39:32,693 - INFO -    Quantity: 3.06 SOL
+2025-11-09 06:39:32,693 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:37,693 - INFO - 
+--- Purchase 22/24: AAVE ---
+2025-11-09 06:39:37,693 - INFO - Purchasing $482.51 worth of AAVE
+2025-11-09 06:39:37,694 - INFO - Starting purchase by value: $482.51 worth of AAVE
+2025-11-09 06:39:37,694 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 06:39:38,076 - INFO - Primary API price for AAVE/USD: $202.5800
+2025-11-09 06:39:38,077 - INFO - Calculated quantity: 2.381 coins for $482.51 at $202.58/coin (precision: 3 decimals)
+2025-11-09 06:39:38,078 - INFO - Order details:
+2025-11-09 06:39:38,078 - INFO -   Coin: AAVE
+2025-11-09 06:39:38,078 - INFO -   Quantity: 2.381
+2025-11-09 06:39:38,078 - INFO -   Order Type: MARKET
+2025-11-09 06:39:38,078 - INFO -   Price Used: $202.5800
+2025-11-09 06:39:38,078 - INFO -   Estimated Cost: $482.34
+2025-11-09 06:39:38,078 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:38,079 - INFO - Coin price $202.5800 >= $10, starting with 3 decimal precision
+2025-11-09 06:39:38,079 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:38,079 - INFO - Calculated quantity: 2.381 coins for $482.51 at $202.58/coin (precision: 3 decimals)
+2025-11-09 06:39:38,079 - INFO - Attempt 1/4: Precision 3 decimals, quantity 2.381
+2025-11-09 06:39:38,316 - INFO - Order placed successfully with 3 decimal precision
+2025-11-09 06:39:38,316 - INFO - API Response indicates success
+2025-11-09 06:39:38,316 - INFO - SUCCESS: Order placed with 3 decimal precision
+2025-11-09 06:39:38,316 - INFO - Final quantity: 2.381 AAVE
+2025-11-09 06:39:38,316 - INFO - Attempts required: 1
+2025-11-09 06:39:38,317 - INFO - Updated portfolio allocation: AAVE value changed from $482.51 to $0
+2025-11-09 06:39:38,317 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:38,317 - INFO - Portfolio allocation updated (REAL PURCHASE): AAVE value set to $0
+2025-11-09 06:39:38,317 - INFO - SUCCESS: Successfully initiated purchase of AAVE
+2025-11-09 06:39:38,318 - INFO -    Quantity: 2.381 AAVE
+2025-11-09 06:39:38,318 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:43,318 - INFO - 
+--- Purchase 23/24: TRX ---
+2025-11-09 06:39:43,319 - INFO - Purchasing $482.51 worth of TRX
+2025-11-09 06:39:43,319 - INFO - Starting purchase by value: $482.51 worth of TRX
+2025-11-09 06:39:43,319 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 06:39:43,756 - INFO - Primary API price for TRX/USD: $0.2916
+2025-11-09 06:39:43,758 - INFO - Calculated quantity: 1654.698 coins for $482.51 at $0.2916/coin (precision: 3 decimals)
+2025-11-09 06:39:43,758 - INFO - Order details:
+2025-11-09 06:39:43,758 - INFO -   Coin: TRX
+2025-11-09 06:39:43,758 - INFO -   Quantity: 1654.698
+2025-11-09 06:39:43,758 - INFO -   Order Type: MARKET
+2025-11-09 06:39:43,758 - INFO -   Price Used: $0.2916
+2025-11-09 06:39:43,758 - INFO -   Estimated Cost: $482.51
+2025-11-09 06:39:43,759 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:43,759 - INFO - Coin price $0.2916 < $10, starting with 1 decimal precision
+2025-11-09 06:39:43,759 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:43,759 - INFO - Calculated quantity: 1654.6 coins for $482.51 at $0.2916/coin (precision: 1 decimals)
+2025-11-09 06:39:43,759 - INFO - Attempt 1/4: Precision 1 decimals, quantity 1654.6
+2025-11-09 06:39:43,984 - INFO - Order placed successfully with 1 decimal precision
+2025-11-09 06:39:43,984 - INFO - API Response indicates success
+2025-11-09 06:39:43,985 - INFO - SUCCESS: Order placed with 1 decimal precision
+2025-11-09 06:39:43,985 - INFO - Final quantity: 1654.6 TRX
+2025-11-09 06:39:43,985 - INFO - Attempts required: 1
+2025-11-09 06:39:43,985 - INFO - Updated portfolio allocation: TRX value changed from $482.51 to $0
+2025-11-09 06:39:43,985 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:43,985 - INFO - Portfolio allocation updated (REAL PURCHASE): TRX value set to $0
+2025-11-09 06:39:43,985 - INFO - SUCCESS: Successfully initiated purchase of TRX
+2025-11-09 06:39:43,985 - INFO -    Quantity: 1654.6 TRX
+2025-11-09 06:39:43,985 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 06:39:48,986 - INFO - 
+--- Purchase 24/24: HBAR ---
+2025-11-09 06:39:48,986 - INFO - Purchasing $482.51 worth of HBAR
+2025-11-09 06:39:48,986 - INFO - Starting purchase by value: $482.51 worth of HBAR
+2025-11-09 06:39:49,042 - INFO - Fetching current price for HBAR/USD from primary API
+2025-11-09 06:39:49,575 - INFO - Primary API price for HBAR/USD: $0.1741
+2025-11-09 06:39:49,576 - INFO - Calculated quantity: 2771.93 coins for $482.51 at $0.17407/coin (precision: 3 decimals)
+2025-11-09 06:39:49,576 - INFO - Order details:
+2025-11-09 06:39:49,576 - INFO -   Coin: HBAR
+2025-11-09 06:39:49,576 - INFO -   Quantity: 2771.93
+2025-11-09 06:39:49,576 - INFO -   Order Type: MARKET
+2025-11-09 06:39:49,577 - INFO -   Price Used: $0.1741
+2025-11-09 06:39:49,577 - INFO -   Estimated Cost: $482.51
+2025-11-09 06:39:49,577 - INFO - Placing order with progressive precision handling...
+2025-11-09 06:39:49,577 - INFO - Coin price $0.1741 < $10, starting with 1 decimal precision
+2025-11-09 06:39:49,577 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 06:39:49,578 - INFO - Calculated quantity: 2771.9 coins for $482.51 at $0.17407/coin (precision: 1 decimals)
+2025-11-09 06:39:49,578 - INFO - Attempt 1/4: Precision 1 decimals, quantity 2771.9
+2025-11-09 06:39:49,861 - WARNING - Quantity step size error detected from API response
+2025-11-09 06:39:49,861 - WARNING - API Error: quantity step size error
+2025-11-09 06:39:49,861 - INFO - Reducing precision to 0 decimals and retrying...
+2025-11-09 06:39:49,861 - INFO - Calculated quantity: 2771.9 coins for $482.51 at $0.17407/coin (precision: 0 decimals)
+2025-11-09 06:39:49,862 - INFO - Attempt 2/4: Precision 0 decimals, quantity 2771.9
+2025-11-09 06:39:50,057 - INFO - Order placed successfully with 0 decimal precision
+2025-11-09 06:39:50,057 - INFO - API Response indicates success
+2025-11-09 06:39:50,057 - INFO - SUCCESS: Order placed with 0 decimal precision
+2025-11-09 06:39:50,057 - INFO - Final quantity: 2771.9 HBAR
+2025-11-09 06:39:50,057 - INFO - Attempts required: 2
+2025-11-09 06:39:50,058 - INFO - Updated portfolio allocation: HBAR value changed from $482.51 to $0
+2025-11-09 06:39:50,059 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:39:50,059 - INFO - Portfolio allocation updated (REAL PURCHASE): HBAR value set to $0
+2025-11-09 06:39:50,059 - INFO - SUCCESS: Successfully initiated purchase of HBAR
+2025-11-09 06:39:50,059 - INFO -    Quantity: 2771.9 HBAR
+2025-11-09 06:39:50,059 - INFO - 
+============================================================
+2025-11-09 06:39:50,060 - INFO - PORTFOLIO PURCHASE SUMMARY
+2025-11-09 06:39:50,060 - INFO - ============================================================
+2025-11-09 06:39:50,060 - INFO - Total cryptocurrencies: 24
+2025-11-09 06:39:50,060 - INFO - Successful purchases: 24
+2025-11-09 06:39:50,060 - INFO - Failed purchases: 0
+2025-11-09 06:39:50,060 - INFO - Success rate: 100.0%
+2025-11-09 06:39:50,061 - INFO - Total execution time: 132.95 seconds (2.2 minutes)
+2025-11-09 06:39:50,061 - INFO - ============================================================
+2025-11-09 06:39:50,061 - INFO - Automated portfolio purchases completed
+2025-11-09 06:39:50,061 - INFO - Trade execution took 132.95 seconds
+2025-11-09 06:39:50,061 - INFO - Waiting additional 167.05 seconds to complete 5.0 minute startup delay...
+2025-11-09 06:42:37,178 - INFO - Startup delay completed, entering monitoring loop...
+2025-11-09 06:42:37,178 - INFO - 
+--- Cycle #1 started at 2025-11-09 06:42:37 ---
+2025-11-09 06:42:37,178 - INFO - Starting trading cycle...
+2025-11-09 06:42:37,179 - INFO - Fetching current account balance...
+2025-11-09 06:42:37,595 - INFO - Found 22 owned currencies with positive balance
+2025-11-09 06:42:37,595 - INFO -   AAVE: 2.381 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   ADA: 1368.4 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   APT: 347.3 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   ARB: 3290.9 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   AVAX: 51.31 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   BTC: 0.00401 free, 0.0 locked
+2025-11-09 06:42:37,595 - INFO -   CRV: 1967.7 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   DOGE: 50.0 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   DOT: 487.0 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   ETH: 1.141 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   FET: 10753.4 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   FIL: 2072.4 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   ICP: 187.5 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   LTC: 11.352 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   NEAR: 891.5 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   SEI: 6034.1 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   SOL: 5.06 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   SUI: 10.0 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   TON: 254.7 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   TRX: 1654.6 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   UNI: 141.0 free, 0.0 locked
+2025-11-09 06:42:37,596 - INFO -   XRP: 298.0 free, 0.0 locked
+2025-11-09 06:42:37,597 - INFO - Loaded portfolio allocation for 24 currencies
+2025-11-09 06:42:37,597 - INFO - Checking owned currencies for sell decisions...
+2025-11-09 06:42:37,597 - INFO - Making trading decision for owned currency: AAVE
+2025-11-09 06:42:37,597 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 06:42:37,866 - INFO - Primary API price for AAVE/USD: $202.6200
+2025-11-09 06:42:38,387 - INFO - Saved 100 historical data points for AAVE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AAVE_recent_5min_data.json
+2025-11-09 06:42:38,387 - INFO - Fetched 100 historical prices for AAVE
+2025-11-09 06:42:38,388 - INFO - Trading decision for AAVE at $202.6200: HOLD
+2025-11-09 06:42:38,388 - INFO - Holding AAVE (decision: HOLD)
+2025-11-09 06:42:38,388 - INFO - Making trading decision for owned currency: ADA
+2025-11-09 06:42:38,389 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 06:42:38,589 - INFO - Primary API price for ADA/USD: $0.5659
+2025-11-09 06:42:39,274 - INFO - Saved 100 historical data points for ADA to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ADA_recent_5min_data.json
+2025-11-09 06:42:39,274 - INFO - Fetched 100 historical prices for ADA
+2025-11-09 06:42:39,275 - INFO - Trading decision for ADA at $0.5659: HOLD
+2025-11-09 06:42:39,275 - INFO - Holding ADA (decision: HOLD)
+2025-11-09 06:42:39,275 - INFO - Making trading decision for owned currency: APT
+2025-11-09 06:42:39,276 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 06:42:39,521 - INFO - Primary API price for APT/USD: $3.0780
+2025-11-09 06:42:39,986 - INFO - Saved 100 historical data points for APT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/APT_recent_5min_data.json
+2025-11-09 06:42:39,986 - INFO - Fetched 100 historical prices for APT
+2025-11-09 06:42:39,986 - INFO - Trading decision for APT at $3.0780: HOLD
+2025-11-09 06:42:39,986 - INFO - Holding APT (decision: HOLD)
+2025-11-09 06:42:39,986 - INFO - Making trading decision for owned currency: ARB
+2025-11-09 06:42:39,986 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 06:42:40,180 - INFO - Primary API price for ARB/USD: $0.2957
+2025-11-09 06:42:40,810 - INFO - Saved 100 historical data points for ARB to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ARB_recent_5min_data.json
+2025-11-09 06:42:40,810 - INFO - Fetched 100 historical prices for ARB
+2025-11-09 06:42:40,811 - INFO - Trading decision for ARB at $0.2957: HOLD
+2025-11-09 06:42:40,811 - INFO - Holding ARB (decision: HOLD)
+2025-11-09 06:42:40,812 - INFO - Making trading decision for owned currency: AVAX
+2025-11-09 06:42:40,812 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 06:42:41,029 - INFO - Primary API price for AVAX/USD: $17.4000
+2025-11-09 06:42:41,624 - INFO - Saved 100 historical data points for AVAX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AVAX_recent_5min_data.json
+2025-11-09 06:42:41,624 - INFO - Fetched 100 historical prices for AVAX
+2025-11-09 06:42:41,625 - INFO - Trading decision for AVAX at $17.4000: HOLD
+2025-11-09 06:42:41,625 - INFO - Holding AVAX (decision: HOLD)
+2025-11-09 06:42:41,625 - INFO - Making trading decision for owned currency: BTC
+2025-11-09 06:42:41,625 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 06:42:41,844 - INFO - Primary API price for BTC/USD: $102,300.1200
+2025-11-09 06:42:42,468 - INFO - Saved 100 historical data points for BTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/BTC_recent_5min_data.json
+2025-11-09 06:42:42,468 - INFO - Fetched 100 historical prices for BTC
+2025-11-09 06:42:42,469 - INFO - Trading decision for BTC at $102300.1200: HOLD
+2025-11-09 06:42:42,469 - INFO - Holding BTC (decision: HOLD)
+2025-11-09 06:42:42,469 - INFO - Making trading decision for owned currency: CRV
+2025-11-09 06:42:42,469 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 06:42:42,701 - INFO - Primary API price for CRV/USD: $0.4786
+2025-11-09 06:42:43,781 - INFO - Saved 100 historical data points for CRV to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/CRV_recent_5min_data.json
+2025-11-09 06:42:43,782 - INFO - Fetched 100 historical prices for CRV
+2025-11-09 06:42:43,783 - INFO - Trading decision for CRV at $0.4786: HOLD
+2025-11-09 06:42:43,783 - INFO - Holding CRV (decision: HOLD)
+2025-11-09 06:42:43,783 - INFO - Making trading decision for owned currency: DOGE
+2025-11-09 06:42:43,783 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 06:42:44,005 - INFO - Primary API price for DOGE/USD: $0.1754
+2025-11-09 06:42:44,497 - INFO - Saved 100 historical data points for DOGE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOGE_recent_5min_data.json
+2025-11-09 06:42:44,497 - INFO - Fetched 100 historical prices for DOGE
+2025-11-09 06:42:44,498 - INFO - Trading decision for DOGE at $0.1754: HOLD
+2025-11-09 06:42:44,498 - INFO - Holding DOGE (decision: HOLD)
+2025-11-09 06:42:44,498 - INFO - Making trading decision for owned currency: DOT
+2025-11-09 06:42:44,498 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 06:42:44,737 - INFO - Primary API price for DOT/USD: $3.2100
+2025-11-09 06:42:45,205 - INFO - Saved 100 historical data points for DOT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOT_recent_5min_data.json
+2025-11-09 06:42:45,205 - INFO - Fetched 100 historical prices for DOT
+2025-11-09 06:42:45,205 - INFO - Trading decision for DOT at $3.2100: HOLD
+2025-11-09 06:42:45,205 - INFO - Holding DOT (decision: HOLD)
+2025-11-09 06:42:45,205 - INFO - Making trading decision for owned currency: ETH
+2025-11-09 06:42:45,205 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 06:42:45,416 - INFO - Primary API price for ETH/USD: $3,402.9400
+2025-11-09 06:42:46,392 - INFO - Saved 100 historical data points for ETH to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ETH_recent_5min_data.json
+2025-11-09 06:42:46,393 - INFO - Fetched 100 historical prices for ETH
+2025-11-09 06:42:46,393 - INFO - Trading decision for ETH at $3402.9400: HOLD
+2025-11-09 06:42:46,393 - INFO - Holding ETH (decision: HOLD)
+2025-11-09 06:42:46,393 - INFO - Making trading decision for owned currency: FET
+2025-11-09 06:42:46,393 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 06:42:46,621 - INFO - Primary API price for FET/USD: $0.3425
+2025-11-09 06:42:47,096 - INFO - Saved 100 historical data points for FET to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FET_recent_5min_data.json
+2025-11-09 06:42:47,097 - INFO - Fetched 100 historical prices for FET
+2025-11-09 06:42:47,097 - INFO - Trading decision for FET at $0.3425: HOLD
+2025-11-09 06:42:47,097 - INFO - Holding FET (decision: HOLD)
+2025-11-09 06:42:47,098 - INFO - Making trading decision for owned currency: FIL
+2025-11-09 06:42:47,098 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 06:42:47,336 - INFO - Primary API price for FIL/USD: $3.0840
+2025-11-09 06:42:47,876 - INFO - Saved 100 historical data points for FIL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FIL_recent_5min_data.json
+2025-11-09 06:42:47,877 - INFO - Fetched 100 historical prices for FIL
+2025-11-09 06:42:47,877 - INFO - Trading decision for FIL at $3.0840: BUY
+2025-11-09 06:42:47,878 - INFO - Holding FIL (decision: BUY)
+2025-11-09 06:42:47,878 - INFO - Making trading decision for owned currency: ICP
+2025-11-09 06:42:47,878 - INFO - Fetching current price for ICP/USD from primary API
+2025-11-09 06:42:48,109 - INFO - Primary API price for ICP/USD: $8.8870
+2025-11-09 06:42:48,686 - INFO - Saved 100 historical data points for ICP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ICP_recent_5min_data.json
+2025-11-09 06:42:48,686 - INFO - Fetched 100 historical prices for ICP
+2025-11-09 06:42:48,687 - INFO - Trading decision for ICP at $8.8870: HOLD
+2025-11-09 06:42:48,687 - INFO - Holding ICP (decision: HOLD)
+2025-11-09 06:42:48,687 - INFO - Making trading decision for owned currency: LTC
+2025-11-09 06:42:48,687 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 06:42:48,880 - INFO - Primary API price for LTC/USD: $101.4100
+2025-11-09 06:42:49,340 - INFO - Saved 100 historical data points for LTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/LTC_recent_5min_data.json
+2025-11-09 06:42:49,340 - INFO - Fetched 100 historical prices for LTC
+2025-11-09 06:42:49,340 - INFO - Trading decision for LTC at $101.4100: HOLD
+2025-11-09 06:42:49,341 - INFO - Holding LTC (decision: HOLD)
+2025-11-09 06:42:49,341 - INFO - Making trading decision for owned currency: NEAR
+2025-11-09 06:42:49,341 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 06:42:49,544 - INFO - Primary API price for NEAR/USD: $2.8570
+2025-11-09 06:42:50,019 - INFO - Saved 100 historical data points for NEAR to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/NEAR_recent_5min_data.json
+2025-11-09 06:42:50,019 - INFO - Fetched 100 historical prices for NEAR
+2025-11-09 06:42:50,019 - INFO - Trading decision for NEAR at $2.8570: HOLD
+2025-11-09 06:42:50,019 - INFO - Holding NEAR (decision: HOLD)
+2025-11-09 06:42:50,019 - INFO - Making trading decision for owned currency: SEI
+2025-11-09 06:42:50,019 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 06:42:50,229 - INFO - Primary API price for SEI/USD: $0.1813
+2025-11-09 06:42:51,153 - INFO - Saved 100 historical data points for SEI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SEI_recent_5min_data.json
+2025-11-09 06:42:51,153 - INFO - Fetched 100 historical prices for SEI
+2025-11-09 06:42:51,154 - INFO - Trading decision for SEI at $0.1813: HOLD
+2025-11-09 06:42:51,154 - INFO - Holding SEI (decision: HOLD)
+2025-11-09 06:42:51,154 - INFO - Making trading decision for owned currency: SOL
+2025-11-09 06:42:51,154 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 06:42:51,376 - INFO - Primary API price for SOL/USD: $157.8100
+2025-11-09 06:42:51,867 - INFO - Saved 100 historical data points for SOL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SOL_recent_5min_data.json
+2025-11-09 06:42:51,867 - INFO - Fetched 100 historical prices for SOL
+2025-11-09 06:42:51,868 - INFO - Trading decision for SOL at $157.8100: HOLD
+2025-11-09 06:42:51,868 - INFO - Holding SOL (decision: HOLD)
+2025-11-09 06:42:51,868 - INFO - Making trading decision for owned currency: SUI
+2025-11-09 06:42:51,868 - INFO - Fetching current price for SUI/USD from primary API
+2025-11-09 06:42:52,105 - INFO - Primary API price for SUI/USD: $2.1158
+2025-11-09 06:42:52,991 - INFO - Saved 100 historical data points for SUI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SUI_recent_5min_data.json
+2025-11-09 06:42:52,991 - INFO - Fetched 100 historical prices for SUI
+2025-11-09 06:42:52,991 - INFO - Trading decision for SUI at $2.1158: HOLD
+2025-11-09 06:42:52,991 - INFO - Holding SUI (decision: HOLD)
+2025-11-09 06:42:52,991 - INFO - Making trading decision for owned currency: TON
+2025-11-09 06:42:52,991 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 06:42:53,207 - INFO - Primary API price for TON/USD: $2.0900
+2025-11-09 06:42:53,815 - INFO - Saved 100 historical data points for TON to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TON_recent_5min_data.json
+2025-11-09 06:42:53,815 - INFO - Fetched 100 historical prices for TON
+2025-11-09 06:42:53,816 - INFO - Trading decision for TON at $2.0900: HOLD
+2025-11-09 06:42:53,816 - INFO - Holding TON (decision: HOLD)
+2025-11-09 06:42:53,816 - INFO - Making trading decision for owned currency: TRX
+2025-11-09 06:42:53,817 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 06:42:54,034 - INFO - Primary API price for TRX/USD: $0.2916
+2025-11-09 06:42:54,527 - INFO - Saved 100 historical data points for TRX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TRX_recent_5min_data.json
+2025-11-09 06:42:54,527 - INFO - Fetched 100 historical prices for TRX
+2025-11-09 06:42:54,527 - INFO - Trading decision for TRX at $0.2916: HOLD
+2025-11-09 06:42:54,527 - INFO - Holding TRX (decision: HOLD)
+2025-11-09 06:42:54,527 - INFO - Making trading decision for owned currency: UNI
+2025-11-09 06:42:54,527 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 06:42:54,730 - INFO - Primary API price for UNI/USD: $5.9960
+2025-11-09 06:42:55,346 - INFO - Saved 100 historical data points for UNI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/UNI_recent_5min_data.json
+2025-11-09 06:42:55,346 - INFO - Fetched 100 historical prices for UNI
+2025-11-09 06:42:55,346 - INFO - Trading decision for UNI at $5.9960: HOLD
+2025-11-09 06:42:55,346 - INFO - Holding UNI (decision: HOLD)
+2025-11-09 06:42:55,346 - INFO - Making trading decision for owned currency: XRP
+2025-11-09 06:42:55,346 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 06:42:55,552 - INFO - Primary API price for XRP/USD: $2.2821
+2025-11-09 06:42:56,169 - INFO - Saved 100 historical data points for XRP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/XRP_recent_5min_data.json
+2025-11-09 06:42:56,169 - INFO - Fetched 100 historical prices for XRP
+2025-11-09 06:42:56,169 - INFO - Trading decision for XRP at $2.2821: HOLD
+2025-11-09 06:42:56,169 - INFO - Holding XRP (decision: HOLD)
+2025-11-09 06:42:56,169 - INFO - Checking unowned currencies for buy decisions...
+2025-11-09 06:42:56,169 - INFO - Found 0 unowned currencies with allocation
+2025-11-09 06:42:56,169 - INFO - Trading cycle completed: 0 sells, 0 buys
+2025-11-09 06:42:56,169 - INFO - Trading actions took 18.57 seconds
+2025-11-09 06:42:56,169 - INFO - SUCCESS: Cycle #1 completed successfully in 18.99 seconds
+2025-11-09 06:42:56,169 - INFO - Cycle completed in 18.99 seconds, waiting 281.01 seconds to complete 5.0 minute cycle...
+2025-11-09 06:47:37,274 - INFO - 5-minute cycle completed, starting next cycle...
+2025-11-09 06:47:37,274 - INFO - 
+--- Cycle #2 started at 2025-11-09 06:47:37 ---
+2025-11-09 06:47:37,274 - INFO - Starting trading cycle...
+2025-11-09 06:47:37,275 - INFO - Fetching current account balance...
+2025-11-09 06:47:37,509 - INFO - Found 22 owned currencies with positive balance
+2025-11-09 06:47:37,509 - INFO -   AAVE: 2.381 free, 0.0 locked
+2025-11-09 06:47:37,509 - INFO -   ADA: 1368.4 free, 0.0 locked
+2025-11-09 06:47:37,509 - INFO -   APT: 347.3 free, 0.0 locked
+2025-11-09 06:47:37,509 - INFO -   ARB: 3290.9 free, 0.0 locked
+2025-11-09 06:47:37,509 - INFO -   AVAX: 51.31 free, 0.0 locked
+2025-11-09 06:47:37,509 - INFO -   BTC: 0.00401 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   CRV: 1967.7 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   DOGE: 50.0 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   DOT: 487.0 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   ETH: 1.141 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   FET: 10753.4 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   FIL: 2072.4 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   ICP: 187.5 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   LTC: 11.352 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   NEAR: 891.5 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   SEI: 6034.1 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   SOL: 5.06 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   SUI: 10.0 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   TON: 254.7 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   TRX: 1654.6 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   UNI: 141.0 free, 0.0 locked
+2025-11-09 06:47:37,510 - INFO -   XRP: 298.0 free, 0.0 locked
+2025-11-09 06:47:37,511 - INFO - Loaded portfolio allocation for 24 currencies
+2025-11-09 06:47:37,511 - INFO - Checking owned currencies for sell decisions...
+2025-11-09 06:47:37,511 - INFO - Making trading decision for owned currency: AAVE
+2025-11-09 06:47:37,511 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 06:47:37,732 - INFO - Primary API price for AAVE/USD: $202.8400
+2025-11-09 06:47:38,321 - INFO - Saved 100 historical data points for AAVE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AAVE_recent_5min_data.json
+2025-11-09 06:47:38,321 - INFO - Fetched 100 historical prices for AAVE
+2025-11-09 06:47:38,322 - INFO - Trading decision for AAVE at $202.8400: HOLD
+2025-11-09 06:47:38,322 - INFO - Holding AAVE (decision: HOLD)
+2025-11-09 06:47:38,322 - INFO - Making trading decision for owned currency: ADA
+2025-11-09 06:47:38,322 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 06:47:38,596 - INFO - Primary API price for ADA/USD: $0.5667
+2025-11-09 06:47:39,103 - INFO - Saved 100 historical data points for ADA to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ADA_recent_5min_data.json
+2025-11-09 06:47:39,104 - INFO - Fetched 100 historical prices for ADA
+2025-11-09 06:47:39,104 - INFO - Trading decision for ADA at $0.5667: HOLD
+2025-11-09 06:47:39,104 - INFO - Holding ADA (decision: HOLD)
+2025-11-09 06:47:39,104 - INFO - Making trading decision for owned currency: APT
+2025-11-09 06:47:39,104 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 06:47:39,320 - INFO - Primary API price for APT/USD: $3.0850
+2025-11-09 06:47:40,124 - INFO - Saved 100 historical data points for APT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/APT_recent_5min_data.json
+2025-11-09 06:47:40,124 - INFO - Fetched 100 historical prices for APT
+2025-11-09 06:47:40,125 - INFO - Trading decision for APT at $3.0850: HOLD
+2025-11-09 06:47:40,125 - INFO - Holding APT (decision: HOLD)
+2025-11-09 06:47:40,125 - INFO - Making trading decision for owned currency: ARB
+2025-11-09 06:47:40,125 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 06:47:40,315 - INFO - Primary API price for ARB/USD: $0.2963
+2025-11-09 06:47:40,845 - INFO - Saved 100 historical data points for ARB to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ARB_recent_5min_data.json
+2025-11-09 06:47:40,845 - INFO - Fetched 100 historical prices for ARB
+2025-11-09 06:47:40,845 - INFO - Trading decision for ARB at $0.2963: HOLD
+2025-11-09 06:47:40,845 - INFO - Holding ARB (decision: HOLD)
+2025-11-09 06:47:40,845 - INFO - Making trading decision for owned currency: AVAX
+2025-11-09 06:47:40,845 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 06:47:41,035 - INFO - Primary API price for AVAX/USD: $17.4300
+2025-11-09 06:47:41,560 - INFO - Saved 100 historical data points for AVAX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AVAX_recent_5min_data.json
+2025-11-09 06:47:41,561 - INFO - Fetched 100 historical prices for AVAX
+2025-11-09 06:47:41,561 - INFO - Trading decision for AVAX at $17.4300: HOLD
+2025-11-09 06:47:41,561 - INFO - Holding AVAX (decision: HOLD)
+2025-11-09 06:47:41,561 - INFO - Making trading decision for owned currency: BTC
+2025-11-09 06:47:41,561 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 06:47:41,762 - INFO - Primary API price for BTC/USD: $102,356.8500
+2025-11-09 06:47:42,279 - INFO - Saved 100 historical data points for BTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/BTC_recent_5min_data.json
+2025-11-09 06:47:42,279 - INFO - Fetched 100 historical prices for BTC
+2025-11-09 06:47:42,280 - INFO - Trading decision for BTC at $102356.8500: HOLD
+2025-11-09 06:47:42,280 - INFO - Holding BTC (decision: HOLD)
+2025-11-09 06:47:42,280 - INFO - Making trading decision for owned currency: CRV
+2025-11-09 06:47:42,280 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 06:47:42,471 - INFO - Primary API price for CRV/USD: $0.4785
+2025-11-09 06:47:42,996 - INFO - Saved 100 historical data points for CRV to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/CRV_recent_5min_data.json
+2025-11-09 06:47:42,996 - INFO - Fetched 100 historical prices for CRV
+2025-11-09 06:47:42,996 - INFO - Trading decision for CRV at $0.4785: HOLD
+2025-11-09 06:47:42,996 - INFO - Holding CRV (decision: HOLD)
+2025-11-09 06:47:42,997 - INFO - Making trading decision for owned currency: DOGE
+2025-11-09 06:47:42,997 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 06:47:43,193 - INFO - Primary API price for DOGE/USD: $0.1756
+2025-11-09 06:47:43,816 - INFO - Saved 100 historical data points for DOGE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOGE_recent_5min_data.json
+2025-11-09 06:47:43,816 - INFO - Fetched 100 historical prices for DOGE
+2025-11-09 06:47:43,816 - INFO - Trading decision for DOGE at $0.1756: HOLD
+2025-11-09 06:47:43,816 - INFO - Holding DOGE (decision: HOLD)
+2025-11-09 06:47:43,816 - INFO - Making trading decision for owned currency: DOT
+2025-11-09 06:47:43,817 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 06:47:44,013 - INFO - Primary API price for DOT/USD: $3.2170
+2025-11-09 06:47:44,942 - INFO - Saved 100 historical data points for DOT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOT_recent_5min_data.json
+2025-11-09 06:47:44,942 - INFO - Fetched 100 historical prices for DOT
+2025-11-09 06:47:44,943 - INFO - Trading decision for DOT at $3.2170: HOLD
+2025-11-09 06:47:44,943 - INFO - Holding DOT (decision: HOLD)
+2025-11-09 06:47:44,943 - INFO - Making trading decision for owned currency: ETH
+2025-11-09 06:47:44,943 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 06:47:45,145 - INFO - Primary API price for ETH/USD: $3,406.0100
+2025-11-09 06:47:46,021 - INFO - Saved 100 historical data points for ETH to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ETH_recent_5min_data.json
+2025-11-09 06:47:46,022 - INFO - Fetched 100 historical prices for ETH
+2025-11-09 06:47:46,022 - INFO - Trading decision for ETH at $3406.0100: HOLD
+2025-11-09 06:47:46,022 - INFO - Holding ETH (decision: HOLD)
+2025-11-09 06:47:46,023 - INFO - Making trading decision for owned currency: FET
+2025-11-09 06:47:46,023 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 06:47:46,404 - INFO - Primary API price for FET/USD: $0.3419
+2025-11-09 06:47:47,501 - INFO - Saved 100 historical data points for FET to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FET_recent_5min_data.json
+2025-11-09 06:47:47,501 - INFO - Fetched 100 historical prices for FET
+2025-11-09 06:47:47,502 - INFO - Trading decision for FET at $0.3419: HOLD
+2025-11-09 06:47:47,502 - INFO - Holding FET (decision: HOLD)
+2025-11-09 06:47:47,502 - INFO - Making trading decision for owned currency: FIL
+2025-11-09 06:47:47,502 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 06:47:47,692 - INFO - Primary API price for FIL/USD: $3.0670
+2025-11-09 06:47:48,218 - INFO - Saved 100 historical data points for FIL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FIL_recent_5min_data.json
+2025-11-09 06:47:48,218 - INFO - Fetched 100 historical prices for FIL
+2025-11-09 06:47:48,219 - INFO - Trading decision for FIL at $3.0670: BUY
+2025-11-09 06:47:48,219 - INFO - Holding FIL (decision: BUY)
+2025-11-09 06:47:48,219 - INFO - Making trading decision for owned currency: ICP
+2025-11-09 06:47:48,219 - INFO - Fetching current price for ICP/USD from primary API
+2025-11-09 06:47:48,395 - INFO - Primary API price for ICP/USD: $9.0010
+2025-11-09 06:47:49,037 - INFO - Saved 100 historical data points for ICP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ICP_recent_5min_data.json
+2025-11-09 06:47:49,038 - INFO - Fetched 100 historical prices for ICP
+2025-11-09 06:47:49,038 - INFO - Trading decision for ICP at $9.0010: HOLD
+2025-11-09 06:47:49,038 - INFO - Holding ICP (decision: HOLD)
+2025-11-09 06:47:49,038 - INFO - Making trading decision for owned currency: LTC
+2025-11-09 06:47:49,038 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 06:47:49,234 - INFO - Primary API price for LTC/USD: $101.5500
+2025-11-09 06:47:50,028 - INFO - Saved 100 historical data points for LTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/LTC_recent_5min_data.json
+2025-11-09 06:47:50,028 - INFO - Fetched 100 historical prices for LTC
+2025-11-09 06:47:50,029 - INFO - Trading decision for LTC at $101.5500: HOLD
+2025-11-09 06:47:50,029 - INFO - Holding LTC (decision: HOLD)
+2025-11-09 06:47:50,029 - INFO - Making trading decision for owned currency: NEAR
+2025-11-09 06:47:50,029 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 06:47:50,234 - INFO - Primary API price for NEAR/USD: $2.8580
+2025-11-09 06:47:50,744 - INFO - Saved 100 historical data points for NEAR to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/NEAR_recent_5min_data.json
+2025-11-09 06:47:50,744 - INFO - Fetched 100 historical prices for NEAR
+2025-11-09 06:47:50,744 - INFO - Trading decision for NEAR at $2.8580: HOLD
+2025-11-09 06:47:50,744 - INFO - Holding NEAR (decision: HOLD)
+2025-11-09 06:47:50,744 - INFO - Making trading decision for owned currency: SEI
+2025-11-09 06:47:50,744 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 06:47:50,938 - INFO - Primary API price for SEI/USD: $0.1821
+2025-11-09 06:47:51,445 - INFO - Saved 100 historical data points for SEI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SEI_recent_5min_data.json
+2025-11-09 06:47:51,445 - INFO - Fetched 100 historical prices for SEI
+2025-11-09 06:47:51,446 - INFO - Trading decision for SEI at $0.1821: HOLD
+2025-11-09 06:47:51,446 - INFO - Holding SEI (decision: HOLD)
+2025-11-09 06:47:51,446 - INFO - Making trading decision for owned currency: SOL
+2025-11-09 06:47:51,447 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 06:47:51,650 - INFO - Primary API price for SOL/USD: $158.0100
+2025-11-09 06:47:52,519 - INFO - Saved 100 historical data points for SOL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SOL_recent_5min_data.json
+2025-11-09 06:47:52,519 - INFO - Fetched 100 historical prices for SOL
+2025-11-09 06:47:52,520 - INFO - Trading decision for SOL at $158.0100: HOLD
+2025-11-09 06:47:52,520 - INFO - Holding SOL (decision: HOLD)
+2025-11-09 06:47:52,520 - INFO - Making trading decision for owned currency: SUI
+2025-11-09 06:47:52,520 - INFO - Fetching current price for SUI/USD from primary API
+2025-11-09 06:47:52,723 - INFO - Primary API price for SUI/USD: $2.1194
+2025-11-09 06:47:53,274 - INFO - Saved 100 historical data points for SUI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SUI_recent_5min_data.json
+2025-11-09 06:47:53,274 - INFO - Fetched 100 historical prices for SUI
+2025-11-09 06:47:53,275 - INFO - Trading decision for SUI at $2.1194: HOLD
+2025-11-09 06:47:53,275 - INFO - Holding SUI (decision: HOLD)
+2025-11-09 06:47:53,275 - INFO - Making trading decision for owned currency: TON
+2025-11-09 06:47:53,275 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 06:47:53,485 - INFO - Primary API price for TON/USD: $2.0880
+2025-11-09 06:47:54,361 - INFO - Saved 100 historical data points for TON to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TON_recent_5min_data.json
+2025-11-09 06:47:54,361 - INFO - Fetched 100 historical prices for TON
+2025-11-09 06:47:54,361 - INFO - Trading decision for TON at $2.0880: HOLD
+2025-11-09 06:47:54,362 - INFO - Holding TON (decision: HOLD)
+2025-11-09 06:47:54,362 - INFO - Making trading decision for owned currency: TRX
+2025-11-09 06:47:54,362 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 06:47:54,569 - INFO - Primary API price for TRX/USD: $0.2916
+2025-11-09 06:47:55,792 - INFO - Saved 100 historical data points for TRX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TRX_recent_5min_data.json
+2025-11-09 06:47:55,793 - INFO - Fetched 100 historical prices for TRX
+2025-11-09 06:47:55,793 - INFO - Trading decision for TRX at $0.2916: HOLD
+2025-11-09 06:47:55,793 - INFO - Holding TRX (decision: HOLD)
+2025-11-09 06:47:55,793 - INFO - Making trading decision for owned currency: UNI
+2025-11-09 06:47:55,793 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 06:47:55,975 - INFO - Primary API price for UNI/USD: $6.0170
+2025-11-09 06:47:56,874 - INFO - Saved 100 historical data points for UNI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/UNI_recent_5min_data.json
+2025-11-09 06:47:56,874 - INFO - Fetched 100 historical prices for UNI
+2025-11-09 06:47:56,875 - INFO - Trading decision for UNI at $6.0170: HOLD
+2025-11-09 06:47:56,875 - INFO - Holding UNI (decision: HOLD)
+2025-11-09 06:47:56,875 - INFO - Making trading decision for owned currency: XRP
+2025-11-09 06:47:56,876 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 06:47:57,086 - INFO - Primary API price for XRP/USD: $2.2829
+2025-11-09 06:47:57,536 - INFO - Saved 100 historical data points for XRP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/XRP_recent_5min_data.json
+2025-11-09 06:47:57,537 - INFO - Fetched 100 historical prices for XRP
+2025-11-09 06:47:57,537 - INFO - Trading decision for XRP at $2.2829: HOLD
+2025-11-09 06:47:57,537 - INFO - Holding XRP (decision: HOLD)
+2025-11-09 06:47:57,537 - INFO - Checking unowned currencies for buy decisions...
+2025-11-09 06:47:57,537 - INFO - Found 0 unowned currencies with allocation
+2025-11-09 06:47:57,537 - INFO - Trading cycle completed: 0 sells, 0 buys
+2025-11-09 06:47:57,537 - INFO - Trading actions took 20.03 seconds
+2025-11-09 06:47:57,537 - INFO - SUCCESS: Cycle #2 completed successfully in 20.26 seconds
+2025-11-09 06:47:57,537 - INFO - Cycle completed in 20.26 seconds, waiting 279.74 seconds to complete 5.0 minute cycle...
+2025-11-09 06:52:37,376 - INFO - 5-minute cycle completed, starting next cycle...
+2025-11-09 06:52:37,376 - INFO - 
+--- Cycle #3 started at 2025-11-09 06:52:37 ---
+2025-11-09 06:52:37,376 - INFO - Starting trading cycle...
+2025-11-09 06:52:37,377 - INFO - Fetching current account balance...
+2025-11-09 06:52:37,757 - INFO - Found 22 owned currencies with positive balance
+2025-11-09 06:52:37,757 - INFO -   AAVE: 2.381 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   ADA: 1368.4 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   APT: 347.3 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   ARB: 3290.9 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   AVAX: 51.31 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   BTC: 0.00401 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   CRV: 1967.7 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   DOGE: 50.0 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   DOT: 487.0 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   ETH: 1.141 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   FET: 10753.4 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   FIL: 2072.4 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   ICP: 187.5 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   LTC: 11.352 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   NEAR: 891.5 free, 0.0 locked
+2025-11-09 06:52:37,758 - INFO -   SEI: 6034.1 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   SOL: 5.06 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   SUI: 10.0 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   TON: 254.7 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   TRX: 1654.6 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   UNI: 141.0 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO -   XRP: 298.0 free, 0.0 locked
+2025-11-09 06:52:37,759 - INFO - Loaded portfolio allocation for 24 currencies
+2025-11-09 06:52:37,759 - INFO - Checking owned currencies for sell decisions...
+2025-11-09 06:52:37,759 - INFO - Making trading decision for owned currency: AAVE
+2025-11-09 06:52:37,759 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 06:52:38,077 - INFO - Primary API price for AAVE/USD: $203.3300
+2025-11-09 06:52:38,901 - INFO - Saved 100 historical data points for AAVE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AAVE_recent_5min_data.json
+2025-11-09 06:52:38,901 - INFO - Fetched 100 historical prices for AAVE
+2025-11-09 06:52:38,901 - INFO - Trading decision for AAVE at $203.3300: HOLD
+2025-11-09 06:52:38,901 - INFO - Holding AAVE (decision: HOLD)
+2025-11-09 06:52:38,901 - INFO - Making trading decision for owned currency: ADA
+2025-11-09 06:52:38,901 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 06:52:39,136 - INFO - Primary API price for ADA/USD: $0.5675
+2025-11-09 06:52:39,620 - INFO - Saved 100 historical data points for ADA to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ADA_recent_5min_data.json
+2025-11-09 06:52:39,620 - INFO - Fetched 100 historical prices for ADA
+2025-11-09 06:52:39,620 - INFO - Trading decision for ADA at $0.5675: HOLD
+2025-11-09 06:52:39,620 - INFO - Holding ADA (decision: HOLD)
+2025-11-09 06:52:39,620 - INFO - Making trading decision for owned currency: APT
+2025-11-09 06:52:39,620 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 06:52:39,846 - INFO - Primary API price for APT/USD: $3.0970
+2025-11-09 06:52:40,745 - INFO - Saved 100 historical data points for APT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/APT_recent_5min_data.json
+2025-11-09 06:52:40,745 - INFO - Fetched 100 historical prices for APT
+2025-11-09 06:52:40,745 - INFO - Trading decision for APT at $3.0970: HOLD
+2025-11-09 06:52:40,745 - INFO - Holding APT (decision: HOLD)
+2025-11-09 06:52:40,745 - INFO - Making trading decision for owned currency: ARB
+2025-11-09 06:52:40,745 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 06:52:40,950 - INFO - Primary API price for ARB/USD: $0.2970
+2025-11-09 06:52:41,460 - INFO - Saved 100 historical data points for ARB to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ARB_recent_5min_data.json
+2025-11-09 06:52:41,461 - INFO - Fetched 100 historical prices for ARB
+2025-11-09 06:52:41,461 - INFO - Trading decision for ARB at $0.2970: HOLD
+2025-11-09 06:52:41,461 - INFO - Holding ARB (decision: HOLD)
+2025-11-09 06:52:41,461 - INFO - Making trading decision for owned currency: AVAX
+2025-11-09 06:52:41,461 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 06:52:41,687 - INFO - Primary API price for AVAX/USD: $17.4400
+2025-11-09 06:52:42,081 - INFO - Saved 100 historical data points for AVAX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AVAX_recent_5min_data.json
+2025-11-09 06:52:42,081 - INFO - Fetched 100 historical prices for AVAX
+2025-11-09 06:52:42,082 - INFO - Trading decision for AVAX at $17.4400: HOLD
+2025-11-09 06:52:42,082 - INFO - Holding AVAX (decision: HOLD)
+2025-11-09 06:52:42,082 - INFO - Making trading decision for owned currency: BTC
+2025-11-09 06:52:42,083 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 06:52:42,298 - INFO - Primary API price for BTC/USD: $102,421.1200
+2025-11-09 06:52:43,101 - INFO - Saved 100 historical data points for BTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/BTC_recent_5min_data.json
+2025-11-09 06:52:43,101 - INFO - Fetched 100 historical prices for BTC
+2025-11-09 06:52:43,101 - INFO - Trading decision for BTC at $102421.1200: HOLD
+2025-11-09 06:52:43,101 - INFO - Holding BTC (decision: HOLD)
+2025-11-09 06:52:43,101 - INFO - Making trading decision for owned currency: CRV
+2025-11-09 06:52:43,101 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 06:52:43,321 - INFO - Primary API price for CRV/USD: $0.4797
+2025-11-09 06:52:43,817 - INFO - Saved 100 historical data points for CRV to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/CRV_recent_5min_data.json
+2025-11-09 06:52:43,817 - INFO - Fetched 100 historical prices for CRV
+2025-11-09 06:52:43,817 - INFO - Trading decision for CRV at $0.4797: HOLD
+2025-11-09 06:52:43,817 - INFO - Holding CRV (decision: HOLD)
+2025-11-09 06:52:43,818 - INFO - Making trading decision for owned currency: DOGE
+2025-11-09 06:52:43,818 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 06:52:44,035 - INFO - Primary API price for DOGE/USD: $0.1760
+2025-11-09 06:52:44,737 - INFO - Saved 100 historical data points for DOGE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOGE_recent_5min_data.json
+2025-11-09 06:52:44,737 - INFO - Fetched 100 historical prices for DOGE
+2025-11-09 06:52:44,737 - INFO - Trading decision for DOGE at $0.1760: HOLD
+2025-11-09 06:52:44,737 - INFO - Holding DOGE (decision: HOLD)
+2025-11-09 06:52:44,737 - INFO - Making trading decision for owned currency: DOT
+2025-11-09 06:52:44,737 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 06:52:44,958 - INFO - Primary API price for DOT/USD: $3.2260
+2025-11-09 06:52:45,922 - INFO - Saved 100 historical data points for DOT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOT_recent_5min_data.json
+2025-11-09 06:52:45,922 - INFO - Fetched 100 historical prices for DOT
+2025-11-09 06:52:45,922 - INFO - Trading decision for DOT at $3.2260: HOLD
+2025-11-09 06:52:45,922 - INFO - Holding DOT (decision: HOLD)
+2025-11-09 06:52:45,922 - INFO - Making trading decision for owned currency: ETH
+2025-11-09 06:52:45,922 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 06:52:46,141 - INFO - Primary API price for ETH/USD: $3,407.7000
+2025-11-09 06:52:46,684 - INFO - Saved 100 historical data points for ETH to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ETH_recent_5min_data.json
+2025-11-09 06:52:46,684 - INFO - Fetched 100 historical prices for ETH
+2025-11-09 06:52:46,684 - INFO - Trading decision for ETH at $3407.7000: HOLD
+2025-11-09 06:52:46,684 - INFO - Holding ETH (decision: HOLD)
+2025-11-09 06:52:46,684 - INFO - Making trading decision for owned currency: FET
+2025-11-09 06:52:46,684 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 06:52:46,884 - INFO - Primary API price for FET/USD: $0.3413
+2025-11-09 06:52:47,915 - INFO - Saved 100 historical data points for FET to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FET_recent_5min_data.json
+2025-11-09 06:52:47,915 - INFO - Fetched 100 historical prices for FET
+2025-11-09 06:52:47,916 - INFO - Trading decision for FET at $0.3413: HOLD
+2025-11-09 06:52:47,916 - INFO - Holding FET (decision: HOLD)
+2025-11-09 06:52:47,916 - INFO - Making trading decision for owned currency: FIL
+2025-11-09 06:52:47,916 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 06:52:48,125 - INFO - Primary API price for FIL/USD: $3.1430
+2025-11-09 06:52:48,732 - INFO - Saved 100 historical data points for FIL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FIL_recent_5min_data.json
+2025-11-09 06:52:48,732 - INFO - Fetched 100 historical prices for FIL
+2025-11-09 06:52:48,732 - INFO - Trading decision for FIL at $3.1430: BUY
+2025-11-09 06:52:48,732 - INFO - Holding FIL (decision: BUY)
+2025-11-09 06:52:48,732 - INFO - Making trading decision for owned currency: ICP
+2025-11-09 06:52:48,732 - INFO - Fetching current price for ICP/USD from primary API
+2025-11-09 06:52:48,936 - INFO - Primary API price for ICP/USD: $9.1080
+2025-11-09 06:52:49,345 - INFO - Saved 100 historical data points for ICP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ICP_recent_5min_data.json
+2025-11-09 06:52:49,345 - INFO - Fetched 100 historical prices for ICP
+2025-11-09 06:52:49,345 - INFO - Trading decision for ICP at $9.1080: SELL
+2025-11-09 06:52:49,345 - INFO - Executing SELL order for 187.5 ICP
+2025-11-09 06:52:49,585 - INFO - SELL order result for ICP: None
+2025-11-09 06:52:49,586 - INFO - Updated portfolio allocation: ICP value changed from $0 to $0
+2025-11-09 06:52:49,586 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:52:49,586 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:52:54,587 - INFO - Making trading decision for owned currency: LTC
+2025-11-09 06:52:54,587 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 06:52:54,876 - INFO - Primary API price for LTC/USD: $101.6500
+2025-11-09 06:52:56,006 - INFO - Saved 100 historical data points for LTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/LTC_recent_5min_data.json
+2025-11-09 06:52:56,006 - INFO - Fetched 100 historical prices for LTC
+2025-11-09 06:52:56,007 - INFO - Trading decision for LTC at $101.6500: HOLD
+2025-11-09 06:52:56,007 - INFO - Holding LTC (decision: HOLD)
+2025-11-09 06:52:56,007 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:01,007 - INFO - Making trading decision for owned currency: NEAR
+2025-11-09 06:53:01,008 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 06:53:01,216 - INFO - Primary API price for NEAR/USD: $2.8640
+2025-11-09 06:53:01,737 - INFO - Saved 100 historical data points for NEAR to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/NEAR_recent_5min_data.json
+2025-11-09 06:53:01,737 - INFO - Fetched 100 historical prices for NEAR
+2025-11-09 06:53:01,737 - INFO - Trading decision for NEAR at $2.8640: HOLD
+2025-11-09 06:53:01,737 - INFO - Holding NEAR (decision: HOLD)
+2025-11-09 06:53:01,737 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:06,738 - INFO - Making trading decision for owned currency: SEI
+2025-11-09 06:53:06,738 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 06:53:06,949 - INFO - Primary API price for SEI/USD: $0.1821
+2025-11-09 06:53:08,388 - INFO - Saved 100 historical data points for SEI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SEI_recent_5min_data.json
+2025-11-09 06:53:08,388 - INFO - Fetched 100 historical prices for SEI
+2025-11-09 06:53:08,389 - INFO - Trading decision for SEI at $0.1821: HOLD
+2025-11-09 06:53:08,389 - INFO - Holding SEI (decision: HOLD)
+2025-11-09 06:53:08,389 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:13,389 - INFO - Making trading decision for owned currency: SOL
+2025-11-09 06:53:13,389 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 06:53:13,696 - INFO - Primary API price for SOL/USD: $158.3000
+2025-11-09 06:53:14,840 - INFO - Saved 100 historical data points for SOL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SOL_recent_5min_data.json
+2025-11-09 06:53:14,840 - INFO - Fetched 100 historical prices for SOL
+2025-11-09 06:53:14,841 - INFO - Trading decision for SOL at $158.3000: HOLD
+2025-11-09 06:53:14,841 - INFO - Holding SOL (decision: HOLD)
+2025-11-09 06:53:14,841 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:19,841 - INFO - Making trading decision for owned currency: SUI
+2025-11-09 06:53:19,841 - INFO - Fetching current price for SUI/USD from primary API
+2025-11-09 06:53:20,217 - INFO - Primary API price for SUI/USD: $2.1246
+2025-11-09 06:53:20,682 - INFO - Saved 100 historical data points for SUI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SUI_recent_5min_data.json
+2025-11-09 06:53:20,683 - INFO - Fetched 100 historical prices for SUI
+2025-11-09 06:53:20,683 - INFO - Trading decision for SUI at $2.1246: HOLD
+2025-11-09 06:53:20,683 - INFO - Holding SUI (decision: HOLD)
+2025-11-09 06:53:20,684 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:25,684 - INFO - Making trading decision for owned currency: TON
+2025-11-09 06:53:25,685 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 06:53:25,893 - INFO - Primary API price for TON/USD: $2.0950
+2025-11-09 06:53:26,411 - INFO - Saved 100 historical data points for TON to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TON_recent_5min_data.json
+2025-11-09 06:53:26,411 - INFO - Fetched 100 historical prices for TON
+2025-11-09 06:53:26,411 - INFO - Trading decision for TON at $2.0950: HOLD
+2025-11-09 06:53:26,412 - INFO - Holding TON (decision: HOLD)
+2025-11-09 06:53:26,412 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:31,412 - INFO - Making trading decision for owned currency: TRX
+2025-11-09 06:53:31,413 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 06:53:31,798 - INFO - Primary API price for TRX/USD: $0.2918
+2025-11-09 06:53:32,249 - INFO - Saved 100 historical data points for TRX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TRX_recent_5min_data.json
+2025-11-09 06:53:32,249 - INFO - Fetched 100 historical prices for TRX
+2025-11-09 06:53:32,249 - INFO - Trading decision for TRX at $0.2918: HOLD
+2025-11-09 06:53:32,249 - INFO - Holding TRX (decision: HOLD)
+2025-11-09 06:53:32,250 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:37,250 - INFO - Making trading decision for owned currency: UNI
+2025-11-09 06:53:37,250 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 06:53:37,637 - INFO - Primary API price for UNI/USD: $6.0310
+2025-11-09 06:53:38,288 - INFO - Saved 100 historical data points for UNI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/UNI_recent_5min_data.json
+2025-11-09 06:53:38,288 - INFO - Fetched 100 historical prices for UNI
+2025-11-09 06:53:38,289 - INFO - Trading decision for UNI at $6.0310: HOLD
+2025-11-09 06:53:38,289 - INFO - Holding UNI (decision: HOLD)
+2025-11-09 06:53:38,289 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:43,289 - INFO - Making trading decision for owned currency: XRP
+2025-11-09 06:53:43,290 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 06:53:43,715 - INFO - Primary API price for XRP/USD: $2.2878
+2025-11-09 06:53:44,226 - INFO - Saved 100 historical data points for XRP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/XRP_recent_5min_data.json
+2025-11-09 06:53:44,226 - INFO - Fetched 100 historical prices for XRP
+2025-11-09 06:53:44,226 - INFO - Trading decision for XRP at $2.2878: HOLD
+2025-11-09 06:53:44,226 - INFO - Holding XRP (decision: HOLD)
+2025-11-09 06:53:44,226 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:53:49,227 - INFO - Checking unowned currencies for buy decisions...
+2025-11-09 06:53:49,227 - INFO - Found 0 unowned currencies with allocation
+2025-11-09 06:53:49,228 - INFO - Trading cycle completed: 1 sells, 0 buys
+2025-11-09 06:53:49,228 - INFO - Trading actions took 71.47 seconds
+2025-11-09 06:53:49,228 - INFO - SUCCESS: Cycle #3 completed successfully in 71.85 seconds
+2025-11-09 06:53:49,228 - INFO - Cycle completed in 71.85 seconds, waiting 228.15 seconds to complete 5.0 minute cycle...
+2025-11-09 06:57:37,461 - INFO - 5-minute cycle completed, starting next cycle...
+2025-11-09 06:57:37,462 - INFO - 
+--- Cycle #4 started at 2025-11-09 06:57:37 ---
+2025-11-09 06:57:37,462 - INFO - Starting trading cycle...
+2025-11-09 06:57:37,462 - INFO - Fetching current account balance...
+2025-11-09 06:57:37,769 - INFO - Found 21 owned currencies with positive balance
+2025-11-09 06:57:37,770 - INFO -   AAVE: 2.381 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   ADA: 1368.4 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   APT: 347.3 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   ARB: 3290.9 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   AVAX: 51.31 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   BTC: 0.00401 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   CRV: 1967.7 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   DOGE: 50.0 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   DOT: 487.0 free, 0.0 locked
+2025-11-09 06:57:37,770 - INFO -   ETH: 1.141 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   FET: 10753.4 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   FIL: 2072.4 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   LTC: 11.352 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   NEAR: 891.5 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   SEI: 6034.1 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   SOL: 5.06 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   SUI: 10.0 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   TON: 254.7 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   TRX: 1654.6 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   UNI: 141.0 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO -   XRP: 298.0 free, 0.0 locked
+2025-11-09 06:57:37,771 - INFO - Loaded portfolio allocation for 24 currencies
+2025-11-09 06:57:37,772 - INFO - Checking owned currencies for sell decisions...
+2025-11-09 06:57:37,772 - INFO - Making trading decision for owned currency: AAVE
+2025-11-09 06:57:37,772 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 06:57:37,995 - INFO - Primary API price for AAVE/USD: $203.4600
+2025-11-09 06:57:38,404 - INFO - Saved 100 historical data points for AAVE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AAVE_recent_5min_data.json
+2025-11-09 06:57:38,404 - INFO - Fetched 100 historical prices for AAVE
+2025-11-09 06:57:38,404 - INFO - Trading decision for AAVE at $203.4600: HOLD
+2025-11-09 06:57:38,404 - INFO - Holding AAVE (decision: HOLD)
+2025-11-09 06:57:38,404 - INFO - Making trading decision for owned currency: ADA
+2025-11-09 06:57:38,404 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 06:57:38,605 - WARNING - Failed to get ticker data from primary API for ADA/USD
+2025-11-09 06:57:38,606 - INFO - Trying backup Kraken API for ADA
+2025-11-09 06:57:38,606 - INFO - Fetching price from Kraken API for ADAUSD
+2025-11-09 06:57:39,013 - INFO - Kraken price for ADA: $0.5671
+2025-11-09 06:57:39,940 - INFO - Saved 100 historical data points for ADA to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ADA_recent_5min_data.json
+2025-11-09 06:57:39,940 - INFO - Fetched 100 historical prices for ADA
+2025-11-09 06:57:39,940 - INFO - Trading decision for ADA at $0.5671: HOLD
+2025-11-09 06:57:39,941 - INFO - Holding ADA (decision: HOLD)
+2025-11-09 06:57:39,941 - INFO - Making trading decision for owned currency: APT
+2025-11-09 06:57:39,941 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 06:57:40,156 - INFO - Primary API price for APT/USD: $3.0890
+2025-11-09 06:57:40,560 - INFO - Saved 100 historical data points for APT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/APT_recent_5min_data.json
+2025-11-09 06:57:40,560 - INFO - Fetched 100 historical prices for APT
+2025-11-09 06:57:40,561 - INFO - Trading decision for APT at $3.0890: HOLD
+2025-11-09 06:57:40,561 - INFO - Holding APT (decision: HOLD)
+2025-11-09 06:57:40,561 - INFO - Making trading decision for owned currency: ARB
+2025-11-09 06:57:40,561 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 06:57:40,787 - INFO - Primary API price for ARB/USD: $0.2971
+2025-11-09 06:57:41,272 - INFO - Saved 100 historical data points for ARB to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ARB_recent_5min_data.json
+2025-11-09 06:57:41,272 - INFO - Fetched 100 historical prices for ARB
+2025-11-09 06:57:41,272 - INFO - Trading decision for ARB at $0.2971: HOLD
+2025-11-09 06:57:41,272 - INFO - Holding ARB (decision: HOLD)
+2025-11-09 06:57:41,272 - INFO - Making trading decision for owned currency: AVAX
+2025-11-09 06:57:41,272 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 06:57:41,494 - INFO - Primary API price for AVAX/USD: $17.4600
+2025-11-09 06:57:41,989 - INFO - Saved 100 historical data points for AVAX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/AVAX_recent_5min_data.json
+2025-11-09 06:57:41,989 - INFO - Fetched 100 historical prices for AVAX
+2025-11-09 06:57:41,989 - INFO - Trading decision for AVAX at $17.4600: HOLD
+2025-11-09 06:57:41,989 - INFO - Holding AVAX (decision: HOLD)
+2025-11-09 06:57:41,989 - INFO - Making trading decision for owned currency: BTC
+2025-11-09 06:57:41,989 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 06:57:42,215 - INFO - Primary API price for BTC/USD: $102,404.3400
+2025-11-09 06:57:42,908 - INFO - Saved 100 historical data points for BTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/BTC_recent_5min_data.json
+2025-11-09 06:57:42,908 - INFO - Fetched 100 historical prices for BTC
+2025-11-09 06:57:42,908 - INFO - Trading decision for BTC at $102404.3400: HOLD
+2025-11-09 06:57:42,908 - INFO - Holding BTC (decision: HOLD)
+2025-11-09 06:57:42,908 - INFO - Making trading decision for owned currency: CRV
+2025-11-09 06:57:42,909 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 06:57:43,126 - INFO - Primary API price for CRV/USD: $0.4800
+2025-11-09 06:57:43,627 - INFO - Saved 100 historical data points for CRV to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/CRV_recent_5min_data.json
+2025-11-09 06:57:43,627 - INFO - Fetched 100 historical prices for CRV
+2025-11-09 06:57:43,627 - INFO - Trading decision for CRV at $0.4800: HOLD
+2025-11-09 06:57:43,627 - INFO - Holding CRV (decision: HOLD)
+2025-11-09 06:57:43,627 - INFO - Making trading decision for owned currency: DOGE
+2025-11-09 06:57:43,627 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 06:57:43,824 - INFO - Primary API price for DOGE/USD: $0.1761
+2025-11-09 06:57:44,344 - INFO - Saved 100 historical data points for DOGE to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOGE_recent_5min_data.json
+2025-11-09 06:57:44,344 - INFO - Fetched 100 historical prices for DOGE
+2025-11-09 06:57:44,344 - INFO - Trading decision for DOGE at $0.1761: HOLD
+2025-11-09 06:57:44,344 - INFO - Holding DOGE (decision: HOLD)
+2025-11-09 06:57:44,344 - INFO - Making trading decision for owned currency: DOT
+2025-11-09 06:57:44,344 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 06:57:44,543 - INFO - Primary API price for DOT/USD: $3.2250
+2025-11-09 06:57:45,163 - INFO - Saved 100 historical data points for DOT to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/DOT_recent_5min_data.json
+2025-11-09 06:57:45,163 - INFO - Fetched 100 historical prices for DOT
+2025-11-09 06:57:45,163 - INFO - Trading decision for DOT at $3.2250: HOLD
+2025-11-09 06:57:45,163 - INFO - Holding DOT (decision: HOLD)
+2025-11-09 06:57:45,163 - INFO - Making trading decision for owned currency: ETH
+2025-11-09 06:57:45,163 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 06:57:45,373 - INFO - Primary API price for ETH/USD: $3,410.2800
+2025-11-09 06:57:46,346 - INFO - Saved 100 historical data points for ETH to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/ETH_recent_5min_data.json
+2025-11-09 06:57:46,347 - INFO - Fetched 100 historical prices for ETH
+2025-11-09 06:57:46,347 - INFO - Trading decision for ETH at $3410.2800: HOLD
+2025-11-09 06:57:46,348 - INFO - Holding ETH (decision: HOLD)
+2025-11-09 06:57:46,348 - INFO - Making trading decision for owned currency: FET
+2025-11-09 06:57:46,348 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 06:57:46,593 - INFO - Primary API price for FET/USD: $0.3412
+2025-11-09 06:57:47,210 - INFO - Saved 100 historical data points for FET to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FET_recent_5min_data.json
+2025-11-09 06:57:47,211 - INFO - Fetched 100 historical prices for FET
+2025-11-09 06:57:47,211 - INFO - Trading decision for FET at $0.3412: HOLD
+2025-11-09 06:57:47,211 - INFO - Holding FET (decision: HOLD)
+2025-11-09 06:57:47,211 - INFO - Making trading decision for owned currency: FIL
+2025-11-09 06:57:47,211 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 06:57:47,430 - INFO - Primary API price for FIL/USD: $3.1110
+2025-11-09 06:57:47,928 - INFO - Saved 100 historical data points for FIL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/FIL_recent_5min_data.json
+2025-11-09 06:57:47,928 - INFO - Fetched 100 historical prices for FIL
+2025-11-09 06:57:47,928 - INFO - Trading decision for FIL at $3.1110: BUY
+2025-11-09 06:57:47,928 - INFO - Holding FIL (decision: BUY)
+2025-11-09 06:57:47,928 - INFO - Making trading decision for owned currency: LTC
+2025-11-09 06:57:47,928 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 06:57:48,127 - INFO - Primary API price for LTC/USD: $101.5800
+2025-11-09 06:57:49,054 - INFO - Saved 100 historical data points for LTC to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/LTC_recent_5min_data.json
+2025-11-09 06:57:49,054 - INFO - Fetched 100 historical prices for LTC
+2025-11-09 06:57:49,054 - INFO - Trading decision for LTC at $101.5800: HOLD
+2025-11-09 06:57:49,054 - INFO - Holding LTC (decision: HOLD)
+2025-11-09 06:57:49,054 - INFO - Making trading decision for owned currency: NEAR
+2025-11-09 06:57:49,054 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 06:57:49,261 - INFO - Primary API price for NEAR/USD: $2.8620
+2025-11-09 06:57:50,178 - INFO - Saved 100 historical data points for NEAR to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/NEAR_recent_5min_data.json
+2025-11-09 06:57:50,179 - INFO - Fetched 100 historical prices for NEAR
+2025-11-09 06:57:50,179 - INFO - Trading decision for NEAR at $2.8620: HOLD
+2025-11-09 06:57:50,179 - INFO - Holding NEAR (decision: HOLD)
+2025-11-09 06:57:50,179 - INFO - Making trading decision for owned currency: SEI
+2025-11-09 06:57:50,179 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 06:57:50,384 - INFO - Primary API price for SEI/USD: $0.1816
+2025-11-09 06:57:50,894 - INFO - Saved 100 historical data points for SEI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SEI_recent_5min_data.json
+2025-11-09 06:57:50,894 - INFO - Fetched 100 historical prices for SEI
+2025-11-09 06:57:50,894 - INFO - Trading decision for SEI at $0.1816: HOLD
+2025-11-09 06:57:50,894 - INFO - Holding SEI (decision: HOLD)
+2025-11-09 06:57:50,894 - INFO - Making trading decision for owned currency: SOL
+2025-11-09 06:57:50,894 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 06:57:51,112 - INFO - Primary API price for SOL/USD: $158.1300
+2025-11-09 06:57:51,778 - INFO - Saved 100 historical data points for SOL to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SOL_recent_5min_data.json
+2025-11-09 06:57:51,779 - INFO - Fetched 100 historical prices for SOL
+2025-11-09 06:57:51,779 - INFO - Trading decision for SOL at $158.1300: HOLD
+2025-11-09 06:57:51,779 - INFO - Holding SOL (decision: HOLD)
+2025-11-09 06:57:51,780 - INFO - Making trading decision for owned currency: SUI
+2025-11-09 06:57:51,780 - INFO - Fetching current price for SUI/USD from primary API
+2025-11-09 06:57:51,996 - INFO - Primary API price for SUI/USD: $2.1181
+2025-11-09 06:57:52,431 - INFO - Saved 100 historical data points for SUI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/SUI_recent_5min_data.json
+2025-11-09 06:57:52,431 - INFO - Fetched 100 historical prices for SUI
+2025-11-09 06:57:52,431 - INFO - Trading decision for SUI at $2.1181: HOLD
+2025-11-09 06:57:52,431 - INFO - Holding SUI (decision: HOLD)
+2025-11-09 06:57:52,431 - INFO - Making trading decision for owned currency: TON
+2025-11-09 06:57:52,431 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 06:57:52,637 - INFO - Primary API price for TON/USD: $2.0920
+2025-11-09 06:57:53,087 - INFO - Saved 100 historical data points for TON to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TON_recent_5min_data.json
+2025-11-09 06:57:53,088 - INFO - Fetched 100 historical prices for TON
+2025-11-09 06:57:53,088 - INFO - Trading decision for TON at $2.0920: HOLD
+2025-11-09 06:57:53,088 - INFO - Holding TON (decision: HOLD)
+2025-11-09 06:57:53,088 - INFO - Making trading decision for owned currency: TRX
+2025-11-09 06:57:53,088 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 06:57:53,282 - INFO - Primary API price for TRX/USD: $0.2918
+2025-11-09 06:57:53,865 - INFO - Saved 100 historical data points for TRX to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/TRX_recent_5min_data.json
+2025-11-09 06:57:53,865 - INFO - Fetched 100 historical prices for TRX
+2025-11-09 06:57:53,866 - INFO - Trading decision for TRX at $0.2918: HOLD
+2025-11-09 06:57:53,866 - INFO - Holding TRX (decision: HOLD)
+2025-11-09 06:57:53,866 - INFO - Making trading decision for owned currency: UNI
+2025-11-09 06:57:53,866 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 06:57:54,071 - INFO - Primary API price for UNI/USD: $6.0270
+2025-11-09 06:57:54,896 - INFO - Saved 100 historical data points for UNI to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/UNI_recent_5min_data.json
+2025-11-09 06:57:54,896 - INFO - Fetched 100 historical prices for UNI
+2025-11-09 06:57:54,897 - INFO - Trading decision for UNI at $6.0270: SELL
+2025-11-09 06:57:54,897 - INFO - Executing SELL order for 141.0 UNI
+2025-11-09 06:57:55,152 - INFO - SELL order result for UNI: None
+2025-11-09 06:57:55,154 - INFO - Updated portfolio allocation: UNI value changed from $0 to $0
+2025-11-09 06:57:55,154 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 06:57:55,155 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:58:00,155 - INFO - Making trading decision for owned currency: XRP
+2025-11-09 06:58:00,155 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 06:58:00,485 - INFO - Primary API price for XRP/USD: $2.2855
+2025-11-09 06:58:01,144 - INFO - Saved 100 historical data points for XRP to /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/recent_crypto_data/XRP_recent_5min_data.json
+2025-11-09 06:58:01,145 - INFO - Fetched 100 historical prices for XRP
+2025-11-09 06:58:01,145 - INFO - Trading decision for XRP at $2.2855: HOLD
+2025-11-09 06:58:01,145 - INFO - Holding XRP (decision: HOLD)
+2025-11-09 06:58:01,146 - INFO - Waiting 5 seconds before next action...
+2025-11-09 06:58:06,146 - INFO - Checking unowned currencies for buy decisions...
+2025-11-09 06:58:06,146 - INFO - Found 0 unowned currencies with allocation
+2025-11-09 06:58:06,147 - INFO - Trading cycle completed: 1 sells, 0 buys
+2025-11-09 06:58:06,147 - INFO - Trading actions took 28.37 seconds
+2025-11-09 06:58:06,147 - INFO - SUCCESS: Cycle #4 completed successfully in 28.69 seconds
+2025-11-09 06:58:06,147 - INFO - Cycle completed in 28.69 seconds, waiting 271.31 seconds to complete 5.0 minute cycle...
+2025-11-09 06:58:33,731 - INFO - Received signal 2. Initiating graceful shutdown...
+2025-11-09 06:58:33,732 - INFO - ============================================================
+2025-11-09 06:58:33,732 - INFO - EMERGENCY SELL ALL CURRENCIES ON SHUTDOWN
+2025-11-09 06:58:33,732 - INFO - ============================================================
+2025-11-09 06:58:33,732 - INFO - Fetching current account balance for shutdown sell...
+2025-11-09 06:58:34,002 - INFO - Found 20 currencies to sell on shutdown:
+2025-11-09 06:58:34,003 - INFO -   AAVE: 2.381
+2025-11-09 06:58:34,003 - INFO -   ADA: 1368.4
+2025-11-09 06:58:34,003 - INFO -   APT: 347.3
+2025-11-09 06:58:34,003 - INFO -   ARB: 3290.9
+2025-11-09 06:58:34,004 - INFO -   AVAX: 51.31
+2025-11-09 06:58:34,004 - INFO -   BTC: 0.00401
+2025-11-09 06:58:34,004 - INFO -   CRV: 1967.7
+2025-11-09 06:58:34,004 - INFO -   DOGE: 50.0
+2025-11-09 06:58:34,004 - INFO -   DOT: 487.0
+2025-11-09 06:58:34,004 - INFO -   ETH: 1.141
+2025-11-09 06:58:34,004 - INFO -   FET: 10753.4
+2025-11-09 06:58:34,004 - INFO -   FIL: 2072.4
+2025-11-09 06:58:34,004 - INFO -   LTC: 11.352
+2025-11-09 06:58:34,004 - INFO -   NEAR: 891.5
+2025-11-09 06:58:34,004 - INFO -   SEI: 6034.1
+2025-11-09 06:58:34,004 - INFO -   SOL: 5.06
+2025-11-09 06:58:34,005 - INFO -   SUI: 10.0
+2025-11-09 06:58:34,005 - INFO -   TON: 254.7
+2025-11-09 06:58:34,005 - INFO -   TRX: 1654.6
+2025-11-09 06:58:34,005 - INFO -   XRP: 298.0
+2025-11-09 06:58:34,005 - INFO - SHUTDOWN SELL: Selling 2.381 AAVE
+2025-11-09 06:58:34,257 - INFO - SHUTDOWN SELL: Order placed for AAVE
+2025-11-09 06:58:34,259 - INFO - SHUTDOWN SELL: Updated portfolio allocation for AAVE to $0
+2025-11-09 06:58:35,259 - INFO - SHUTDOWN SELL: Selling 1368.4 ADA
+2025-11-09 06:58:35,501 - INFO - SHUTDOWN SELL: Order placed for ADA
+2025-11-09 06:58:35,502 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ADA to $0
+2025-11-09 06:58:36,503 - INFO - SHUTDOWN SELL: Selling 347.3 APT
+2025-11-09 06:58:36,795 - INFO - SHUTDOWN SELL: Order placed for APT
+2025-11-09 06:58:36,798 - INFO - SHUTDOWN SELL: Updated portfolio allocation for APT to $0
+2025-11-09 06:58:37,798 - INFO - SHUTDOWN SELL: Selling 3290.9 ARB
+2025-11-09 06:58:38,077 - INFO - SHUTDOWN SELL: Order placed for ARB
+2025-11-09 06:58:38,078 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ARB to $0
+2025-11-09 06:58:39,079 - INFO - SHUTDOWN SELL: Selling 51.31 AVAX
+2025-11-09 06:58:39,333 - INFO - SHUTDOWN SELL: Order placed for AVAX
+2025-11-09 06:58:39,334 - INFO - SHUTDOWN SELL: Updated portfolio allocation for AVAX to $0
+2025-11-09 06:58:40,335 - INFO - SHUTDOWN SELL: Selling 0.00401 BTC
+2025-11-09 06:58:40,599 - INFO - SHUTDOWN SELL: Order placed for BTC
+2025-11-09 06:58:40,601 - INFO - SHUTDOWN SELL: Updated portfolio allocation for BTC to $0
+2025-11-09 06:58:41,601 - INFO - SHUTDOWN SELL: Selling 1967.7 CRV
+2025-11-09 06:58:41,822 - INFO - SHUTDOWN SELL: Order placed for CRV
+2025-11-09 06:58:41,823 - INFO - SHUTDOWN SELL: Updated portfolio allocation for CRV to $0
+2025-11-09 06:58:42,824 - INFO - SHUTDOWN SELL: Selling 50.0 DOGE
+2025-11-09 06:58:43,052 - INFO - SHUTDOWN SELL: Order placed for DOGE
+2025-11-09 06:58:43,053 - INFO - SHUTDOWN SELL: Updated portfolio allocation for DOGE to $0
+2025-11-09 06:58:44,053 - INFO - SHUTDOWN SELL: Selling 487.0 DOT
+2025-11-09 06:58:44,310 - INFO - SHUTDOWN SELL: Order placed for DOT
+2025-11-09 06:58:44,311 - INFO - SHUTDOWN SELL: Updated portfolio allocation for DOT to $0
+2025-11-09 06:58:45,312 - INFO - SHUTDOWN SELL: Selling 1.141 ETH
+2025-11-09 06:58:45,571 - INFO - SHUTDOWN SELL: Order placed for ETH
+2025-11-09 06:58:45,630 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ETH to $0
+2025-11-09 06:58:46,630 - INFO - SHUTDOWN SELL: Selling 10753.4 FET
+2025-11-09 06:58:46,872 - INFO - SHUTDOWN SELL: Order placed for FET
+2025-11-09 06:58:46,874 - INFO - SHUTDOWN SELL: Updated portfolio allocation for FET to $0
+2025-11-09 06:58:47,875 - INFO - SHUTDOWN SELL: Selling 2072.4 FIL
+2025-11-09 06:58:48,114 - INFO - SHUTDOWN SELL: Order placed for FIL
+2025-11-09 06:58:48,116 - INFO - SHUTDOWN SELL: Updated portfolio allocation for FIL to $0
+2025-11-09 06:58:49,116 - INFO - SHUTDOWN SELL: Selling 11.352 LTC
+2025-11-09 06:58:49,327 - INFO - SHUTDOWN SELL: Order placed for LTC
+2025-11-09 06:58:49,329 - INFO - SHUTDOWN SELL: Updated portfolio allocation for LTC to $0
+2025-11-09 06:58:50,330 - INFO - SHUTDOWN SELL: Selling 891.5 NEAR
+2025-11-09 06:58:50,556 - INFO - SHUTDOWN SELL: Order placed for NEAR
+2025-11-09 06:58:50,558 - INFO - SHUTDOWN SELL: Updated portfolio allocation for NEAR to $0
+2025-11-09 06:58:51,559 - INFO - SHUTDOWN SELL: Selling 6034.1 SEI
+2025-11-09 06:58:51,801 - INFO - SHUTDOWN SELL: Order placed for SEI
+2025-11-09 06:58:51,803 - INFO - SHUTDOWN SELL: Updated portfolio allocation for SEI to $0
+2025-11-09 06:58:52,803 - INFO - SHUTDOWN SELL: Selling 5.06 SOL
+2025-11-09 06:58:53,068 - INFO - SHUTDOWN SELL: Order placed for SOL
+2025-11-09 06:58:53,070 - INFO - SHUTDOWN SELL: Updated portfolio allocation for SOL to $0
+2025-11-09 06:58:54,071 - INFO - SHUTDOWN SELL: Selling 10.0 SUI
+2025-11-09 06:58:54,336 - INFO - SHUTDOWN SELL: Order placed for SUI
+2025-11-09 06:58:55,338 - INFO - SHUTDOWN SELL: Selling 254.7 TON
+2025-11-09 06:58:55,571 - INFO - SHUTDOWN SELL: Order placed for TON
+2025-11-09 06:58:55,573 - INFO - SHUTDOWN SELL: Updated portfolio allocation for TON to $0
+2025-11-09 06:58:56,573 - INFO - SHUTDOWN SELL: Selling 1654.6 TRX
+2025-11-09 06:58:56,822 - INFO - SHUTDOWN SELL: Order placed for TRX
+2025-11-09 06:58:56,823 - INFO - SHUTDOWN SELL: Updated portfolio allocation for TRX to $0
+2025-11-09 06:58:57,823 - INFO - SHUTDOWN SELL: Selling 298.0 XRP
+2025-11-09 06:58:58,071 - INFO - SHUTDOWN SELL: Order placed for XRP
+2025-11-09 06:58:58,073 - INFO - SHUTDOWN SELL: Updated portfolio allocation for XRP to $0
+2025-11-09 06:58:59,074 - INFO - SHUTDOWN SELL COMPLETE: 20 currencies processed
+2025-11-09 06:58:59,074 - INFO - ============================================================
+2025-11-09 06:58:59,074 - INFO - SHUTDOWN SELL PROCESS COMPLETED
+2025-11-09 06:58:59,075 - INFO - ============================================================
+2025-11-09 06:58:59,075 - INFO - 5-minute cycle completed, starting next cycle...
+2025-11-09 06:58:59,075 - INFO - ============================================================
+2025-11-09 06:58:59,075 - INFO - Monitor Bot shutting down after 4 cycles
+2025-11-09 06:58:59,075 - INFO - ============================================================

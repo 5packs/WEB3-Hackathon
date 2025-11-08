@@ -146,7 +146,7 @@ class MultiCryptoOptimizer:
                 if crypto in self.crypto_pairs and crypto not in selected and len(selected) < count:
                     selected.append(crypto)
         
-        print(f"🎯 Selected {len(selected)} cryptocurrencies for optimization:")
+        print(f"Selected {len(selected)} cryptocurrencies for optimization:")
         for i, crypto in enumerate(selected, 1):
             tier = self.get_crypto_tier(crypto)
             print(f"   {i:2d}. {crypto:<6} ({tier})")
@@ -172,7 +172,7 @@ class MultiCryptoOptimizer:
         """
         valid_symbols = []
         
-        print(f"🔍 Checking data availability for {len(symbols)} cryptocurrencies...")
+        print(f"Checking data availability for {len(symbols)} cryptocurrencies...")
         
         for symbol in symbols:
             if symbol not in self.crypto_pairs:
@@ -185,14 +185,14 @@ class MultiCryptoOptimizer:
                 
                 if not df.empty and len(df) >= 200:  # Need sufficient data for optimization
                     valid_symbols.append(symbol)
-                    print(f"✅ {symbol}: {len(df)} data points")
+                    print(f"[OK] {symbol}: {len(df)} data points")
                 else:
-                    print(f"⚠️ {symbol}: Insufficient data ({len(df) if not df.empty else 0} points)")
+                    print(f"[WARNING] {symbol}: Insufficient data ({len(df) if not df.empty else 0} points)")
                     
             except Exception as e:
-                print(f"❌ {symbol}: Error loading data - {e}")
+                print(f"[ERROR] {symbol}: Error loading data - {e}")
         
-        print(f"\n📊 {len(valid_symbols)}/{len(symbols)} cryptocurrencies have sufficient data")
+        print(f"\n[DATA] {len(valid_symbols)}/{len(symbols)} cryptocurrencies have sufficient data")
         return valid_symbols
         
     def fetch_crypto_data(self, symbols: List[str] = None, interval: int = 5):
@@ -206,11 +206,11 @@ class MultiCryptoOptimizer:
         if symbols is None:
             symbols = list(self.crypto_pairs.keys())
             
-        print(f"📊 Fetching data for {len(symbols)} cryptocurrencies...")
+        print(f"[DATA] Fetching data for {len(symbols)} cryptocurrencies...")
         
         for symbol in symbols:
             if symbol not in self.crypto_pairs:
-                print(f"⚠️ Unknown symbol: {symbol}")
+                print(f"[WARNING] Unknown symbol: {symbol}")
                 continue
                 
             kraken_pair = self.crypto_pairs[symbol]
@@ -224,12 +224,12 @@ class MultiCryptoOptimizer:
                 
                 if ohlc_data and len(ohlc_data) > 100:  # Ensure enough data for SMA
                     save_prices_to_csv(ohlc_data, filename, append=False)
-                    print(f"✅ {symbol}: {len(ohlc_data)} records saved to {filename} (full dataset for backtesting)")
+                    print(f"[OK] {symbol}: {len(ohlc_data)} records saved to {filename} (full dataset for backtesting)")
                 else:
-                    print(f"❌ {symbol}: Insufficient data ({len(ohlc_data) if ohlc_data else 0} records)")
+                    print(f"[ERROR] {symbol}: Insufficient data ({len(ohlc_data) if ohlc_data else 0} records)")
                     
             except Exception as e:
-                print(f"❌ Error fetching {symbol}: {e}")
+                print(f"[ERROR] Error fetching {symbol}: {e}")
                 
     def optimize_single_crypto(self, symbol: str, interval: int = 5) -> CryptoResult:
         """
@@ -244,14 +244,14 @@ class MultiCryptoOptimizer:
         """
         filename = self.get_data_filename(symbol, interval)
         
-        print(f"🔍 Optimizing {symbol}...")
+        print(f"Optimizing {symbol}...")
         
         # Load data
         backtester = SMABacktester(self.initial_capital, self.commission)
         df = backtester.load_data_from_csv(filename)
         
         if df.empty:
-            print(f"❌ No data for {symbol}")
+            print(f"[ERROR] No data for {symbol}")
             return None
             
         # Parameter ranges for testing
@@ -310,10 +310,10 @@ class MultiCryptoOptimizer:
                 data_points=len(df)
             )
             
-            print(f"✅ {symbol}: SMA({best_params[0]},{best_params[1]}) = {crypto_result.return_pct:+.2f}%")
+            print(f"[OK] {symbol}: SMA({best_params[0]},{best_params[1]}) = {crypto_result.return_pct:+.2f}%")
             return crypto_result
         else:
-            print(f"❌ {symbol}: Optimization failed")
+            print(f"[ERROR] {symbol}: Optimization failed")
             return None
             
     def optimize_all_cryptos(self, symbols: List[str] = None, interval: int = 5):
@@ -327,7 +327,7 @@ class MultiCryptoOptimizer:
         if symbols is None:
             symbols = list(self.crypto_pairs.keys())
             
-        print(f"🚀 Optimizing {len(symbols)} cryptocurrencies...")
+        print(f"Optimizing {len(symbols)} cryptocurrencies...")
         
         self.results = {}
         
@@ -356,7 +356,7 @@ class MultiCryptoOptimizer:
         }
         
         if not good_performers:
-            print("⚠️ No cryptocurrencies meet minimum return threshold")
+            print("[WARNING] No cryptocurrencies meet minimum return threshold")
             return {}
             
         # Calculate weights based on performance
@@ -425,7 +425,7 @@ class MultiCryptoOptimizer:
         lines.append("=" * 80)
         
         # Individual results
-        lines.append(f"\n📊 INDIVIDUAL CRYPTOCURRENCY RESULTS:")
+        lines.append(f"\nINDIVIDUAL CRYPTOCURRENCY RESULTS:")
         lines.append("-" * 70)
         lines.append(f"{'Symbol':<6} {'Parameters':<12} {'Return':<8} {'Sharpe':<7} {'MaxDD':<7} {'Trades':<7}")
         lines.append("-" * 70)
@@ -446,14 +446,14 @@ class MultiCryptoOptimizer:
         # Portfolio allocation
         weights = self.create_portfolio_weights()
         if weights:
-            lines.append(f"\n💼 RECOMMENDED PORTFOLIO ALLOCATION:")
+            lines.append(f"\nRECOMMENDED PORTFOLIO ALLOCATION:")
             lines.append("-" * 40)
             for symbol, weight in sorted(weights.items(), key=lambda x: x[1], reverse=True):
                 lines.append(f"{symbol}: {weight:6.1%}")
             
             # Portfolio performance
             portfolio_perf = self.calculate_portfolio_performance(weights)
-            lines.append(f"\n📈 EXPECTED PORTFOLIO PERFORMANCE:")
+            lines.append(f"\nEXPECTED PORTFOLIO PERFORMANCE:")
             lines.append("-" * 40)
             lines.append(f"Expected Return:    {portfolio_perf['expected_return_pct']:+7.2f}%")
             lines.append(f"Weighted Sharpe:    {portfolio_perf['weighted_sharpe']:7.2f}")
@@ -487,7 +487,7 @@ class MultiCryptoOptimizer:
         with open(filepath, 'w') as f:
             json.dump(serializable_results, f, indent=2)
             
-        print(f"💾 Results saved to {filepath}")
+        print(f"Results saved to {filepath}")
 
     def save_optimal_parameters(self, filename: str = "optimal_sma_parameters.json"):
         """
@@ -495,7 +495,7 @@ class MultiCryptoOptimizer:
         Creates a clean file with just the short and long window values in output directory.
         """
         if not self.results:
-            print("⚠️ No optimization results available to save parameters")
+            print("[WARNING] No optimization results available to save parameters")
             return
         
         # Ensure output directory exists and save to it
@@ -535,8 +535,8 @@ class MultiCryptoOptimizer:
         with open(filepath, 'w') as f:
             json.dump(optimal_params, f, indent=2)
             
-        print(f"🎯 Optimal trading parameters saved to {filepath}")
-        print(f"   📊 {len(optimal_params['parameters'])} currencies with optimal SMA parameters")
+        print(f"Optimal trading parameters saved to {filepath}")
+        print(f"   [DATA] {len(optimal_params['parameters'])} currencies with optimal SMA parameters")
         
         # Also create a simplified version for quick bot access
         simple_params = {}
@@ -562,7 +562,7 @@ class MultiCryptoOptimizer:
             filename: Output filename for portfolio allocation
         """
         if not self.results:
-            print("⚠️ No optimization results available to generate portfolio")
+            print("[WARNING] No optimization results available to generate portfolio")
             return
             
         # Save to output directory in main project folder
@@ -578,7 +578,7 @@ class MultiCryptoOptimizer:
         }
         
         if not profitable_results:
-            print("⚠️ No profitable cryptocurrencies found for portfolio allocation")
+            print("[WARNING] No profitable cryptocurrencies found for portfolio allocation")
             return
             
         # Calculate risk-adjusted scores for each cryptocurrency
@@ -600,7 +600,7 @@ class MultiCryptoOptimizer:
             total_score += scores[symbol]
         
         if total_score == 0:
-            print("⚠️ No valid scores for portfolio allocation")
+            print("[WARNING] No valid scores for portfolio allocation")
             return
             
         # Calculate allocation percentages and amounts
@@ -755,12 +755,12 @@ class MultiCryptoOptimizer:
         with open(simple_filepath, 'w') as f:
             json.dump(simple_portfolio_data, f, indent=2)
             
-        print(f"💼 Portfolio allocation saved to {filepath}")
-        print(f"📋 Simple allocation saved to {simple_filepath}")
-        print(f"   💰 ${initial_investment:,.0f} allocated across {len(allocations)} cryptocurrencies")
-        print(f"   📈 Expected monthly return: {expected_portfolio_return:+.2f}% (${initial_investment * expected_portfolio_return / 100:+,.0f})")
-        print(f"   📊 Portfolio Sharpe ratio: {weighted_sharpe:.3f}")
-        print(f"   ⚠️ Maximum drawdown: {weighted_drawdown:.2f}%")
+        print(f"Portfolio allocation saved to {filepath}")
+        print(f"Simple allocation saved to {simple_filepath}")
+        print(f"   ${initial_investment:,.0f} allocated across {len(allocations)} cryptocurrencies")
+        print(f"   Expected monthly return: {expected_portfolio_return:+.2f}% (${initial_investment * expected_portfolio_return / 100:+,.0f})")
+        print(f"   Portfolio Sharpe ratio: {weighted_sharpe:.3f}")
+        print(f"   [WARNING] Maximum drawdown: {weighted_drawdown:.2f}%")
 
         # Also save a minimal simple allocation file (symbol -> allocation_amount) for programmatic use
         try:
@@ -768,9 +768,9 @@ class MultiCryptoOptimizer:
             minimal_path = os.path.join(main_output_dir, "simple_portfolio_allocation.json")
             with open(minimal_path, 'w') as msf:
                 json.dump(minimal_simple, msf, indent=2)
-            print(f"🔍 Minimal simple allocation saved to {minimal_path}")
+            print(f"Minimal simple allocation saved to {minimal_path}")
         except Exception as e:
-            print(f"⚠️ Failed to write minimal simple allocation: {e}")
+            print(f"[WARNING] Failed to write minimal simple allocation: {e}")
         
     def _get_portfolio_risk_level(self, weighted_drawdown: float) -> str:
         """Classify portfolio risk level based on weighted maximum drawdown."""
@@ -795,22 +795,22 @@ class MultiCryptoOptimizer:
 
 def main():
     """Main function to run comprehensive multi-crypto optimization."""
-    print("🚀 COMPREHENSIVE MULTI-CRYPTOCURRENCY OPTIMIZER")
+    print("COMPREHENSIVE MULTI-CRYPTOCURRENCY OPTIMIZER")
     print("=" * 70)
-    print("🎯 Goal: Find most profitable cryptocurrencies for next month")
+    print("Goal: Find most profitable cryptocurrencies for next month")
     print("=" * 70)
     
     optimizer = MultiCryptoOptimizer(initial_capital=10000, commission=0.001, 
                                      data_dir="crypto_data")
     
-    print(f"\n📋 Available cryptocurrencies: {len(optimizer.get_available_cryptos())}")
+    print(f"\n[DATA] Available cryptocurrencies: {len(optimizer.get_available_cryptos())}")
     print("   Tier 1 (Top): " + ", ".join(optimizer.priority_tiers['tier_1']))
     print("   Tier 2 (High): " + ", ".join(optimizer.priority_tiers['tier_2']))
     print("   Tier 3 (Mid): " + ", ".join(optimizer.priority_tiers['tier_3']))
     print("   Tier 4 (Spec): " + ", ".join(optimizer.priority_tiers['tier_4']))
     
     # Step 1: Select top cryptocurrencies for testing
-    print(f"\n🎯 Step 1: Selecting cryptocurrencies for optimization")
+    print(f"\nStep 1: Selecting cryptocurrencies for optimization")
     
     # Test different strategies
     strategies = [
@@ -824,39 +824,39 @@ def main():
         print(f"   {i}. {name} - {count} cryptos from {tiers}")
     
     # Use aggressive strategy by default (can be modified)
-    selected_strategy = 0
+    selected_strategy = 1
     strategy_name, crypto_count, include_tiers = strategies[selected_strategy]
     
-    print(f"\n🎲 Using: {strategy_name}")
+    print(f"\nUsing: {strategy_name}")
     test_cryptos = optimizer.select_top_cryptos(crypto_count, include_tiers)
     
     # Step 2: Always fetch fresh data for all selected cryptocurrencies
-    print(f"\n📊 Step 2: Fetching fresh data for selected cryptocurrencies")
-    print(f"📡 Fetching latest data for {len(test_cryptos)} cryptocurrencies...")
+    print(f"\n[DATA] Step 2: Fetching fresh data for selected cryptocurrencies")
+    print(f"Fetching latest data for {len(test_cryptos)} cryptocurrencies...")
     optimizer.fetch_crypto_data(test_cryptos, interval=5)
     
     # Check data availability after fresh fetch
     valid_cryptos = optimizer.quick_data_check(test_cryptos)
     
     if not valid_cryptos:
-        print("❌ No valid cryptocurrencies found. Fetching fresh data...")
+        print("[ERROR] No valid cryptocurrencies found. Fetching fresh data...")
         
         # Fetch data for ALL available cryptocurrencies as backup
         all_cryptos = list(optimizer.crypto_pairs.keys())
-        print(f"\n📊 Fetching fresh data for ALL {len(all_cryptos)} available cryptocurrencies...")
+        print(f"\n[DATA] Fetching fresh data for ALL {len(all_cryptos)} available cryptocurrencies...")
         optimizer.fetch_crypto_data(all_cryptos, interval=5)
         
         # Recheck with all available cryptocurrencies
         valid_cryptos = optimizer.quick_data_check(all_cryptos)
     
     if not valid_cryptos:
-        print("❌ Unable to get sufficient data. Please check your data files.")
+        print("[ERROR] Unable to get sufficient data. Please check your data files.")
         return None
     
-    print(f"\n✅ Proceeding with {len(valid_cryptos)} cryptocurrencies")
+    print(f"\n[OK] Proceeding with {len(valid_cryptos)} cryptocurrencies")
     
     # Step 3: Run optimization
-    print(f"\n🔍 Step 3: Running optimization (this may take several minutes)")
+    print(f"\nStep 3: Running optimization (this may take several minutes)")
     print(f"Expected runtime: ~{len(valid_cryptos) * 2} minutes for {len(valid_cryptos)} cryptos")
     
     start_time = time.time()
@@ -867,7 +867,7 @@ def main():
     
     # Step 4: Analyze results and find most profitable
     if not optimizer.results:
-        print("❌ No optimization results available")
+        print("[ERROR] No optimization results available")
         return None
     
     print(f"\n� Step 4: Analyzing results for most profitable cryptocurrencies")
@@ -881,7 +881,7 @@ def main():
     profitable_cryptos = [(symbol, result) for symbol, result in sorted_results 
                          if result.return_pct > 0]
     
-    print(f"\n🏆 MOST PROFITABLE CRYPTOCURRENCIES FOR NEXT MONTH:")
+    print(f"\nMOST PROFITABLE CRYPTOCURRENCIES FOR NEXT MONTH:")
     print("=" * 80)
     print(f"{'Rank':<4} {'Crypto':<6} {'Tier':<8} {'Params':<12} {'Return':<9} {'Sharpe':<7} {'MaxDD':<8} {'Risk':<6}")
     print("-" * 80)
@@ -900,14 +900,14 @@ def main():
               f"{risk_level:<6}")
     
     # Step 5: Portfolio recommendations
-    print(f"\n💼 PORTFOLIO RECOMMENDATIONS:")
+    print(f"\nPORTFOLIO RECOMMENDATIONS:")
     
     if len(profitable_cryptos) >= 3:
         # Top 3 portfolio
         top_3 = profitable_cryptos[:3]
         top_3_return = sum(result.return_pct for _, result in top_3) / 3
         
-        print(f"\n🥇 HIGH-RETURN PORTFOLIO (Top 3):")
+        print(f"\nHIGH-RETURN PORTFOLIO (Top 3):")
         for symbol, result in top_3:
             print(f"   • {symbol}: SMA({result.best_params[0]},{result.best_params[1]}) - {result.return_pct:+.2f}%")
         print(f"   Expected Portfolio Return: {top_3_return:+.2f}%")
@@ -917,7 +917,7 @@ def main():
             balanced = profitable_cryptos[:min(8, len(profitable_cryptos))]
             balanced_return = sum(result.return_pct for _, result in balanced) / len(balanced)
             
-            print(f"\n⚖️ BALANCED PORTFOLIO (Top {len(balanced)}):")
+            print(f"\nBALANCED PORTFOLIO (Top {len(balanced)}):")
             for symbol, result in balanced:
                 tier = optimizer.get_crypto_tier(symbol)
                 print(f"   • {symbol} ({tier}): {result.return_pct:+.2f}%")
@@ -930,20 +930,20 @@ def main():
     optimizer.save_optimal_parameters("optimal_sma_parameters.json")
     
     # Generate portfolio allocation for $49,000 investment
-    optimizer.save_portfolio_allocation(10000, "portfolio_allocation.json")
+    optimizer.save_portfolio_allocation(30000, "portfolio_allocation.json")
     
     # Step 7: Implementation guide
     if profitable_cryptos:
         best_crypto, best_result = profitable_cryptos[0]
         
-        print(f"\n🎯 IMPLEMENTATION GUIDE:")
-        print(f"   🥇 Best Single Crypto: {best_crypto}")
+        print(f"\nIMPLEMENTATION GUIDE:")
+        print(f"   Best Single Crypto: {best_crypto}")
         print(f"      • Parameters: SMA({best_result.best_params[0]}, {best_result.best_params[1]})")
         print(f"      • Expected Monthly Return: {best_result.return_pct:+.2f}%")
         print(f"      • Risk Level: {abs(best_result.max_drawdown):.2f}% max drawdown")
         print(f"      • Trade Frequency: {best_result.num_trades} trades expected")
         
-        print(f"\n📈 NEXT MONTH PROJECTIONS:")
+        print(f"\nNEXT MONTH PROJECTIONS:")
         capitals = [1000, 5000, 10000, 50000]
         for capital in capitals:
             profit = capital * best_result.return_pct / 100

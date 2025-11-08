@@ -156,17 +156,17 @@ def load_optimal_sma_parameters(filepath: str = "output/optimal_sma_parameters.j
             data = json.load(f)
         
         if "parameters" in data:
-            print(f"✅ Loaded optimal SMA parameters for {len(data['parameters'])} currencies")
+            print(f"[OK] Loaded optimal SMA parameters for {len(data['parameters'])} currencies")
             return data["parameters"]
         else:
-            print("⚠️ Invalid parameters file format")
+            print("[WARNING] Invalid parameters file format")
             return {}
             
     except FileNotFoundError:
-        print(f"❌ Parameters file not found: {filepath}")
+        print(f"[ERROR] Parameters file not found: {filepath}")
         return {}
     except json.JSONDecodeError:
-        print(f"❌ Invalid JSON in parameters file: {filepath}")
+        print(f"[ERROR] Invalid JSON in parameters file: {filepath}")
         return {}
 
 
@@ -184,14 +184,14 @@ def load_simple_sma_parameters(filepath: str = "output/simple_sma_parameters.jso
         with open(filepath, 'r') as f:
             data = json.load(f)
         
-        print(f"✅ Loaded simplified SMA parameters for {len(data)} currencies")
+        print(f"[OK] Loaded simplified SMA parameters for {len(data)} currencies")
         return data
             
     except FileNotFoundError:
-        print(f"❌ Simple parameters file not found: {filepath}")
+        print(f"[ERROR] Simple parameters file not found: {filepath}")
         return {}
     except json.JSONDecodeError:
-        print(f"❌ Invalid JSON in simple parameters file: {filepath}")
+        print(f"[ERROR] Invalid JSON in simple parameters file: {filepath}")
         return {}
 
 
@@ -212,7 +212,7 @@ def get_optimal_parameters_for_currency(currency: str,
     if currency in params:
         return params[currency]["short"], params[currency]["long"]
     else:
-        print(f"⚠️ No optimal parameters found for {currency}, using defaults (10, 50)")
+        print(f"[WARNING] No optimal parameters found for {currency}, using defaults (10, 50)")
         return 10, 50
 
 

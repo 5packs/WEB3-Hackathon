@@ -15,7 +15,7 @@ import os
 MONITOR_INTERVAL = 300  # 5 minutes in seconds
 PURCHASE_DELAY = 5  # 5 seconds between purchases  
 STARTUP_WAIT_TIME = 300  # Total wait time (5 minutes) including trades before starting monitoring loop
-DRY_RUN_PURCHASES = True  # Set to False for real purchases, True for testing
+DRY_RUN_PURCHASES = False  # Set to False for real purchases, True for testing
 
 # Create logs directory if it doesn't exist
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -249,7 +249,20 @@ class MonitorBot:
                             logger.info(f"SHUTDOWN SELL: Order placed for {coin}")
                             sell_count += 1
                             
-                            # Update portfolio allocation to 0 for sold currency
+                            # Extract USD value received from the sale (for logging purposes)
+                            usd_received = 0
+                            if result and isinstance(result, dict):
+                                # Parse the result to extract UnitChange (USD received)
+                                order_detail = result.get('OrderDetail', {})
+                                if order_detail:
+                                    usd_received = float(order_detail.get('UnitChange', 0))
+                                    logger.info(f"SHUTDOWN SELL: Received ${usd_received:.2f} USD from {coin} sale")
+                                else:
+                                    logger.info(f"SHUTDOWN SELL: No OrderDetail found in result: {result}")
+                            else:
+                                logger.warning(f"SHUTDOWN SELL: Unexpected result format: {result}")
+                            
+                            # Update portfolio allocation to 0 for sold currency (liquidated)
                             try:
                                 portfolio_file = os.path.join(
                                     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
@@ -257,17 +270,44 @@ class MonitorBot:
                                     "simple_portfolio_allocation.json"
                                 )
                                 
+                                logger.info(f"SHUTDOWN SELL: Attempting to update portfolio file: {portfolio_file}")
+                                
                                 if os.path.exists(portfolio_file):
+                                    # Read current portfolio data
                                     with open(portfolio_file, 'r') as f:
                                         portfolio_data = json.load(f)
                                     
+                                    logger.info(f"SHUTDOWN SELL: Current portfolio data keys: {list(portfolio_data.keys())}")
+                                    logger.info(f"SHUTDOWN SELL: Looking for key: {coin.upper()}")
+                                    logger.info(f"SHUTDOWN SELL: Current value for {coin.upper()}: {portfolio_data.get(coin.upper(), 'NOT_FOUND')}")
+                                    
                                     if coin.upper() in portfolio_data:
+                                        old_value = portfolio_data[coin.upper()]
+                                        # Set to 0 since currency was sold (liquidated)
+                                        portfolio_data[coin.upper()] = 0
+                                        
+                                        # Write updated data back to file
+                                        with open(portfolio_file, 'w') as f:
+                                            json.dump(portfolio_data, f, indent=2)
+                                        
+                                        # Verify the write was successful
+                                        with open(portfolio_file, 'r') as f:
+                                            verify_data = json.load(f)
+                                            new_value = verify_data.get(coin.upper(), 'NOT_FOUND')
+                                        
+                                        logger.info(f"SHUTDOWN SELL: Updated portfolio allocation for {coin} from ${old_value} to $0 (USD received: ${usd_received:.2f})")
+                                        logger.info(f"SHUTDOWN SELL: Verification - {coin.upper()} value after update: {new_value}")
+                                    else:
+                                        # Add the currency with 0 value (was sold)
                                         portfolio_data[coin.upper()] = 0
                                         
                                         with open(portfolio_file, 'w') as f:
                                             json.dump(portfolio_data, f, indent=2)
+                                            
+                                        logger.warning(f"SHUTDOWN SELL: {coin.upper()} was not in portfolio data, added with $0 value after sale (USD received: ${usd_received:.2f})")
                                         
-                                        logger.info(f"SHUTDOWN SELL: Updated portfolio allocation for {coin} to $0")
+                                else:
+                                    logger.error(f"SHUTDOWN SELL: Portfolio file does not exist: {portfolio_file}")
                                         
                             except Exception as portfolio_error:
                                 logger.error(f"Error updating portfolio for {coin}: {portfolio_error}")

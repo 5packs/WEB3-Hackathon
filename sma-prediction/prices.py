@@ -68,7 +68,7 @@ def fetch_kraken_ohlc_recent(pair="XBTUSD", interval=1, count: int = 100):
     recent_data = all_data[-count:] if len(all_data) > count else all_data
     
     if len(all_data) > count:
-        print(f"📊 Returning {count} most recent entries out of {len(all_data)} total for {pair}")
+        print(f"[DATA] Returning {count} most recent entries out of {len(all_data)} total for {pair}")
     
     return recent_data
 
