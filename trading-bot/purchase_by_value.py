@@ -229,7 +229,8 @@ def update_portfolio_allocation_after_purchase(coin: str, success: bool = True) 
 
 def calculate_quantity_with_step_size_reduction(total_value: float, price: float, attempt: int = 0) -> float:
     """
-    Calculate quantity with step size reduction strategy for large quantities.
+    Calculate quantity with aggressive step size reduction strategy.
+    Uses common trading quantity patterns that exchanges typically accept.
     
     Args:
         total_value (float): Total USD amount to spend
@@ -247,48 +248,77 @@ def calculate_quantity_with_step_size_reduction(total_value: float, price: float
     # Calculate base quantity
     base_quantity = total_value / price
     
-    # Define step size reduction strategies based on quantity size and attempt
-    if base_quantity > 10_000_000:  # Very large quantities (like SHIB)
-        # Round down to larger step sizes
-        step_sizes = [1000, 10000, 100000, 1000000]  
-        if attempt < len(step_sizes):
-            step_size = step_sizes[attempt]
-            reduced_quantity = int(base_quantity // step_size) * step_size
-            logger.info(f"Large quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
-            return float(reduced_quantity)
-    elif base_quantity > 100_000:  # Large quantities
-        step_sizes = [100, 1000, 10000]
-        if attempt < len(step_sizes):
-            step_size = step_sizes[attempt]
-            reduced_quantity = int(base_quantity // step_size) * step_size
-            logger.info(f"Medium quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
-            return float(reduced_quantity)
-    elif base_quantity > 1000:  # Medium quantities  
-        step_sizes = [10, 100, 1000]
-        if attempt < len(step_sizes):
-            step_size = step_sizes[attempt]
-            reduced_quantity = int(base_quantity // step_size) * step_size
-            logger.info(f"Medium quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
-            return float(reduced_quantity)
+    # Define aggressive quantity rounding strategies
+    # These are common patterns that exchanges often accept
+    rounding_strategies = [
+        # Strategy 0: Small decimal reduction
+        lambda q: round(q, 2),
+        # Strategy 1: Round to 1 decimal  
+        lambda q: round(q, 1),
+        # Strategy 2: Round down to whole numbers
+        lambda q: int(q),
+        # Strategy 3: Round to nearest 5
+        lambda q: int(q // 5) * 5,
+        # Strategy 4: Round to nearest 10
+        lambda q: int(q // 10) * 10,
+        # Strategy 5: Round to nearest 25  
+        lambda q: int(q // 25) * 25,
+        # Strategy 6: Round to nearest 50
+        lambda q: int(q // 50) * 50,
+        # Strategy 7: Round to nearest 100
+        lambda q: int(q // 100) * 100
+    ]
     
-    # For smaller quantities or when step size attempts are exhausted, use decimal precision reduction
-    # But use higher precision for very expensive coins to avoid rounding to 0
-    if price > 10000:  # Very expensive coins like BTC
-        precision = max(0, 4 - attempt)  # Start with 4 decimal places for expensive coins (max detail)
-    else:
-        precision = max(0, 3 - attempt)
+    # Handle very large quantities (like SHIB) with special large-number strategies
+    if base_quantity > 1_000_000:
+        large_strategies = [
+            lambda q: int(q // 1000) * 1000,    # Round to thousands
+            lambda q: int(q // 10000) * 10000,  # Round to ten-thousands  
+            lambda q: int(q // 100000) * 100000, # Round to hundred-thousands
+            lambda q: int(q // 1000000) * 1000000 # Round to millions
+        ]
+        rounding_strategies = large_strategies + rounding_strategies[2:]  # Skip decimal strategies for large numbers
+    
+    # Apply the appropriate rounding strategy
+    if attempt < len(rounding_strategies):
+        strategy_func = rounding_strategies[attempt]
+        reduced_quantity = strategy_func(base_quantity)
         
-    decimal_value = Decimal(str(total_value))
-    decimal_price = Decimal(str(price))
-    decimal_precision = Decimal(f"0.{'0' * (precision - 1)}1") if precision > 0 else Decimal('1')
+        # Ensure we don't round to zero
+        if reduced_quantity <= 0:
+            reduced_quantity = 1.0 if base_quantity >= 1 else round(base_quantity, 6)
+        
+        strategy_name = f"pattern {attempt + 1}"
+        if base_quantity > 1_000_000:
+            patterns = ["thousands", "ten-thousands", "hundred-thousands", "millions", "whole", "fives", "tens", "twenties-fives"]
+        else:
+            patterns = ["2-decimal", "1-decimal", "whole", "fives", "tens", "twenty-fives", "fifties", "hundreds"]
+        
+        if attempt < len(patterns):
+            strategy_name = patterns[attempt]
+            
+        logger.info(f"Aggressive quantity reduction: {base_quantity:.3f} -> {reduced_quantity} (strategy: {strategy_name})")
+        return float(reduced_quantity)
     
-    quantity = decimal_value / decimal_price
-    rounded_quantity = quantity.quantize(decimal_precision, rounding=ROUND_DOWN)
+    # If all strategies exhausted, try very small fallback quantities  
+    fallback_quantities = [1.0, 5.0, 10.0, 25.0, 50.0, 100.0]
+    fallback_index = attempt - len(rounding_strategies)
     
-    result = float(rounded_quantity)
-    logger.info(f"Calculated quantity: {result} coins for ${total_value} at ${price}/coin (precision: {precision} decimals)")
+    if fallback_index < len(fallback_quantities):
+        fallback_qty = fallback_quantities[fallback_index]
+        if fallback_qty < base_quantity:
+            logger.info(f"Fallback quantity: {base_quantity:.3f} -> {fallback_qty} (minimum viable purchase)")
+            return fallback_qty
     
-    return result
+    # Final fallback - try to buy at least 1 coin if price allows
+    if total_value >= price:
+        logger.info(f"Final fallback: {base_quantity:.3f} -> 1.0 (single coin purchase)")
+        return 1.0
+    
+    # If even 1 coin is too expensive, try tiny fraction
+    tiny_quantity = 0.1
+    logger.info(f"Tiny quantity fallback: {base_quantity:.3f} -> {tiny_quantity} (emergency minimum)")
+    return tiny_quantity
 
 
 def calculate_quantity(total_value: float, price: float, precision: int = 3) -> float:
@@ -445,7 +475,7 @@ def purchase_by_value(
         # Place the actual order with progressive precision handling
         logger.info("Placing order with progressive precision handling...")
         
-        # Use our enhanced order placement function
+        # Use our enhanced order placement function with more fallback strategies
         order_result = place_order_with_progressive_precision(
             coin=coin,
             side="BUY",
@@ -453,36 +483,48 @@ def purchase_by_value(
             calculation_price=calculation_price,
             order_type=order_type,
             price=price if order_type.upper() == "LIMIT" else None,
-            max_attempts=4
+            max_attempts=16  # Significantly increased attempts for maximum success rate
         )
         
         # Update order_info with results from progressive placement
-        if order_result.get('success'):
+        if order_result.get('success') and order_result.get('is_truly_successful', False):
             order_info['quantity'] = order_result.get('quantity_used')
-            order_info['precision_used'] = order_result.get('precision_used')
+            order_info['actual_cost'] = order_result.get('actual_cost', quantity * calculation_price)
+            order_info['amount_saved'] = order_result.get('amount_saved', 0)
+            order_info['strategy_used'] = order_result.get('strategy_used', 'standard')
             order_info['attempts_made'] = order_result.get('attempts_made')
             order_info['api_result'] = order_result.get('api_result')
+            order_info['unit_change'] = order_result.get('unit_change')
             
-            logger.info(f"SUCCESS: Order placed with {order_result.get('precision_used')} decimal precision")
+            logger.info(f"CONFIRMED SUCCESS: Purchase completed using {order_result.get('strategy_used', 'unknown strategy')}")
             logger.info(f"Final quantity: {order_result.get('quantity_used')} {coin}")
+            logger.info(f"Actual cost: ${order_result.get('actual_cost', 0):.2f}")
+            logger.info(f"UnitChange from API: ${order_result.get('unit_change', 0)}")
+            if order_result.get('amount_saved', 0) > 0:
+                logger.info(f"Amount saved: ${order_result.get('amount_saved'):.2f}")
             logger.info(f"Attempts required: {order_result.get('attempts_made')}")
             
-            # Update portfolio allocation after successful purchase (including dry runs)
+            # Update portfolio allocation ONLY after confirmed successful purchase
             portfolio_updated = update_portfolio_allocation_after_purchase(coin, success=True)
             if portfolio_updated:
                 mode_text = "DRY RUN" if dry_run else "REAL PURCHASE"
                 logger.info(f"Portfolio allocation updated ({mode_text}): {coin} value set to $0")
+                logger.info(f"Purchase confirmed with Success=true, ErrMsg='', UnitChange=${order_result.get('unit_change', 0)}")
             else:
                 logger.warning(f"Failed to update portfolio allocation for {coin}")
             
             return order_info
         else:
-            order_info['error'] = order_result.get('error', 'Unknown error in order placement')
+            order_info['error'] = order_result.get('error', 'Purchase not confirmed as successful')
             order_info['api_result'] = order_result
             
-            logger.error(f"FAILED: Order placement failed: {order_info['error']}")
+            logger.error(f"FAILED: Purchase not confirmed as successful")
+            logger.error(f"Error: {order_info['error']}")
             if order_result.get('attempts_made'):
                 logger.error(f"Failed after {order_result.get('attempts_made')} attempts")
+            
+            # Do NOT update portfolio allocation for failed/unconfirmed purchases
+            logger.info(f"Portfolio allocation unchanged for {coin} due to purchase failure/unconfirmed status")
             
             return order_info
             
@@ -539,31 +581,59 @@ def place_order_with_response_capture(pair_or_coin, side, quantity, price=None, 
                 parsed_response = json.loads(json_str)
                 response_data["parsed_json"] = parsed_response
                 
-                # Check for step size error
+                # Check for step size error and validate successful purchase
                 if isinstance(parsed_response, dict):
-                    success = parsed_response.get("Success", True)
+                    success = parsed_response.get("Success", False)
                     error_msg = parsed_response.get("ErrMsg", "")
+                    order_detail = parsed_response.get("OrderDetail", {})
+                    unit_change = order_detail.get("UnitChange") if order_detail else None
+                    
+                    # Validate successful purchase according to API response structure
+                    # Success criteria: Success=true, empty ErrMsg, OrderDetail with UnitChange
+                    is_truly_successful = (
+                        success is True and 
+                        error_msg == "" and 
+                        isinstance(order_detail, dict) and 
+                        unit_change is not None and 
+                        float(unit_change) > 0
+                    )
                     
                     if not success and "quantity step size error" in error_msg.lower():
                         response_data["is_step_size_error"] = True
+                        response_data["is_truly_successful"] = False
                     else:
                         response_data["is_step_size_error"] = False
-                        
-                    response_data["success"] = success
+                        response_data["is_truly_successful"] = is_truly_successful
+                    
+                    response_data["success"] = success  # Raw API success flag
                     response_data["error_message"] = error_msg
+                    response_data["unit_change"] = unit_change
+                    response_data["order_detail"] = order_detail
+                    
+                    if is_truly_successful:
+                        logger.info(f"CONFIRMED SUCCESS: Order completed with UnitChange=${unit_change}")
+                    elif success:
+                        logger.warning(f"API reports Success=true but validation failed - ErrMsg='{error_msg}', OrderDetail={bool(order_detail)}, UnitChange={unit_change}")
+                    else:
+                        logger.warning(f"API reports Success=false - ErrMsg='{error_msg}'")
                     
             except json.JSONDecodeError:
                 response_data["json_parse_error"] = "Could not parse JSON response"
                 response_data["is_step_size_error"] = False
-                response_data["success"] = True  # Assume success if we can't parse
+                response_data["success"] = False  # Cannot assume success if we can't parse
+                response_data["is_truly_successful"] = False  # Cannot confirm success without parsing
+                response_data["error_message"] = "Could not parse API response JSON"
         else:
             # No JSON found, check for error patterns in text
             if "quantity step size error" in captured_output.lower():
                 response_data["is_step_size_error"] = True
                 response_data["success"] = False
+                response_data["is_truly_successful"] = False
             else:
                 response_data["is_step_size_error"] = False
-                response_data["success"] = True  # Assume success if no obvious errors
+                response_data["success"] = False  # Cannot assume success without proper JSON response
+                response_data["is_truly_successful"] = False  # Cannot confirm success without OrderDetail
+                response_data["error_message"] = "No JSON response found in API output"
                 
         return response_data
         
@@ -584,10 +654,10 @@ def place_order_with_progressive_precision(
     calculation_price: float,
     order_type: str = "MARKET",
     price: Optional[float] = None,
-    max_attempts: int = 4
+    max_attempts: int = 16  # Significantly increased for more fallback strategies
 ) -> Dict[str, Any]:
     """
-    Place order with progressive precision reduction on quantity step size errors.
+    Place order with aggressive progressive precision reduction and multiple fallback strategies.
     
     Args:
         coin: Cryptocurrency symbol
@@ -596,18 +666,15 @@ def place_order_with_progressive_precision(
         calculation_price: Price to use for quantity calculation
         order_type: "MARKET" or "LIMIT"
         price: Price for LIMIT orders
-        max_attempts: Maximum precision reduction attempts
+        max_attempts: Maximum attempts with different strategies
         
     Returns:
         Dict with order result and metadata
     """
     original_cwd = os.getcwd()
     
-    # Log the starting strategy based on coin value
-    if calculation_price < 10.0:
-        logger.info(f"Coin price ${calculation_price:.4f} < $10, using step size reduction strategy for large quantities")
-    else:
-        logger.info(f"Coin price ${calculation_price:.4f} >= $10, using standard step size reduction")
+    logger.info(f"Starting aggressive purchase strategy for {coin} with {max_attempts} possible attempts")
+    logger.info(f"Target value: ${total_value:.2f} at ${calculation_price:.4f}/coin")
     
     try:
         # Change to the API directory
@@ -618,11 +685,46 @@ def place_order_with_progressive_precision(
         else:
             logger.warning(f"API directory not found: {api_dir}")
     
+        # Comprehensive multi-strategy approach with aggressive fallbacks:
+        # Attempts 1-8: Aggressive step size reduction with full amount 
+        # Attempts 9-12: Reduced total value (95%, 90%, 85%, 80%)
+        # Attempts 13-16: Emergency small quantity purchases (75%, 50%, 25%, 10%)
+        
         for attempt in range(max_attempts):
-            # Calculate quantity with step size reduction strategy
-            current_quantity = calculate_quantity_with_step_size_reduction(total_value, calculation_price, attempt)
+            # Determine strategy based on attempt number
+            if attempt < 8:
+                # Strategy 1: Aggressive step size patterns with full amount (attempts 1-8)
+                current_value = total_value
+                current_quantity = calculate_quantity_with_step_size_reduction(current_value, calculation_price, attempt)
+                strategy = f"aggressive quantity pattern {attempt + 1}"
+                
+            elif attempt < 12:
+                # Strategy 2: Reduced total value with simple quantity patterns (attempts 9-12)
+                reduction_factors = [0.95, 0.90, 0.85, 0.80]
+                reduction_factor = reduction_factors[attempt - 8]
+                current_value = total_value * reduction_factor
+                current_quantity = calculate_quantity_with_step_size_reduction(current_value, calculation_price, 2)  # Use whole number strategy
+                strategy = f"reduced value ({reduction_factor*100:.0f}%)"
+                
+            else:
+                # Strategy 3: Emergency small purchases with conservative quantities (attempts 13-16)
+                reduction_factors = [0.75, 0.50, 0.25, 0.10]
+                reduction_factor = reduction_factors[attempt - 12]
+                current_value = total_value * reduction_factor
+                
+                # For emergency purchases, try very conservative quantity patterns
+                emergency_patterns = [2, 3, 4, 5]  # whole numbers, fives, tens, etc
+                pattern_index = emergency_patterns[attempt - 12] if attempt - 12 < len(emergency_patterns) else 2
+                current_quantity = calculate_quantity_with_step_size_reduction(current_value, calculation_price, pattern_index)
+                strategy = f"emergency purchase ({reduction_factor*100:.0f}% value)"
             
-            logger.info(f"Attempt {attempt + 1}/{max_attempts}: Step size attempt {attempt}, quantity {current_quantity}")
+            logger.info(f"Attempt {attempt + 1}/{max_attempts}: {strategy}")
+            logger.info(f"  Target value: ${current_value:.2f} (quantity: {current_quantity})")
+            
+            # Skip if quantity becomes too small (but allow tiny quantities in emergency attempts)
+            if current_quantity <= 0 or (current_quantity < 0.001 and attempt < 12):
+                logger.warning(f"Calculated quantity too small ({current_quantity}), skipping attempt {attempt + 1}")
+                continue
             
             try:
                 # Place order using our response-capturing wrapper
@@ -648,45 +750,81 @@ def place_order_with_progressive_precision(
                     logger.warning(f"API Error: {response_data.get('error_message', 'Unknown error')}")
                     
                     if attempt < max_attempts - 1:
+                        logger.info(f"Sleeping 2 seconds to avoid API overload before next attempt...")
+                        time.sleep(2)
                         logger.info(f"Trying next step size reduction strategy (attempt {attempt + 2})...")
                         continue
                     else:
-                        logger.error("All step size reduction attempts failed")
+                        logger.error("All purchase strategies failed")
                         return {
                             "success": False,
-                            "error": f"Quantity step size error - all step size attempts failed. Last API error: {response_data.get('error_message')}",
+                            "error": f"Quantity step size error - all purchase strategies failed. Last API error: {response_data.get('error_message')}",
                             "last_quantity": current_quantity,
+                            "last_strategy": strategy,
                             "attempts_made": attempt + 1,
                             "coin": coin,
                             "side": side,
                             "total_value": total_value,
                             "api_response": response_data
                         }
-                elif not response_data.get("success", True):
-                    # Other API error that's not step size related
-                    error_msg = response_data.get("error_message") or response_data.get("error") or "Unknown API error"
-                    logger.error(f"API error (non-step-size): {error_msg}")
-                    return {
-                        "success": False,
-                        "error": f"API error: {error_msg}",
-                        "quantity_used": current_quantity,
-                        "attempts_made": attempt + 1,
-                        "coin": coin,
-                        "side": side,
-                        "total_value": total_value,
-                        "api_response": response_data
-                    }
+                elif not response_data.get("is_truly_successful", False):
+                    # API error or unsuccessful purchase (not meeting all success criteria)
+                    error_msg = response_data.get("error_message") or response_data.get("error") or "Purchase not confirmed as successful"
+                    
+                    # Check if it's a raw API success but failed validation
+                    if response_data.get("success", False):
+                        error_msg = f"API reports success but validation failed: {error_msg}"
+                    
+                    # Check if this is a potentially recoverable API response parsing error
+                    is_parsing_error = (
+                        "No JSON response found" in error_msg or 
+                        "Could not parse" in error_msg or
+                        response_data.get("json_parse_error")
+                    )
+                    
+                    if is_parsing_error and attempt < max_attempts - 1:
+                        # Treat API response parsing errors as recoverable - try next strategy
+                        logger.warning(f"API response parsing issue: {error_msg}")
+                        logger.info(f"Sleeping 2 seconds to avoid API overload before next attempt...")
+                        time.sleep(2)
+                        logger.info(f"Trying next purchase strategy (attempt {attempt + 2})...")
+                        continue
+                    else:
+                        # Final attempt or non-recoverable error
+                        logger.error(f"Purchase not confirmed as successful: {error_msg}")
+                        return {
+                            "success": False,
+                            "error": error_msg,
+                            "quantity_used": current_quantity,
+                            "attempts_made": attempt + 1,
+                            "coin": coin,
+                            "side": side,
+                            "total_value": total_value,
+                            "api_response": response_data
+                        }
                 else:
-                    # Success!
-                    logger.info(f"Order placed successfully with step size attempt {attempt + 1}")
-                    logger.info(f"API Response indicates success")
+                    # Confirmed success with all validation criteria met!
+                    actual_cost = current_quantity * calculation_price
+                    savings = total_value - actual_cost
+                    unit_change = response_data.get("unit_change", 0)
+                    
+                    logger.info(f"CONFIRMED PURCHASE SUCCESS with {strategy}")
+                    logger.info(f"Final purchase: {current_quantity} {coin} for ${actual_cost:.2f}")
+                    logger.info(f"API confirmed UnitChange: ${unit_change}")
+                    if savings > 0:
+                        logger.info(f"Amount saved due to strategy: ${savings:.2f} ({savings/total_value*100:.1f}%)")
+                    logger.info(f"All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=${unit_change}")
                     
                     return {
                         "success": True,
+                        "is_truly_successful": True,
                         "quantity_used": current_quantity,
-                        "step_size_attempt": attempt + 1,
+                        "actual_cost": actual_cost,
+                        "amount_saved": savings,
+                        "strategy_used": strategy,
                         "attempts_made": attempt + 1,
-                        "api_result": "Order placed successfully",
+                        "api_result": f"Purchase confirmed successful using {strategy}",
+                        "unit_change": unit_change,
                         "coin": coin,
                         "side": side,
                         "total_value": total_value,
@@ -698,38 +836,54 @@ def place_order_with_progressive_precision(
                 error_msg = str(e).lower()
                 logger.error(f"Unexpected exception during order placement: {e}")
                 
-                # Check if it might be a step size error mentioned in the exception
-                if "step size" in error_msg or ("quantity" in error_msg and "error" in error_msg):
-                    logger.warning(f"Step size error detected in exception message")
-                    
-                    if attempt < max_attempts - 1:
-                        logger.info(f"Trying next step size reduction strategy (attempt {attempt + 2})...")
-                        continue
-                    else:
-                        logger.error("All step size reduction attempts failed")
+                # Check for recoverable errors that should allow retrying with different strategies
+                recoverable_errors = [
+                    "step size",
+                    "quantity",
+                    "timeout",
+                    "connection",
+                    "network",
+                    "temporary",
+                    "api",
+                    "response"
+                ]
+                
+                is_recoverable = any(error_term in error_msg for error_term in recoverable_errors)
+                
+                if is_recoverable and attempt < max_attempts - 1:
+                    logger.warning(f"Recoverable error detected in exception: {e}")
+                    logger.info(f"Sleeping 2 seconds to avoid API overload before next attempt...")
+                    time.sleep(2)
+                    logger.info(f"Trying next purchase strategy (attempt {attempt + 2})...")
+                    continue
+                else:
+                    # Final attempt or non-recoverable error
+                    if "step size" in error_msg or ("quantity" in error_msg and "error" in error_msg):
+                        logger.error("All purchase strategies failed due to step size errors")
                         return {
                             "success": False,
-                            "error": "Quantity step size error - all step size attempts failed (exception-based)",
+                            "error": "Quantity step size error - all purchase strategies failed (exception-based)",
                             "last_quantity": current_quantity,
+                            "last_strategy": strategy,
                             "attempts_made": attempt + 1,
                             "coin": coin,
                             "side": side,
                             "total_value": total_value,
                             "exception": str(e)
                         }
-                else:
-                    # Different error, don't retry with different step size
-                    logger.error(f"Non-step-size exception occurred: {e}")
-                    return {
-                        "success": False,
-                        "error": f"Exception during order placement: {str(e)}",
-                        "quantity_used": current_quantity,
-                        "attempts_made": attempt + 1,
-                        "coin": coin,
-                        "side": side,
-                        "total_value": total_value,
-                        "exception": str(e)
-                    }
+                    else:
+                        # Non-step-size error on final attempt
+                        logger.error(f"Final attempt failed with non-recoverable exception: {e}")
+                        return {
+                            "success": False,
+                            "error": f"Exception during order placement: {str(e)}",
+                            "quantity_used": current_quantity,
+                            "attempts_made": attempt + 1,
+                            "coin": coin,
+                            "side": side,
+                            "total_value": total_value,
+                            "exception": str(e)
+                        }
         
         # Should not reach here, but just in case
         return {

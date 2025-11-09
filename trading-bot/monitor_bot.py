@@ -87,6 +87,41 @@ class MonitorBot:
         self.cycle_count = 0
         self.purchases_executed = False  # Track if automated purchases have been done
         
+    def recover_missing_currency_allocation(self, coin, portfolio_file, portfolio_data):
+        """
+        Recovery function for currencies that were marked as purchased but are missing from wallet
+        """
+        try:
+            # Load original allocation file to get the intended allocation
+            original_allocation_file = os.path.join(parent_dir, "output", "portfolio_allocation.json")
+            
+            if os.path.exists(original_allocation_file):
+                with open(original_allocation_file, 'r') as f:
+                    original_allocation = json.load(f)
+                
+                if coin in original_allocation:
+                    restore_amount = original_allocation[coin]
+                    logger.warning(f"RECOVERY: Restoring {coin} allocation from ${portfolio_data[coin]} to ${restore_amount}")
+                    
+                    # Update the portfolio allocation
+                    portfolio_data[coin] = restore_amount
+                    
+                    # Save the updated portfolio
+                    with open(portfolio_file, 'w') as f:
+                        json.dump(portfolio_data, f, indent=2)
+                    
+                    logger.info(f"RECOVERY: {coin} allocation restored to ${restore_amount} for re-purchase attempt")
+                    return True
+                else:
+                    logger.warning(f"RECOVERY: {coin} not found in original allocation file")
+            else:
+                logger.warning(f"RECOVERY: Original allocation file not found: {original_allocation_file}")
+                
+        except Exception as e:
+            logger.error(f"RECOVERY: Error restoring {coin} allocation: {e}")
+            
+        return False
+        
     def execute_portfolio_purchases(self):
         """Execute automated cryptocurrency purchases based on portfolio allocation"""
         if not purchase_function_available:
@@ -604,12 +639,50 @@ class MonitorBot:
                 
                 # Step 4: Check unowned currencies from portfolio for BUY decisions
                 logger.info("Checking unowned currencies for buy decisions...")
-                unowned_currencies = []
-                for coin in portfolio_allocation.keys():
-                    if coin not in owned_currencies and portfolio_allocation[coin] > 0:
-                        unowned_currencies.append(coin)
                 
-                logger.info(f"Found {len(unowned_currencies)} unowned currencies with allocation")
+                # Categorize currencies for better debugging
+                owned_currency_names = set(owned_currencies.keys())
+                portfolio_currency_names = set(portfolio_allocation.keys())
+                
+                # Find currencies in portfolio but not in wallet (missing from balance)
+                potentially_failed_purchases = []
+                unowned_with_allocation = []
+                
+                for coin in portfolio_currency_names:
+                    if coin not in owned_currency_names:
+                        if portfolio_allocation[coin] > 0:
+                            # Has available cash for purchase
+                            unowned_with_allocation.append(coin)
+                        else:
+                            # Allocation = 0 means money was "spent" but currency missing from wallet
+                            # This indicates a failed purchase that was incorrectly marked as successful
+                            potentially_failed_purchases.append(coin)
+                
+                # Log detailed currency categorization
+                logger.info(f"Currency Analysis:")
+                logger.info(f"  • Owned currencies in wallet: {len(owned_currency_names)} - {sorted(owned_currency_names)}")
+                logger.info(f"  • Unowned currencies with allocation > 0: {len(unowned_with_allocation)} - {sorted(unowned_with_allocation)}")
+                logger.info(f"  • Potentially failed purchases (allocation = 0): {len(potentially_failed_purchases)} - {sorted(potentially_failed_purchases)}")
+                
+                if potentially_failed_purchases:
+                    logger.error(f"ERROR: {len(potentially_failed_purchases)} currencies show as 'spent' (allocation = 0) but are missing from wallet:")
+                    for coin in potentially_failed_purchases:
+                        logger.error(f"  • {coin}: Money was marked as spent (${portfolio_allocation[coin]}) but currency not in wallet")
+                        logger.error(f"    This indicates the purchase failed silently but was marked as successful")
+                        logger.error(f"    RECOMMENDED: Restore allocation to allow re-purchase attempt")
+                        
+                        # Auto-recovery: Restore allocation for failed purchases
+                        logger.warning(f"AUTO-RECOVERY: Attempting to restore allocation for {coin}")
+                        if self.recover_missing_currency_allocation(coin, portfolio_file, portfolio_allocation):
+                            logger.info(f"AUTO-RECOVERY: Successfully restored allocation for {coin}")
+                            # Move from failed purchases to unowned with allocation for this cycle
+                            unowned_with_allocation.append(coin)
+                        else:
+                            logger.error(f"AUTO-RECOVERY: Failed to restore allocation for {coin}")
+                
+                # Process unowned currencies with positive allocation
+                unowned_currencies = unowned_with_allocation
+                logger.info(f"Found {len(unowned_currencies)} unowned currencies with allocation for buy decisions")
                 
                 for coin in unowned_currencies:
                     if not self.running:  # Check if bot should stop
