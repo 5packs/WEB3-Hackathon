@@ -227,6 +227,70 @@ def update_portfolio_allocation_after_purchase(coin: str, success: bool = True) 
         return False
 
 
+def calculate_quantity_with_step_size_reduction(total_value: float, price: float, attempt: int = 0) -> float:
+    """
+    Calculate quantity with step size reduction strategy for large quantities.
+    
+    Args:
+        total_value (float): Total USD amount to spend
+        price (float): Current price per coin in USD
+        attempt (int): Attempt number (0-based) for step size reduction
+        
+    Returns:
+        float: Quantity of coins to purchase
+    """
+    if price <= 0:
+        raise ValueError("Price must be greater than 0")
+    if total_value <= 0:
+        raise ValueError("Total value must be greater than 0")
+    
+    # Calculate base quantity
+    base_quantity = total_value / price
+    
+    # Define step size reduction strategies based on quantity size and attempt
+    if base_quantity > 10_000_000:  # Very large quantities (like SHIB)
+        # Round down to larger step sizes
+        step_sizes = [1000, 10000, 100000, 1000000]  
+        if attempt < len(step_sizes):
+            step_size = step_sizes[attempt]
+            reduced_quantity = int(base_quantity // step_size) * step_size
+            logger.info(f"Large quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
+            return float(reduced_quantity)
+    elif base_quantity > 100_000:  # Large quantities
+        step_sizes = [100, 1000, 10000]
+        if attempt < len(step_sizes):
+            step_size = step_sizes[attempt]
+            reduced_quantity = int(base_quantity // step_size) * step_size
+            logger.info(f"Medium quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
+            return float(reduced_quantity)
+    elif base_quantity > 1000:  # Medium quantities  
+        step_sizes = [10, 100, 1000]
+        if attempt < len(step_sizes):
+            step_size = step_sizes[attempt]
+            reduced_quantity = int(base_quantity // step_size) * step_size
+            logger.info(f"Medium quantity step size reduction: {base_quantity:.1f} -> {reduced_quantity} (step: {step_size})")
+            return float(reduced_quantity)
+    
+    # For smaller quantities or when step size attempts are exhausted, use decimal precision reduction
+    # But use higher precision for very expensive coins to avoid rounding to 0
+    if price > 10000:  # Very expensive coins like BTC
+        precision = max(0, 4 - attempt)  # Start with 4 decimal places for expensive coins (max detail)
+    else:
+        precision = max(0, 3 - attempt)
+        
+    decimal_value = Decimal(str(total_value))
+    decimal_price = Decimal(str(price))
+    decimal_precision = Decimal(f"0.{'0' * (precision - 1)}1") if precision > 0 else Decimal('1')
+    
+    quantity = decimal_value / decimal_price
+    rounded_quantity = quantity.quantize(decimal_precision, rounding=ROUND_DOWN)
+    
+    result = float(rounded_quantity)
+    logger.info(f"Calculated quantity: {result} coins for ${total_value} at ${price}/coin (precision: {precision} decimals)")
+    
+    return result
+
+
 def calculate_quantity(total_value: float, price: float, precision: int = 3) -> float:
     """
     Calculate the quantity of cryptocurrency to purchase based on total value and current price.
@@ -539,14 +603,11 @@ def place_order_with_progressive_precision(
     """
     original_cwd = os.getcwd()
     
-    # Adjust starting precision based on coin value
-    # If coin is worth less than $10, start with 1 decimal place
+    # Log the starting strategy based on coin value
     if calculation_price < 10.0:
-        current_precision = 1
-        logger.info(f"Coin price ${calculation_price:.4f} < $10, starting with 1 decimal precision")
+        logger.info(f"Coin price ${calculation_price:.4f} < $10, using step size reduction strategy for large quantities")
     else:
-        current_precision = 3
-        logger.info(f"Coin price ${calculation_price:.4f} >= $10, starting with 3 decimal precision")
+        logger.info(f"Coin price ${calculation_price:.4f} >= $10, using standard step size reduction")
     
     try:
         # Change to the API directory
@@ -558,10 +619,10 @@ def place_order_with_progressive_precision(
             logger.warning(f"API directory not found: {api_dir}")
     
         for attempt in range(max_attempts):
-            # Calculate quantity with current precision
-            current_quantity = calculate_quantity(total_value, calculation_price, current_precision)
+            # Calculate quantity with step size reduction strategy
+            current_quantity = calculate_quantity_with_step_size_reduction(total_value, calculation_price, attempt)
             
-            logger.info(f"Attempt {attempt + 1}/{max_attempts}: Precision {current_precision} decimals, quantity {current_quantity}")
+            logger.info(f"Attempt {attempt + 1}/{max_attempts}: Step size attempt {attempt}, quantity {current_quantity}")
             
             try:
                 # Place order using our response-capturing wrapper
@@ -587,14 +648,13 @@ def place_order_with_progressive_precision(
                     logger.warning(f"API Error: {response_data.get('error_message', 'Unknown error')}")
                     
                     if attempt < max_attempts - 1:
-                        current_precision = max(0, current_precision - 1)
-                        logger.info(f"Reducing precision to {current_precision} decimals and retrying...")
+                        logger.info(f"Trying next step size reduction strategy (attempt {attempt + 2})...")
                         continue
                     else:
-                        logger.error("All precision attempts failed due to step size errors")
+                        logger.error("All step size reduction attempts failed")
                         return {
                             "success": False,
-                            "error": f"Quantity step size error - all precision attempts failed. Last API error: {response_data.get('error_message')}",
+                            "error": f"Quantity step size error - all step size attempts failed. Last API error: {response_data.get('error_message')}",
                             "last_quantity": current_quantity,
                             "attempts_made": attempt + 1,
                             "coin": coin,
@@ -618,13 +678,13 @@ def place_order_with_progressive_precision(
                     }
                 else:
                     # Success!
-                    logger.info(f"Order placed successfully with {current_precision} decimal precision")
+                    logger.info(f"Order placed successfully with step size attempt {attempt + 1}")
                     logger.info(f"API Response indicates success")
                     
                     return {
                         "success": True,
                         "quantity_used": current_quantity,
-                        "precision_used": current_precision,
+                        "step_size_attempt": attempt + 1,
                         "attempts_made": attempt + 1,
                         "api_result": "Order placed successfully",
                         "coin": coin,
@@ -643,14 +703,13 @@ def place_order_with_progressive_precision(
                     logger.warning(f"Step size error detected in exception message")
                     
                     if attempt < max_attempts - 1:
-                        current_precision = max(0, current_precision - 1)
-                        logger.info(f"Reducing precision to {current_precision} decimals and retrying...")
+                        logger.info(f"Trying next step size reduction strategy (attempt {attempt + 2})...")
                         continue
                     else:
-                        logger.error("All precision attempts failed due to step size errors")
+                        logger.error("All step size reduction attempts failed")
                         return {
                             "success": False,
-                            "error": "Quantity step size error - all precision attempts failed (exception-based)",
+                            "error": "Quantity step size error - all step size attempts failed (exception-based)",
                             "last_quantity": current_quantity,
                             "attempts_made": attempt + 1,
                             "coin": coin,
@@ -659,7 +718,7 @@ def place_order_with_progressive_precision(
                             "exception": str(e)
                         }
                 else:
-                    # Different error, don't retry with different precision
+                    # Different error, don't retry with different step size
                     logger.error(f"Non-step-size exception occurred: {e}")
                     return {
                         "success": False,

@@ -184,14 +184,20 @@ def load_simple_sma_parameters(filepath: str = "output/simple_sma_parameters.jso
         with open(filepath, 'r') as f:
             data = json.load(f)
         
-        print(f"[OK] Loaded simplified SMA parameters for {len(data)} currencies")
+        print(f"[OK] Loaded simplified SMA parameters for {len(data)} currencies from {filepath}")
         return data
             
     except FileNotFoundError:
         print(f"[ERROR] Simple parameters file not found: {filepath}")
+        print(f"[INFO] Using default parameters (25 short, 45 long) for all currencies")
         return {}
     except json.JSONDecodeError:
         print(f"[ERROR] Invalid JSON in simple parameters file: {filepath}")
+        print(f"[INFO] Using default parameters (25 short, 45 long) for all currencies")
+        return {}
+    except Exception as e:
+        print(f"[ERROR] Unexpected error loading parameters file {filepath}: {e}")
+        print(f"[INFO] Using default parameters (25 short, 45 long) for all currencies")
         return {}
 
 
@@ -205,15 +211,15 @@ def get_optimal_parameters_for_currency(currency: str,
         parameters_file: Path to parameters file
         
     Returns:
-        Tuple of (short_window, long_window). Returns (10, 50) as default if not found.
+        Tuple of (short_window, long_window). Returns (25, 45) as default if not found.
     """
     params = load_simple_sma_parameters(parameters_file)
     
     if currency in params:
         return params[currency]["short"], params[currency]["long"]
     else:
-        print(f"[WARNING] No optimal parameters found for {currency}, using defaults (10, 50)")
-        return 10, 50
+        print(f"[WARNING] No optimal parameters found for {currency}, using defaults (25, 45)")
+        return 25, 45
 
 
 def make_optimized_trading_decision(currency: str, past_prices: List[float], 

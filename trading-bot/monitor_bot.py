@@ -258,11 +258,30 @@ class MonitorBot:
                                     usd_received = float(order_detail.get('UnitChange', 0))
                                     logger.info(f"SHUTDOWN SELL: Received ${usd_received:.2f} USD from {coin} sale")
                                 else:
-                                    logger.info(f"SHUTDOWN SELL: No OrderDetail found in result: {result}")
+                                    logger.warning(f"SHUTDOWN SELL: No OrderDetail found in result: {result}")
                             else:
                                 logger.warning(f"SHUTDOWN SELL: Unexpected result format: {result}")
                             
-                            # Update portfolio allocation to 0 for sold currency (liquidated)
+                            # Defensive check: if USD extraction failed, estimate using available price
+                            if usd_received <= 0:
+                                logger.warning(f"SHUTDOWN SELL: USD received extraction failed for {coin}, attempting to estimate")
+                                try:
+                                    # Try to get current price and estimate USD value
+                                    estimated_price = get_current_price(coin)
+                                    if estimated_price and estimated_price > 0:
+                                        estimated_usd = estimated_price * quantity
+                                        logger.info(f"SHUTDOWN SELL: Estimated USD value for {coin} sale: ${estimated_usd:.2f} ({quantity} * ${estimated_price:.4f})")
+                                        usd_received = estimated_usd
+                                    else:
+                                        logger.error(f"SHUTDOWN SELL: Could not get price for {coin}, preserving original portfolio value")
+                                        # Skip updating this coin's portfolio if we can't determine value
+                                        continue
+                                except Exception as estimate_error:
+                                    logger.error(f"SHUTDOWN SELL: Failed to estimate USD value for {coin}: {estimate_error}")
+                                    logger.error(f"SHUTDOWN SELL: Will preserve original portfolio value for {coin} instead of setting to 0")
+                                    continue
+                            
+                            # Update portfolio allocation with USD received from sale
                             try:
                                 portfolio_file = os.path.join(
                                     os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
@@ -283,8 +302,8 @@ class MonitorBot:
                                     
                                     if coin.upper() in portfolio_data:
                                         old_value = portfolio_data[coin.upper()]
-                                        # Set to 0 since currency was sold (liquidated)
-                                        portfolio_data[coin.upper()] = 0
+                                        # Set to USD received from sale (track current position value)
+                                        portfolio_data[coin.upper()] = round(usd_received, 2)
                                         
                                         # Write updated data back to file
                                         with open(portfolio_file, 'w') as f:
@@ -295,16 +314,16 @@ class MonitorBot:
                                             verify_data = json.load(f)
                                             new_value = verify_data.get(coin.upper(), 'NOT_FOUND')
                                         
-                                        logger.info(f"SHUTDOWN SELL: Updated portfolio allocation for {coin} from ${old_value} to $0 (USD received: ${usd_received:.2f})")
+                                        logger.info(f"SHUTDOWN SELL: Updated portfolio allocation for {coin} from ${old_value} to ${usd_received:.2f} (USD received from sale)")
                                         logger.info(f"SHUTDOWN SELL: Verification - {coin.upper()} value after update: {new_value}")
                                     else:
-                                        # Add the currency with 0 value (was sold)
-                                        portfolio_data[coin.upper()] = 0
+                                        # Add the currency with USD received value (was sold)
+                                        portfolio_data[coin.upper()] = round(usd_received, 2)
                                         
                                         with open(portfolio_file, 'w') as f:
                                             json.dump(portfolio_data, f, indent=2)
                                             
-                                        logger.warning(f"SHUTDOWN SELL: {coin.upper()} was not in portfolio data, added with $0 value after sale (USD received: ${usd_received:.2f})")
+                                        logger.warning(f"SHUTDOWN SELL: {coin.upper()} was not in portfolio data, added with ${usd_received:.2f} USD received from sale")
                                         
                                 else:
                                     logger.error(f"SHUTDOWN SELL: Portfolio file does not exist: {portfolio_file}")
@@ -450,10 +469,13 @@ class MonitorBot:
                             continue
                         
                         # Make optimized trading decision with current and historical prices
+                        # Use absolute path to ensure parameters file is found regardless of working directory
+                        parameters_file = os.path.join(parent_dir, "output", "simple_sma_parameters.json")
                         decision = make_optimized_trading_decision(
                             currency=coin,
                             past_prices=past_prices,
-                            current_price=current_price
+                            current_price=current_price,
+                            parameters_file=parameters_file
                         )
                         logger.info(f"Trading decision for {coin} at ${current_price:.4f}: {decision}")
                         
@@ -471,12 +493,100 @@ class MonitorBot:
                                 )
                                 logger.info(f"SELL order result for {coin}: {result}")
                                 
-                                # Update portfolio allocation based on API response
-                                # For now, we'll set it to 0 on successful sell
-                                update_portfolio_allocation_after_purchase(coin, success=True)
+                                # Extract USD value received from the sale and update portfolio
+                                usd_received = 0
+                                if result and isinstance(result, dict):
+                                    # Parse the result to extract UnitChange (USD received)
+                                    order_detail = result.get('OrderDetail', {})
+                                    if order_detail:
+                                        usd_received = float(order_detail.get('UnitChange', 0))
+                                        logger.info(f"MAIN LOOP SELL: Received ${usd_received:.2f} USD from {coin} sale")
+                                    else:
+                                        logger.warning(f"MAIN LOOP SELL: No OrderDetail found in result: {result}")
+                                else:
+                                    logger.warning(f"MAIN LOOP SELL: Unexpected result format: {result}")
+                                
+                                # Defensive check: if USD extraction failed, estimate using current price
+                                if usd_received <= 0:
+                                    logger.warning(f"MAIN LOOP SELL: USD received extraction failed for {coin}, attempting to estimate using current price")
+                                    try:
+                                        # Estimate USD value using current price and quantity sold
+                                        estimated_usd = current_price * quantity
+                                        logger.info(f"MAIN LOOP SELL: Estimated USD value for {coin} sale: ${estimated_usd:.2f} ({quantity} * ${current_price:.4f})")
+                                        usd_received = estimated_usd
+                                    except Exception as estimate_error:
+                                        logger.error(f"MAIN LOOP SELL: Failed to estimate USD value for {coin}: {estimate_error}")
+                                        logger.error(f"MAIN LOOP SELL: Will preserve original portfolio value for {coin} instead of setting to 0")
+                                        # Don't update portfolio if we can't determine the value
+                                        continue
+                                
+                                # Update portfolio allocation with USD received from sale
+                                try:
+                                    portfolio_file = os.path.join(
+                                        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                        "output", 
+                                        "simple_portfolio_allocation.json"
+                                    )
+                                    
+                                    if os.path.exists(portfolio_file):
+                                        # Read current portfolio data
+                                        with open(portfolio_file, 'r') as f:
+                                            portfolio_data = json.load(f)
+                                        
+                                        if coin.upper() in portfolio_data:
+                                            old_value = portfolio_data[coin.upper()]
+                                            # Set to USD received from sale (track current position value)
+                                            portfolio_data[coin.upper()] = round(usd_received, 2)
+                                            
+                                            # Write updated data back to file
+                                            with open(portfolio_file, 'w') as f:
+                                                json.dump(portfolio_data, f, indent=2)
+                                            
+                                            logger.info(f"MAIN LOOP SELL: Updated portfolio allocation for {coin} from ${old_value} to ${usd_received:.2f} (USD received from sale)")
+                                        else:
+                                            # Add the currency with USD received value
+                                            portfolio_data[coin.upper()] = round(usd_received, 2)
+                                            
+                                            with open(portfolio_file, 'w') as f:
+                                                json.dump(portfolio_data, f, indent=2)
+                                            
+                                            logger.info(f"MAIN LOOP SELL: Added {coin.upper()} to portfolio with ${usd_received:.2f} USD received from sale")
+                                    else:
+                                        logger.error(f"MAIN LOOP SELL: Portfolio file does not exist: {portfolio_file}")
+                                        
+                                except Exception as portfolio_error:
+                                    logger.error(f"MAIN LOOP SELL: Error updating portfolio for {coin}: {portfolio_error}")
                             else:
                                 logger.info(f"DRY RUN: Would sell {quantity} {coin}")
-                                update_portfolio_allocation_after_purchase(coin, success=True)
+                                # In dry run, simulate sale by estimating USD value received
+                                try:
+                                    estimated_usd = current_price * quantity
+                                    logger.info(f"DRY RUN SELL: Estimated USD value for {coin} sale: ${estimated_usd:.2f}")
+                                    
+                                    # Update portfolio with estimated USD (don't use purchase function for sales)
+                                    portfolio_file = os.path.join(
+                                        os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 
+                                        "output", 
+                                        "simple_portfolio_allocation.json"
+                                    )
+                                    
+                                    if os.path.exists(portfolio_file):
+                                        with open(portfolio_file, 'r') as f:
+                                            portfolio_data = json.load(f)
+                                        
+                                        if coin.upper() in portfolio_data:
+                                            old_value = portfolio_data[coin.upper()]
+                                            portfolio_data[coin.upper()] = round(estimated_usd, 2)
+                                            
+                                            with open(portfolio_file, 'w') as f:
+                                                json.dump(portfolio_data, f, indent=2)
+                                            
+                                            logger.info(f"DRY RUN SELL: Updated portfolio allocation for {coin} from ${old_value} to ${estimated_usd:.2f} (estimated from dry run sale)")
+                                        
+                                except Exception as dry_run_error:
+                                    logger.error(f"DRY RUN SELL: Error updating portfolio for {coin}: {dry_run_error}")
+                                    # Fallback to preserving original value
+                                    logger.info(f"DRY RUN SELL: Preserving original portfolio value for {coin}")
                             
                             sell_actions += 1
                             
@@ -549,10 +659,13 @@ class MonitorBot:
                             continue
                         
                         # Make optimized trading decision with current and historical prices
+                        # Use absolute path to ensure parameters file is found regardless of working directory
+                        parameters_file = os.path.join(parent_dir, "output", "simple_sma_parameters.json")
                         decision = make_optimized_trading_decision(
                             currency=coin,
                             past_prices=past_prices,
-                            current_price=current_price
+                            current_price=current_price,
+                            parameters_file=parameters_file
                         )
                         logger.info(f"Trading decision for {coin} at ${current_price:.4f}: {decision}")
                         
