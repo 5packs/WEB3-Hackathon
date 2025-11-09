@@ -217,10 +217,18 @@ class SMABacktester:
             sharpe_ratio = np.mean(returns_array) / np.std(returns_array) * np.sqrt(252) if np.std(returns_array) > 0 else 0
             max_drawdown = self.calculate_max_drawdown()
             volatility = np.std(returns_array) * np.sqrt(252)
+            
+            # Calculate Sortino ratio (risk-adjusted return using downside deviation)
+            sortino_ratio = self.calculate_sortino_ratio(returns_array)
+            
+            # Calculate Calmar ratio (risk-adjusted return using max drawdown)
+            calmar_ratio = self.calculate_calmar_ratio(returns_array, max_drawdown)
         else:
             sharpe_ratio = 0
             max_drawdown = 0
             volatility = 0
+            sortino_ratio = 0
+            calmar_ratio = 0
         
         # Buy and hold benchmark
         buy_hold_return = (prices[-1] - prices[0]) / prices[0]
@@ -234,6 +242,8 @@ class SMABacktester:
             'alpha': (total_return - buy_hold_return) * 100,
             'num_trades': len(self.trades),
             'sharpe_ratio': sharpe_ratio,
+            'sortino_ratio': sortino_ratio,
+            'calmar_ratio': calmar_ratio,
             'max_drawdown': max_drawdown * 100,
             'volatility': volatility * 100,
             'trades': self.trades,
@@ -253,6 +263,49 @@ class SMABacktester:
         drawdown = (portfolio_values - peak) / peak
         return np.min(drawdown) if len(drawdown) > 0 else 0
     
+    def calculate_sortino_ratio(self, returns_array: np.ndarray) -> float:
+        """
+        Calculate Sortino ratio - risk-adjusted return using downside deviation.
+        Only considers negative returns (downside risk) in the denominator.
+        """
+        if len(returns_array) == 0:
+            return 0
+        
+        mean_return = np.mean(returns_array)
+        negative_returns = returns_array[returns_array < 0]
+        
+        if len(negative_returns) == 0:
+            # No downside volatility, return high value but not infinite
+            return mean_return * np.sqrt(252) if mean_return > 0 else 0
+        
+        downside_deviation = np.std(negative_returns)
+        if downside_deviation == 0:
+            return 0
+        
+        sortino_ratio = mean_return / downside_deviation * np.sqrt(252)
+        return sortino_ratio
+    
+    def calculate_calmar_ratio(self, returns_array: np.ndarray, max_drawdown: float) -> float:
+        """
+        Calculate Calmar ratio - annualized return divided by maximum drawdown.
+        Measures return per unit of downside risk.
+        """
+        if len(returns_array) == 0:
+            return 0
+        
+        # Annualized return (assuming daily returns)
+        annualized_return = np.mean(returns_array) * 252
+        
+        # Use absolute value of max drawdown to avoid division by negative
+        abs_max_drawdown = abs(max_drawdown)
+        
+        if abs_max_drawdown == 0:
+            # No drawdown, return high value but not infinite
+            return annualized_return if annualized_return > 0 else 0
+        
+        calmar_ratio = annualized_return / abs_max_drawdown
+        return calmar_ratio
+    
     def print_results(self, results: Dict):
         """Print formatted backtest results."""
         print("\n" + "="*60)
@@ -265,6 +318,8 @@ class SMABacktester:
         print(f"Alpha (vs B&H):       {results['alpha']:+.2f}%")
         print(f"Number of Trades:     {results['num_trades']}")
         print(f"Sharpe Ratio:         {results['sharpe_ratio']:.2f}")
+        print(f"Sortino Ratio:        {results['sortino_ratio']:.2f}")
+        print(f"Calmar Ratio:         {results['calmar_ratio']:.2f}")
         print(f"Max Drawdown:         {results['max_drawdown']:.2f}%")
         print(f"Volatility:           {results['volatility']:.2f}%")
         

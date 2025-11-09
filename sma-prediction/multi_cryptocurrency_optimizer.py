@@ -23,6 +23,8 @@ class CryptoResult:
     best_params: Tuple[int, int]
     return_pct: float
     sharpe_ratio: float
+    sortino_ratio: float
+    calmar_ratio: float
     max_drawdown: float
     num_trades: int
     data_points: int
@@ -305,6 +307,8 @@ class MultiCryptoOptimizer:
                 best_params=best_params,
                 return_pct=best_results['total_return_pct'],
                 sharpe_ratio=best_results['sharpe_ratio'],
+                sortino_ratio=best_results['sortino_ratio'],
+                calmar_ratio=best_results['calmar_ratio'],
                 max_drawdown=best_results['max_drawdown'],
                 num_trades=best_results['num_trades'],
                 data_points=len(df)
@@ -335,13 +339,42 @@ class MultiCryptoOptimizer:
             result = self.optimize_single_crypto(symbol, interval)
             if result:
                 self.results[symbol] = result
-                
-    def create_portfolio_weights(self, min_return: float = -5.0) -> Dict[str, float]:
+    
+    def calculate_composite_risk_score(self, result: CryptoResult) -> float:
         """
-        Create portfolio weights based on performance.
+        Calculate composite risk-adjusted score using your specified weighting:
+        0.4 * Sortino + 0.3 * Calmar + 0.3 * Sharpe
+        
+        Args:
+            result: CryptoResult containing the risk metrics
+            
+        Returns:
+            Composite risk score
+        """
+        # Handle edge cases where ratios might be NaN or infinite
+        sortino = result.sortino_ratio if np.isfinite(result.sortino_ratio) else 0
+        calmar = result.calmar_ratio if np.isfinite(result.calmar_ratio) else 0
+        sharpe = result.sharpe_ratio if np.isfinite(result.sharpe_ratio) else 0
+        
+        # Normalize extreme values to prevent one metric from dominating
+        # Cap individual ratios at reasonable bounds
+        sortino = max(-10, min(10, sortino))
+        calmar = max(-10, min(10, calmar))
+        sharpe = max(-10, min(10, sharpe))
+        
+        composite_score = 0.4 * sortino + 0.3 * calmar + 0.3 * sharpe
+        return composite_score
+                
+    def create_portfolio_weights(self, min_return: float = -5.0, return_weight: float = 0.5, 
+                                risk_weight: float = 0.5) -> Dict[str, float]:
+        """
+        Create portfolio weights using multi-objective optimization that balances
+        returns and composite risk-adjusted metrics.
         
         Args:
             min_return: Minimum return threshold to include in portfolio
+            return_weight: Weight given to returns (default 0.5 for equal balance)
+            risk_weight: Weight given to composite risk score (default 0.5 for equal balance)
             
         Returns:
             Dictionary of portfolio weights
@@ -359,13 +392,31 @@ class MultiCryptoOptimizer:
             print("[WARNING] No cryptocurrencies meet minimum return threshold")
             return {}
             
-        # Calculate weights based on performance
+        # Calculate normalized scores for both objectives
+        returns = [result.return_pct for result in good_performers.values()]
+        risk_scores = [self.calculate_composite_risk_score(result) for result in good_performers.values()]
+        
+        # Normalize returns and risk scores to [0, 1] range
+        if max(returns) > min(returns):
+            norm_returns = [(r - min(returns)) / (max(returns) - min(returns)) for r in returns]
+        else:
+            norm_returns = [1.0] * len(returns)
+            
+        if max(risk_scores) > min(risk_scores):
+            norm_risk_scores = [(r - min(risk_scores)) / (max(risk_scores) - min(risk_scores)) for r in risk_scores]
+        else:
+            norm_risk_scores = [1.0] * len(risk_scores)
+            
+        # Calculate multi-objective scores combining both objectives
         total_score = 0
         scores = {}
         
-        for symbol, result in good_performers.items():
-            # Score based on return and risk-adjusted measures
-            score = max(0, result.return_pct + result.sharpe_ratio * 2 - result.max_drawdown * 0.2)
+        for i, (symbol, result) in enumerate(good_performers.items()):
+            # Multi-objective score: weighted combination of normalized returns and risk scores
+            multi_objective_score = return_weight * norm_returns[i] + risk_weight * norm_risk_scores[i]
+            
+            # Ensure non-negative scores
+            score = max(0, multi_objective_score)
             scores[symbol] = score
             total_score += score
             
@@ -401,14 +452,27 @@ class MultiCryptoOptimizer:
         weighted_sharpe = sum(weights[symbol] * self.results[symbol].sharpe_ratio 
                             for symbol in weights)
         
+        weighted_sortino = sum(weights[symbol] * self.results[symbol].sortino_ratio 
+                             for symbol in weights)
+        
+        weighted_calmar = sum(weights[symbol] * self.results[symbol].calmar_ratio 
+                            for symbol in weights)
+        
         weighted_drawdown = sum(weights[symbol] * self.results[symbol].max_drawdown 
                               for symbol in weights)
+        
+        # Calculate portfolio composite risk score
+        portfolio_composite_risk = sum(weights[symbol] * self.calculate_composite_risk_score(self.results[symbol]) 
+                                     for symbol in weights)
         
         total_trades = sum(self.results[symbol].num_trades for symbol in weights)
         
         return {
             'expected_return_pct': weighted_return,
             'weighted_sharpe': weighted_sharpe,
+            'weighted_sortino': weighted_sortino,
+            'weighted_calmar': weighted_calmar,
+            'portfolio_composite_risk_score': portfolio_composite_risk,
             'weighted_max_drawdown': weighted_drawdown,
             'total_trades': total_trades,
             'num_assets': len(weights)
@@ -426,9 +490,9 @@ class MultiCryptoOptimizer:
         
         # Individual results
         lines.append(f"\nINDIVIDUAL CRYPTOCURRENCY RESULTS:")
-        lines.append("-" * 70)
-        lines.append(f"{'Symbol':<6} {'Parameters':<12} {'Return':<8} {'Sharpe':<7} {'MaxDD':<7} {'Trades':<7}")
-        lines.append("-" * 70)
+        lines.append("-" * 90)
+        lines.append(f"{'Symbol':<6} {'Parameters':<12} {'Return':<8} {'Sharpe':<7} {'Sortino':<7} {'Calmar':<7} {'MaxDD':<7} {'Trades':<7}")
+        lines.append("-" * 90)
         
         # Sort by return
         sorted_results = sorted(self.results.items(), 
@@ -440,6 +504,8 @@ class MultiCryptoOptimizer:
                         f"SMA({result.best_params[0]},{result.best_params[1]})   "
                         f"{result.return_pct:+6.2f}% "
                         f"{result.sharpe_ratio:6.2f} "
+                        f"{result.sortino_ratio:6.2f} "
+                        f"{result.calmar_ratio:6.2f} "
                         f"{result.max_drawdown:6.2f}% "
                         f"{result.num_trades:6d}")
         
@@ -457,6 +523,9 @@ class MultiCryptoOptimizer:
             lines.append("-" * 40)
             lines.append(f"Expected Return:    {portfolio_perf['expected_return_pct']:+7.2f}%")
             lines.append(f"Weighted Sharpe:    {portfolio_perf['weighted_sharpe']:7.2f}")
+            lines.append(f"Weighted Sortino:   {portfolio_perf['weighted_sortino']:7.2f}")
+            lines.append(f"Weighted Calmar:    {portfolio_perf['weighted_calmar']:7.2f}")
+            lines.append(f"Composite Risk:     {portfolio_perf['portfolio_composite_risk_score']:7.2f}")
             lines.append(f"Weighted Max DD:    {portfolio_perf['weighted_max_drawdown']:7.2f}%")
             lines.append(f"Total Trades:       {portfolio_perf['total_trades']:7d}")
             lines.append(f"Diversification:    {portfolio_perf['num_assets']:7d} assets")
