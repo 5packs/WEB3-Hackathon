@@ -1,4 +1,10 @@
-tofix.txt
-tofixv2.txt
-tofixv3.txt
-tofixv4.txt
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Log files
+logs/
+*.log
