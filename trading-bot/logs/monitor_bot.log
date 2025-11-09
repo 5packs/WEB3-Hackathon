@@ -24757,3 +24757,1404 @@
 2025-11-09 19:06:40,203 - INFO - ============================================================
 2025-11-09 19:06:40,203 - INFO - Monitor Bot shutting down after 0 cycles
 2025-11-09 19:06:40,204 - INFO - ============================================================
+2025-11-09 19:21:17,762 - INFO - Purchase by value function imported successfully
+2025-11-09 19:21:17,762 - INFO - ============================================================
+2025-11-09 19:21:17,763 - INFO - Crypto Roostoo Account Balance Monitor Bot Starting
+2025-11-09 19:21:17,763 - INFO - ============================================================
+2025-11-09 19:21:17,763 - INFO - Monitor interval: 300 seconds (5 minutes)
+2025-11-09 19:21:17,763 - INFO - Log file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/trading-bot/logs/monitor_bot.log
+2025-11-09 19:21:17,763 - INFO - Logs directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/trading-bot/logs
+2025-11-09 19:21:17,763 - INFO - Submodule path: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:21:17,763 - INFO - Bot started successfully. Press CTRL+C to stop.
+2025-11-09 19:21:17,763 - INFO - Purchase mode: LIVE TRADING (real purchases)
+2025-11-09 19:21:17,763 - INFO - Startup process: Optimization -> Trades -> 5.0 min total wait -> Monitoring loop
+2025-11-09 19:21:18,129 - INFO - Starting one-time SMA optimizer run at startup (may take a while)...
+2025-11-09 19:22:37,488 - INFO - One-time SMA optimizer run completed
+2025-11-09 19:22:37,488 - INFO - Starting automated portfolio purchases...
+2025-11-09 19:22:37,488 - INFO - ============================================================
+2025-11-09 19:22:37,488 - INFO - STARTING AUTOMATED PORTFOLIO PURCHASES
+2025-11-09 19:22:37,489 - INFO - ============================================================
+2025-11-09 19:22:37,489 - INFO - Found 24 cryptocurrencies to purchase
+2025-11-09 19:22:37,489 - INFO - Mode: LIVE TRADING (real purchases)
+2025-11-09 19:22:37,489 - INFO - Total investment amount: $29,999.99
+2025-11-09 19:22:37,489 - INFO - 
+--- Purchase 1/24: FET ---
+2025-11-09 19:22:37,489 - INFO - Purchasing $3,846.86 worth of FET
+2025-11-09 19:22:37,489 - INFO - Starting purchase by value: $3846.86 worth of FET
+2025-11-09 19:22:37,489 - INFO - Fetching current price for FET/USD from primary API
+2025-11-09 19:22:38,020 - INFO - Primary API price for FET/USD: $0.3118
+2025-11-09 19:22:38,021 - INFO - Calculated quantity: 12337.588 coins for $3846.86 at $0.3118/coin (precision: 3 decimals)
+2025-11-09 19:22:38,021 - INFO - Order details:
+2025-11-09 19:22:38,021 - INFO -   Coin: FET
+2025-11-09 19:22:38,021 - INFO -   Quantity: 12337.588
+2025-11-09 19:22:38,021 - INFO -   Order Type: MARKET
+2025-11-09 19:22:38,021 - INFO -   Price Used: $0.3118
+2025-11-09 19:22:38,021 - INFO -   Estimated Cost: $3,846.86
+2025-11-09 19:22:38,022 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:22:38,022 - INFO - Starting aggressive purchase strategy for FET with 16 possible attempts
+2025-11-09 19:22:38,022 - INFO - Target value: $3846.86 at $0.3118/coin
+2025-11-09 19:22:38,022 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:22:38,022 - INFO - Aggressive quantity reduction: 12337.588 -> 12337.59 (strategy: 2-decimal)
+2025-11-09 19:22:38,022 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:22:38,022 - INFO -   Target value: $3846.86 (quantity: 12337.59)
+2025-11-09 19:22:38,265 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:22:38,266 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:22:38,266 - WARNING - API Error: quantity step size error
+2025-11-09 19:22:38,266 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:22:40,266 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:22:40,267 - INFO - Aggressive quantity reduction: 12337.588 -> 12337.6 (strategy: 1-decimal)
+2025-11-09 19:22:40,267 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:22:40,267 - INFO -   Target value: $3846.86 (quantity: 12337.6)
+2025-11-09 19:22:40,503 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$3849.3312
+2025-11-09 19:22:40,503 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:22:40,503 - INFO - Final purchase: 12337.6 FET for $3846.86
+2025-11-09 19:22:40,503 - INFO - API confirmed UnitChange: $3849.3312
+2025-11-09 19:22:40,504 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$3849.3312
+2025-11-09 19:22:40,504 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:22:40,504 - INFO - Final quantity: 12337.6 FET
+2025-11-09 19:22:40,504 - INFO - Actual cost: $3846.86
+2025-11-09 19:22:40,504 - INFO - UnitChange from API: $3849.3312
+2025-11-09 19:22:40,504 - INFO - Attempts required: 2
+2025-11-09 19:22:40,505 - INFO - Updated portfolio allocation: FET value changed from $3846.86 to $0
+2025-11-09 19:22:40,506 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:22:40,506 - INFO - Portfolio allocation updated (REAL PURCHASE): FET value set to $0
+2025-11-09 19:22:40,506 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$3849.3312
+2025-11-09 19:22:40,506 - INFO - SUCCESS: Successfully initiated purchase of FET
+2025-11-09 19:22:40,506 - INFO -    Quantity: 12337.6 FET
+2025-11-09 19:22:40,506 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:22:45,507 - INFO - 
+--- Purchase 2/24: NEAR ---
+2025-11-09 19:22:45,507 - INFO - Purchasing $3,476.86 worth of NEAR
+2025-11-09 19:22:45,508 - INFO - Starting purchase by value: $3476.86 worth of NEAR
+2025-11-09 19:22:45,508 - INFO - Fetching current price for NEAR/USD from primary API
+2025-11-09 19:22:45,858 - INFO - Primary API price for NEAR/USD: $2.7600
+2025-11-09 19:22:45,859 - INFO - Calculated quantity: 1259.731 coins for $3476.86 at $2.76/coin (precision: 3 decimals)
+2025-11-09 19:22:45,859 - INFO - Order details:
+2025-11-09 19:22:45,859 - INFO -   Coin: NEAR
+2025-11-09 19:22:45,859 - INFO -   Quantity: 1259.731
+2025-11-09 19:22:45,860 - INFO -   Order Type: MARKET
+2025-11-09 19:22:45,860 - INFO -   Price Used: $2.7600
+2025-11-09 19:22:45,860 - INFO -   Estimated Cost: $3,476.86
+2025-11-09 19:22:45,860 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:22:45,860 - INFO - Starting aggressive purchase strategy for NEAR with 16 possible attempts
+2025-11-09 19:22:45,860 - INFO - Target value: $3476.86 at $2.7600/coin
+2025-11-09 19:22:45,860 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:22:45,861 - INFO - Aggressive quantity reduction: 1259.732 -> 1259.73 (strategy: 2-decimal)
+2025-11-09 19:22:45,861 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:22:45,861 - INFO -   Target value: $3476.86 (quantity: 1259.73)
+2025-11-09 19:22:46,096 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:22:46,096 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:22:46,097 - WARNING - API Error: quantity step size error
+2025-11-09 19:22:46,097 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:22:48,097 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:22:48,097 - INFO - Aggressive quantity reduction: 1259.732 -> 1259.7 (strategy: 1-decimal)
+2025-11-09 19:22:48,097 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:22:48,097 - INFO -   Target value: $3476.86 (quantity: 1259.7)
+2025-11-09 19:22:48,376 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$3476.772
+2025-11-09 19:22:48,376 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:22:48,377 - INFO - Final purchase: 1259.7 NEAR for $3476.77
+2025-11-09 19:22:48,377 - INFO - API confirmed UnitChange: $3476.772
+2025-11-09 19:22:48,377 - INFO - Amount saved due to strategy: $0.09 (0.0%)
+2025-11-09 19:22:48,377 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$3476.772
+2025-11-09 19:22:48,378 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:22:48,378 - INFO - Final quantity: 1259.7 NEAR
+2025-11-09 19:22:48,378 - INFO - Actual cost: $3476.77
+2025-11-09 19:22:48,378 - INFO - UnitChange from API: $3476.772
+2025-11-09 19:22:48,378 - INFO - Amount saved: $0.09
+2025-11-09 19:22:48,378 - INFO - Attempts required: 2
+2025-11-09 19:22:48,379 - INFO - Updated portfolio allocation: NEAR value changed from $3476.86 to $0
+2025-11-09 19:22:48,380 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:22:48,380 - INFO - Portfolio allocation updated (REAL PURCHASE): NEAR value set to $0
+2025-11-09 19:22:48,380 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$3476.772
+2025-11-09 19:22:48,380 - INFO - SUCCESS: Successfully initiated purchase of NEAR
+2025-11-09 19:22:48,381 - INFO -    Quantity: 1259.7 NEAR
+2025-11-09 19:22:48,381 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:22:53,381 - INFO - 
+--- Purchase 3/24: FIL ---
+2025-11-09 19:22:53,382 - INFO - Purchasing $2,697.70 worth of FIL
+2025-11-09 19:22:53,382 - INFO - Starting purchase by value: $2697.7 worth of FIL
+2025-11-09 19:22:53,382 - INFO - Fetching current price for FIL/USD from primary API
+2025-11-09 19:22:53,645 - INFO - Primary API price for FIL/USD: $2.6260
+2025-11-09 19:22:53,645 - INFO - Calculated quantity: 1027.303 coins for $2697.7 at $2.626/coin (precision: 3 decimals)
+2025-11-09 19:22:53,645 - INFO - Order details:
+2025-11-09 19:22:53,645 - INFO -   Coin: FIL
+2025-11-09 19:22:53,645 - INFO -   Quantity: 1027.303
+2025-11-09 19:22:53,645 - INFO -   Order Type: MARKET
+2025-11-09 19:22:53,645 - INFO -   Price Used: $2.6260
+2025-11-09 19:22:53,645 - INFO -   Estimated Cost: $2,697.70
+2025-11-09 19:22:53,646 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:22:53,646 - INFO - Starting aggressive purchase strategy for FIL with 16 possible attempts
+2025-11-09 19:22:53,646 - INFO - Target value: $2697.70 at $2.6260/coin
+2025-11-09 19:22:53,646 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:22:53,646 - INFO - Aggressive quantity reduction: 1027.304 -> 1027.3 (strategy: 2-decimal)
+2025-11-09 19:22:53,646 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:22:53,646 - INFO -   Target value: $2697.70 (quantity: 1027.3)
+2025-11-09 19:22:54,000 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$2698.7171
+2025-11-09 19:22:54,000 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:22:54,000 - INFO - Final purchase: 1027.3 FIL for $2697.69
+2025-11-09 19:22:54,000 - INFO - API confirmed UnitChange: $2698.7171
+2025-11-09 19:22:54,000 - INFO - Amount saved due to strategy: $0.01 (0.0%)
+2025-11-09 19:22:54,000 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$2698.7171
+2025-11-09 19:22:54,000 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:22:54,000 - INFO - Final quantity: 1027.3 FIL
+2025-11-09 19:22:54,000 - INFO - Actual cost: $2697.69
+2025-11-09 19:22:54,000 - INFO - UnitChange from API: $2698.7171
+2025-11-09 19:22:54,000 - INFO - Amount saved: $0.01
+2025-11-09 19:22:54,000 - INFO - Attempts required: 1
+2025-11-09 19:22:54,001 - INFO - Updated portfolio allocation: FIL value changed from $2697.7 to $0
+2025-11-09 19:22:54,001 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:22:54,001 - INFO - Portfolio allocation updated (REAL PURCHASE): FIL value set to $0
+2025-11-09 19:22:54,001 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$2698.7171
+2025-11-09 19:22:54,001 - INFO - SUCCESS: Successfully initiated purchase of FIL
+2025-11-09 19:22:54,001 - INFO -    Quantity: 1027.3 FIL
+2025-11-09 19:22:54,001 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:22:59,002 - INFO - 
+--- Purchase 4/24: LTC ---
+2025-11-09 19:22:59,002 - INFO - Purchasing $2,002.48 worth of LTC
+2025-11-09 19:22:59,002 - INFO - Starting purchase by value: $2002.48 worth of LTC
+2025-11-09 19:22:59,003 - INFO - Fetching current price for LTC/USD from primary API
+2025-11-09 19:22:59,241 - INFO - Primary API price for LTC/USD: $105.0900
+2025-11-09 19:22:59,241 - INFO - Calculated quantity: 19.054 coins for $2002.48 at $105.09/coin (precision: 3 decimals)
+2025-11-09 19:22:59,241 - INFO - Order details:
+2025-11-09 19:22:59,241 - INFO -   Coin: LTC
+2025-11-09 19:22:59,241 - INFO -   Quantity: 19.054
+2025-11-09 19:22:59,241 - INFO -   Order Type: MARKET
+2025-11-09 19:22:59,241 - INFO -   Price Used: $105.0900
+2025-11-09 19:22:59,241 - INFO -   Estimated Cost: $2,002.38
+2025-11-09 19:22:59,241 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:22:59,242 - INFO - Starting aggressive purchase strategy for LTC with 16 possible attempts
+2025-11-09 19:22:59,242 - INFO - Target value: $2002.48 at $105.0900/coin
+2025-11-09 19:22:59,242 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:22:59,242 - INFO - Aggressive quantity reduction: 19.055 -> 19.05 (strategy: 2-decimal)
+2025-11-09 19:22:59,242 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:22:59,242 - INFO -   Target value: $2002.48 (quantity: 19.05)
+2025-11-09 19:22:59,708 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$2001.9645
+2025-11-09 19:22:59,708 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:22:59,708 - INFO - Final purchase: 19.05 LTC for $2001.96
+2025-11-09 19:22:59,708 - INFO - API confirmed UnitChange: $2001.9645
+2025-11-09 19:22:59,708 - INFO - Amount saved due to strategy: $0.52 (0.0%)
+2025-11-09 19:22:59,708 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$2001.9645
+2025-11-09 19:22:59,708 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:22:59,709 - INFO - Final quantity: 19.05 LTC
+2025-11-09 19:22:59,709 - INFO - Actual cost: $2001.96
+2025-11-09 19:22:59,709 - INFO - UnitChange from API: $2001.9645
+2025-11-09 19:22:59,709 - INFO - Amount saved: $0.52
+2025-11-09 19:22:59,709 - INFO - Attempts required: 1
+2025-11-09 19:22:59,709 - INFO - Updated portfolio allocation: LTC value changed from $2002.48 to $0
+2025-11-09 19:22:59,710 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:22:59,710 - INFO - Portfolio allocation updated (REAL PURCHASE): LTC value set to $0
+2025-11-09 19:22:59,710 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$2001.9645
+2025-11-09 19:22:59,710 - INFO - SUCCESS: Successfully initiated purchase of LTC
+2025-11-09 19:22:59,710 - INFO -    Quantity: 19.05 LTC
+2025-11-09 19:22:59,710 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:04,711 - INFO - 
+--- Purchase 5/24: UNI ---
+2025-11-09 19:23:04,711 - INFO - Purchasing $1,718.35 worth of UNI
+2025-11-09 19:23:04,712 - INFO - Starting purchase by value: $1718.35 worth of UNI
+2025-11-09 19:23:04,712 - INFO - Fetching current price for UNI/USD from primary API
+2025-11-09 19:23:05,100 - INFO - Primary API price for UNI/USD: $6.3140
+2025-11-09 19:23:05,102 - INFO - Calculated quantity: 272.149 coins for $1718.35 at $6.314/coin (precision: 3 decimals)
+2025-11-09 19:23:05,102 - INFO - Order details:
+2025-11-09 19:23:05,102 - INFO -   Coin: UNI
+2025-11-09 19:23:05,102 - INFO -   Quantity: 272.149
+2025-11-09 19:23:05,103 - INFO -   Order Type: MARKET
+2025-11-09 19:23:05,103 - INFO -   Price Used: $6.3140
+2025-11-09 19:23:05,103 - INFO -   Estimated Cost: $1,718.35
+2025-11-09 19:23:05,103 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:05,103 - INFO - Starting aggressive purchase strategy for UNI with 16 possible attempts
+2025-11-09 19:23:05,103 - INFO - Target value: $1718.35 at $6.3140/coin
+2025-11-09 19:23:05,104 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:05,104 - INFO - Aggressive quantity reduction: 272.149 -> 272.15 (strategy: 2-decimal)
+2025-11-09 19:23:05,104 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:05,104 - INFO -   Target value: $1718.35 (quantity: 272.15)
+2025-11-09 19:23:05,366 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1718.62725
+2025-11-09 19:23:05,367 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:23:05,367 - INFO - Final purchase: 272.15 UNI for $1718.36
+2025-11-09 19:23:05,367 - INFO - API confirmed UnitChange: $1718.62725
+2025-11-09 19:23:05,367 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1718.62725
+2025-11-09 19:23:05,367 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:23:05,367 - INFO - Final quantity: 272.15 UNI
+2025-11-09 19:23:05,367 - INFO - Actual cost: $1718.36
+2025-11-09 19:23:05,368 - INFO - UnitChange from API: $1718.62725
+2025-11-09 19:23:05,368 - INFO - Attempts required: 1
+2025-11-09 19:23:05,368 - INFO - Updated portfolio allocation: UNI value changed from $1718.35 to $0
+2025-11-09 19:23:05,369 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:05,369 - INFO - Portfolio allocation updated (REAL PURCHASE): UNI value set to $0
+2025-11-09 19:23:05,369 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1718.62725
+2025-11-09 19:23:05,369 - INFO - SUCCESS: Successfully initiated purchase of UNI
+2025-11-09 19:23:05,369 - INFO -    Quantity: 272.15 UNI
+2025-11-09 19:23:05,369 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:10,370 - INFO - 
+--- Purchase 6/24: ICP ---
+2025-11-09 19:23:10,370 - INFO - Purchasing $1,427.39 worth of ICP
+2025-11-09 19:23:10,370 - INFO - Starting purchase by value: $1427.39 worth of ICP
+2025-11-09 19:23:10,371 - INFO - Fetching current price for ICP/USD from primary API
+2025-11-09 19:23:10,719 - INFO - Primary API price for ICP/USD: $7.1630
+2025-11-09 19:23:10,721 - INFO - Calculated quantity: 199.272 coins for $1427.39 at $7.163/coin (precision: 3 decimals)
+2025-11-09 19:23:10,721 - INFO - Order details:
+2025-11-09 19:23:10,721 - INFO -   Coin: ICP
+2025-11-09 19:23:10,721 - INFO -   Quantity: 199.272
+2025-11-09 19:23:10,721 - INFO -   Order Type: MARKET
+2025-11-09 19:23:10,722 - INFO -   Price Used: $7.1630
+2025-11-09 19:23:10,722 - INFO -   Estimated Cost: $1,427.39
+2025-11-09 19:23:10,722 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:10,722 - INFO - Starting aggressive purchase strategy for ICP with 16 possible attempts
+2025-11-09 19:23:10,722 - INFO - Target value: $1427.39 at $7.1630/coin
+2025-11-09 19:23:10,722 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:10,723 - INFO - Aggressive quantity reduction: 199.273 -> 199.27 (strategy: 2-decimal)
+2025-11-09 19:23:10,723 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:10,723 - INFO -   Target value: $1427.39 (quantity: 199.27)
+2025-11-09 19:23:10,942 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1427.17174
+2025-11-09 19:23:10,943 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:23:10,943 - INFO - Final purchase: 199.27 ICP for $1427.37
+2025-11-09 19:23:10,943 - INFO - API confirmed UnitChange: $1427.17174
+2025-11-09 19:23:10,943 - INFO - Amount saved due to strategy: $0.02 (0.0%)
+2025-11-09 19:23:10,943 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1427.17174
+2025-11-09 19:23:10,943 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:23:10,943 - INFO - Final quantity: 199.27 ICP
+2025-11-09 19:23:10,943 - INFO - Actual cost: $1427.37
+2025-11-09 19:23:10,944 - INFO - UnitChange from API: $1427.17174
+2025-11-09 19:23:10,944 - INFO - Amount saved: $0.02
+2025-11-09 19:23:10,944 - INFO - Attempts required: 1
+2025-11-09 19:23:10,944 - INFO - Updated portfolio allocation: ICP value changed from $1427.39 to $0
+2025-11-09 19:23:10,944 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:10,945 - INFO - Portfolio allocation updated (REAL PURCHASE): ICP value set to $0
+2025-11-09 19:23:10,945 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1427.17174
+2025-11-09 19:23:10,945 - INFO - SUCCESS: Successfully initiated purchase of ICP
+2025-11-09 19:23:10,945 - INFO -    Quantity: 199.27 ICP
+2025-11-09 19:23:10,945 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:15,945 - INFO - 
+--- Purchase 7/24: CRV ---
+2025-11-09 19:23:15,946 - INFO - Purchasing $1,324.94 worth of CRV
+2025-11-09 19:23:15,946 - INFO - Starting purchase by value: $1324.94 worth of CRV
+2025-11-09 19:23:15,946 - INFO - Fetching current price for CRV/USD from primary API
+2025-11-09 19:23:16,237 - INFO - Primary API price for CRV/USD: $0.4763
+2025-11-09 19:23:16,239 - INFO - Calculated quantity: 2781.734 coins for $1324.94 at $0.4763/coin (precision: 3 decimals)
+2025-11-09 19:23:16,239 - INFO - Order details:
+2025-11-09 19:23:16,239 - INFO -   Coin: CRV
+2025-11-09 19:23:16,239 - INFO -   Quantity: 2781.734
+2025-11-09 19:23:16,239 - INFO -   Order Type: MARKET
+2025-11-09 19:23:16,239 - INFO -   Price Used: $0.4763
+2025-11-09 19:23:16,239 - INFO -   Estimated Cost: $1,324.94
+2025-11-09 19:23:16,240 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:16,240 - INFO - Starting aggressive purchase strategy for CRV with 16 possible attempts
+2025-11-09 19:23:16,240 - INFO - Target value: $1324.94 at $0.4763/coin
+2025-11-09 19:23:16,240 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:16,240 - INFO - Aggressive quantity reduction: 2781.734 -> 2781.73 (strategy: 2-decimal)
+2025-11-09 19:23:16,240 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:16,241 - INFO -   Target value: $1324.94 (quantity: 2781.73)
+2025-11-09 19:23:16,460 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:16,460 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:16,460 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:16,460 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:18,461 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:23:18,461 - INFO - Aggressive quantity reduction: 2781.734 -> 2781.7 (strategy: 1-decimal)
+2025-11-09 19:23:18,461 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:23:18,462 - INFO -   Target value: $1324.94 (quantity: 2781.7)
+2025-11-09 19:23:18,704 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1325.2018799999998
+2025-11-09 19:23:18,704 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:23:18,704 - INFO - Final purchase: 2781.7 CRV for $1324.92
+2025-11-09 19:23:18,704 - INFO - API confirmed UnitChange: $1325.2018799999998
+2025-11-09 19:23:18,704 - INFO - Amount saved due to strategy: $0.02 (0.0%)
+2025-11-09 19:23:18,704 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1325.2018799999998
+2025-11-09 19:23:18,704 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:23:18,704 - INFO - Final quantity: 2781.7 CRV
+2025-11-09 19:23:18,704 - INFO - Actual cost: $1324.92
+2025-11-09 19:23:18,704 - INFO - UnitChange from API: $1325.2018799999998
+2025-11-09 19:23:18,705 - INFO - Amount saved: $0.02
+2025-11-09 19:23:18,705 - INFO - Attempts required: 2
+2025-11-09 19:23:18,705 - INFO - Updated portfolio allocation: CRV value changed from $1324.94 to $0
+2025-11-09 19:23:18,705 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:18,705 - INFO - Portfolio allocation updated (REAL PURCHASE): CRV value set to $0
+2025-11-09 19:23:18,706 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1325.2018799999998
+2025-11-09 19:23:18,706 - INFO - SUCCESS: Successfully initiated purchase of CRV
+2025-11-09 19:23:18,706 - INFO -    Quantity: 2781.7 CRV
+2025-11-09 19:23:18,706 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:23,706 - INFO - 
+--- Purchase 8/24: DOT ---
+2025-11-09 19:23:23,707 - INFO - Purchasing $1,308.32 worth of DOT
+2025-11-09 19:23:23,707 - INFO - Starting purchase by value: $1308.32 worth of DOT
+2025-11-09 19:23:23,707 - INFO - Fetching current price for DOT/USD from primary API
+2025-11-09 19:23:24,011 - INFO - Primary API price for DOT/USD: $3.1230
+2025-11-09 19:23:24,011 - INFO - Calculated quantity: 418.93 coins for $1308.32 at $3.123/coin (precision: 3 decimals)
+2025-11-09 19:23:24,011 - INFO - Order details:
+2025-11-09 19:23:24,012 - INFO -   Coin: DOT
+2025-11-09 19:23:24,012 - INFO -   Quantity: 418.93
+2025-11-09 19:23:24,012 - INFO -   Order Type: MARKET
+2025-11-09 19:23:24,012 - INFO -   Price Used: $3.1230
+2025-11-09 19:23:24,012 - INFO -   Estimated Cost: $1,308.32
+2025-11-09 19:23:24,012 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:24,012 - INFO - Starting aggressive purchase strategy for DOT with 16 possible attempts
+2025-11-09 19:23:24,012 - INFO - Target value: $1308.32 at $3.1230/coin
+2025-11-09 19:23:24,012 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:24,012 - INFO - Aggressive quantity reduction: 418.931 -> 418.93 (strategy: 2-decimal)
+2025-11-09 19:23:24,012 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:24,012 - INFO -   Target value: $1308.32 (quantity: 418.93)
+2025-11-09 19:23:24,317 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1308.3183900000001
+2025-11-09 19:23:24,318 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:23:24,318 - INFO - Final purchase: 418.93 DOT for $1308.32
+2025-11-09 19:23:24,318 - INFO - API confirmed UnitChange: $1308.3183900000001
+2025-11-09 19:23:24,318 - INFO - Amount saved due to strategy: $0.00 (0.0%)
+2025-11-09 19:23:24,318 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1308.3183900000001
+2025-11-09 19:23:24,319 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:23:24,319 - INFO - Final quantity: 418.93 DOT
+2025-11-09 19:23:24,319 - INFO - Actual cost: $1308.32
+2025-11-09 19:23:24,319 - INFO - UnitChange from API: $1308.3183900000001
+2025-11-09 19:23:24,319 - INFO - Amount saved: $0.00
+2025-11-09 19:23:24,319 - INFO - Attempts required: 1
+2025-11-09 19:23:24,320 - INFO - Updated portfolio allocation: DOT value changed from $1308.32 to $0
+2025-11-09 19:23:24,321 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:24,321 - INFO - Portfolio allocation updated (REAL PURCHASE): DOT value set to $0
+2025-11-09 19:23:24,321 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1308.3183900000001
+2025-11-09 19:23:24,321 - INFO - SUCCESS: Successfully initiated purchase of DOT
+2025-11-09 19:23:24,321 - INFO -    Quantity: 418.93 DOT
+2025-11-09 19:23:24,321 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:29,322 - INFO - 
+--- Purchase 9/24: SEI ---
+2025-11-09 19:23:29,322 - INFO - Purchasing $1,263.94 worth of SEI
+2025-11-09 19:23:29,323 - INFO - Starting purchase by value: $1263.94 worth of SEI
+2025-11-09 19:23:29,323 - INFO - Fetching current price for SEI/USD from primary API
+2025-11-09 19:23:29,544 - INFO - Primary API price for SEI/USD: $0.1757
+2025-11-09 19:23:29,545 - INFO - Calculated quantity: 7193.739 coins for $1263.94 at $0.1757/coin (precision: 3 decimals)
+2025-11-09 19:23:29,545 - INFO - Order details:
+2025-11-09 19:23:29,545 - INFO -   Coin: SEI
+2025-11-09 19:23:29,545 - INFO -   Quantity: 7193.739
+2025-11-09 19:23:29,545 - INFO -   Order Type: MARKET
+2025-11-09 19:23:29,545 - INFO -   Price Used: $0.1757
+2025-11-09 19:23:29,545 - INFO -   Estimated Cost: $1,263.94
+2025-11-09 19:23:29,545 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:29,545 - INFO - Starting aggressive purchase strategy for SEI with 16 possible attempts
+2025-11-09 19:23:29,545 - INFO - Target value: $1263.94 at $0.1757/coin
+2025-11-09 19:23:29,545 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:29,545 - INFO - Aggressive quantity reduction: 7193.739 -> 7193.74 (strategy: 2-decimal)
+2025-11-09 19:23:29,545 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:29,545 - INFO -   Target value: $1263.94 (quantity: 7193.74)
+2025-11-09 19:23:29,835 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:29,835 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:29,836 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:29,836 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:31,836 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:23:31,837 - INFO - Aggressive quantity reduction: 7193.739 -> 7193.7 (strategy: 1-decimal)
+2025-11-09 19:23:31,837 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:23:31,837 - INFO -   Target value: $1263.94 (quantity: 7193.7)
+2025-11-09 19:23:32,085 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1264.65246
+2025-11-09 19:23:32,085 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:23:32,085 - INFO - Final purchase: 7193.7 SEI for $1263.93
+2025-11-09 19:23:32,085 - INFO - API confirmed UnitChange: $1264.65246
+2025-11-09 19:23:32,085 - INFO - Amount saved due to strategy: $0.01 (0.0%)
+2025-11-09 19:23:32,086 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1264.65246
+2025-11-09 19:23:32,086 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:23:32,086 - INFO - Final quantity: 7193.7 SEI
+2025-11-09 19:23:32,086 - INFO - Actual cost: $1263.93
+2025-11-09 19:23:32,086 - INFO - UnitChange from API: $1264.65246
+2025-11-09 19:23:32,086 - INFO - Amount saved: $0.01
+2025-11-09 19:23:32,086 - INFO - Attempts required: 2
+2025-11-09 19:23:32,086 - INFO - Updated portfolio allocation: SEI value changed from $1263.94 to $0
+2025-11-09 19:23:32,086 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:32,087 - INFO - Portfolio allocation updated (REAL PURCHASE): SEI value set to $0
+2025-11-09 19:23:32,087 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1264.65246
+2025-11-09 19:23:32,087 - INFO - SUCCESS: Successfully initiated purchase of SEI
+2025-11-09 19:23:32,087 - INFO -    Quantity: 7193.7 SEI
+2025-11-09 19:23:32,087 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:37,087 - INFO - 
+--- Purchase 10/24: ADA ---
+2025-11-09 19:23:37,088 - INFO - Purchasing $1,002.75 worth of ADA
+2025-11-09 19:23:37,088 - INFO - Starting purchase by value: $1002.75 worth of ADA
+2025-11-09 19:23:37,088 - INFO - Fetching current price for ADA/USD from primary API
+2025-11-09 19:23:37,443 - INFO - Primary API price for ADA/USD: $0.5611
+2025-11-09 19:23:37,443 - INFO - Calculated quantity: 1787.114 coins for $1002.75 at $0.5611/coin (precision: 3 decimals)
+2025-11-09 19:23:37,444 - INFO - Order details:
+2025-11-09 19:23:37,444 - INFO -   Coin: ADA
+2025-11-09 19:23:37,444 - INFO -   Quantity: 1787.114
+2025-11-09 19:23:37,444 - INFO -   Order Type: MARKET
+2025-11-09 19:23:37,444 - INFO -   Price Used: $0.5611
+2025-11-09 19:23:37,444 - INFO -   Estimated Cost: $1,002.75
+2025-11-09 19:23:37,444 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:37,445 - INFO - Starting aggressive purchase strategy for ADA with 16 possible attempts
+2025-11-09 19:23:37,445 - INFO - Target value: $1002.75 at $0.5611/coin
+2025-11-09 19:23:37,445 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:37,445 - INFO - Aggressive quantity reduction: 1787.115 -> 1787.11 (strategy: 2-decimal)
+2025-11-09 19:23:37,445 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:37,446 - INFO -   Target value: $1002.75 (quantity: 1787.11)
+2025-11-09 19:23:37,686 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:37,686 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:37,686 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:37,686 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:39,687 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:23:39,687 - INFO - Aggressive quantity reduction: 1787.115 -> 1787.1 (strategy: 1-decimal)
+2025-11-09 19:23:39,687 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:23:39,688 - INFO -   Target value: $1002.75 (quantity: 1787.1)
+2025-11-09 19:23:39,926 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$1002.74181
+2025-11-09 19:23:39,926 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:23:39,927 - INFO - Final purchase: 1787.1 ADA for $1002.74
+2025-11-09 19:23:39,927 - INFO - API confirmed UnitChange: $1002.74181
+2025-11-09 19:23:39,927 - INFO - Amount saved due to strategy: $0.01 (0.0%)
+2025-11-09 19:23:39,927 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$1002.74181
+2025-11-09 19:23:39,927 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:23:39,927 - INFO - Final quantity: 1787.1 ADA
+2025-11-09 19:23:39,927 - INFO - Actual cost: $1002.74
+2025-11-09 19:23:39,927 - INFO - UnitChange from API: $1002.74181
+2025-11-09 19:23:39,927 - INFO - Amount saved: $0.01
+2025-11-09 19:23:39,927 - INFO - Attempts required: 2
+2025-11-09 19:23:39,928 - INFO - Updated portfolio allocation: ADA value changed from $1002.75 to $0
+2025-11-09 19:23:39,928 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:39,928 - INFO - Portfolio allocation updated (REAL PURCHASE): ADA value set to $0
+2025-11-09 19:23:39,928 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$1002.74181
+2025-11-09 19:23:39,928 - INFO - SUCCESS: Successfully initiated purchase of ADA
+2025-11-09 19:23:39,929 - INFO -    Quantity: 1787.1 ADA
+2025-11-09 19:23:39,929 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:44,929 - INFO - 
+--- Purchase 11/24: DOGE ---
+2025-11-09 19:23:44,930 - INFO - Purchasing $969.85 worth of DOGE
+2025-11-09 19:23:44,930 - INFO - Starting purchase by value: $969.85 worth of DOGE
+2025-11-09 19:23:44,930 - INFO - Fetching current price for DOGE/USD from primary API
+2025-11-09 19:23:45,262 - INFO - Primary API price for DOGE/USD: $0.1750
+2025-11-09 19:23:45,263 - INFO - Calculated quantity: 5541.366 coins for $969.85 at $0.17502/coin (precision: 3 decimals)
+2025-11-09 19:23:45,263 - INFO - Order details:
+2025-11-09 19:23:45,264 - INFO -   Coin: DOGE
+2025-11-09 19:23:45,264 - INFO -   Quantity: 5541.366
+2025-11-09 19:23:45,264 - INFO -   Order Type: MARKET
+2025-11-09 19:23:45,264 - INFO -   Price Used: $0.1750
+2025-11-09 19:23:45,264 - INFO -   Estimated Cost: $969.85
+2025-11-09 19:23:45,264 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:45,264 - INFO - Starting aggressive purchase strategy for DOGE with 16 possible attempts
+2025-11-09 19:23:45,264 - INFO - Target value: $969.85 at $0.1750/coin
+2025-11-09 19:23:45,265 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:45,265 - INFO - Aggressive quantity reduction: 5541.367 -> 5541.37 (strategy: 2-decimal)
+2025-11-09 19:23:45,265 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:45,265 - INFO -   Target value: $969.85 (quantity: 5541.37)
+2025-11-09 19:23:45,482 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:45,483 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:45,483 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:45,483 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:47,483 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:23:47,484 - INFO - Aggressive quantity reduction: 5541.367 -> 5541.4 (strategy: 1-decimal)
+2025-11-09 19:23:47,484 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:23:47,484 - INFO -   Target value: $969.85 (quantity: 5541.4)
+2025-11-09 19:23:47,703 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:47,703 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:47,703 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:47,703 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:49,704 - INFO - Trying next step size reduction strategy (attempt 3)...
+2025-11-09 19:23:49,704 - INFO - Aggressive quantity reduction: 5541.367 -> 5541 (strategy: whole)
+2025-11-09 19:23:49,704 - INFO - Attempt 3/16: aggressive quantity pattern 3
+2025-11-09 19:23:49,705 - INFO -   Target value: $969.85 (quantity: 5541.0)
+2025-11-09 19:23:50,001 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$970.11828
+2025-11-09 19:23:50,001 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 3
+2025-11-09 19:23:50,002 - INFO - Final purchase: 5541.0 DOGE for $969.79
+2025-11-09 19:23:50,002 - INFO - API confirmed UnitChange: $970.11828
+2025-11-09 19:23:50,002 - INFO - Amount saved due to strategy: $0.06 (0.0%)
+2025-11-09 19:23:50,002 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$970.11828
+2025-11-09 19:23:50,002 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 3
+2025-11-09 19:23:50,002 - INFO - Final quantity: 5541.0 DOGE
+2025-11-09 19:23:50,002 - INFO - Actual cost: $969.79
+2025-11-09 19:23:50,002 - INFO - UnitChange from API: $970.11828
+2025-11-09 19:23:50,002 - INFO - Amount saved: $0.06
+2025-11-09 19:23:50,002 - INFO - Attempts required: 3
+2025-11-09 19:23:50,003 - INFO - Updated portfolio allocation: DOGE value changed from $969.85 to $0
+2025-11-09 19:23:50,003 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:50,003 - INFO - Portfolio allocation updated (REAL PURCHASE): DOGE value set to $0
+2025-11-09 19:23:50,003 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$970.11828
+2025-11-09 19:23:50,004 - INFO - SUCCESS: Successfully initiated purchase of DOGE
+2025-11-09 19:23:50,004 - INFO -    Quantity: 5541.0 DOGE
+2025-11-09 19:23:50,004 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:23:55,004 - INFO - 
+--- Purchase 12/24: ARB ---
+2025-11-09 19:23:55,005 - INFO - Purchasing $960.38 worth of ARB
+2025-11-09 19:23:55,005 - INFO - Starting purchase by value: $960.38 worth of ARB
+2025-11-09 19:23:55,005 - INFO - Fetching current price for ARB/USD from primary API
+2025-11-09 19:23:55,340 - INFO - Primary API price for ARB/USD: $0.2931
+2025-11-09 19:23:55,341 - INFO - Calculated quantity: 3276.629 coins for $960.38 at $0.2931/coin (precision: 3 decimals)
+2025-11-09 19:23:55,341 - INFO - Order details:
+2025-11-09 19:23:55,341 - INFO -   Coin: ARB
+2025-11-09 19:23:55,341 - INFO -   Quantity: 3276.629
+2025-11-09 19:23:55,341 - INFO -   Order Type: MARKET
+2025-11-09 19:23:55,341 - INFO -   Price Used: $0.2931
+2025-11-09 19:23:55,341 - INFO -   Estimated Cost: $960.38
+2025-11-09 19:23:55,341 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:23:55,341 - INFO - Starting aggressive purchase strategy for ARB with 16 possible attempts
+2025-11-09 19:23:55,341 - INFO - Target value: $960.38 at $0.2931/coin
+2025-11-09 19:23:55,342 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:23:55,342 - INFO - Aggressive quantity reduction: 3276.629 -> 3276.63 (strategy: 2-decimal)
+2025-11-09 19:23:55,342 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:23:55,342 - INFO -   Target value: $960.38 (quantity: 3276.63)
+2025-11-09 19:23:55,572 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:23:55,572 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:23:55,573 - WARNING - API Error: quantity step size error
+2025-11-09 19:23:55,573 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:23:57,573 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:23:57,574 - INFO - Aggressive quantity reduction: 3276.629 -> 3276.6 (strategy: 1-decimal)
+2025-11-09 19:23:57,574 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:23:57,574 - INFO -   Target value: $960.38 (quantity: 3276.6)
+2025-11-09 19:23:57,899 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$960.3714600000001
+2025-11-09 19:23:57,899 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:23:57,900 - INFO - Final purchase: 3276.6 ARB for $960.37
+2025-11-09 19:23:57,900 - INFO - API confirmed UnitChange: $960.3714600000001
+2025-11-09 19:23:57,900 - INFO - Amount saved due to strategy: $0.01 (0.0%)
+2025-11-09 19:23:57,900 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$960.3714600000001
+2025-11-09 19:23:57,900 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:23:57,900 - INFO - Final quantity: 3276.6 ARB
+2025-11-09 19:23:57,900 - INFO - Actual cost: $960.37
+2025-11-09 19:23:57,900 - INFO - UnitChange from API: $960.3714600000001
+2025-11-09 19:23:57,900 - INFO - Amount saved: $0.01
+2025-11-09 19:23:57,901 - INFO - Attempts required: 2
+2025-11-09 19:23:57,901 - INFO - Updated portfolio allocation: ARB value changed from $960.38 to $0
+2025-11-09 19:23:57,901 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:23:57,902 - INFO - Portfolio allocation updated (REAL PURCHASE): ARB value set to $0
+2025-11-09 19:23:57,902 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$960.3714600000001
+2025-11-09 19:23:57,902 - INFO - SUCCESS: Successfully initiated purchase of ARB
+2025-11-09 19:23:57,902 - INFO -    Quantity: 3276.6 ARB
+2025-11-09 19:23:57,902 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:02,903 - INFO - 
+--- Purchase 13/24: SHIB ---
+2025-11-09 19:24:02,903 - INFO - Purchasing $914.11 worth of SHIB
+2025-11-09 19:24:02,903 - INFO - Starting purchase by value: $914.11 worth of SHIB
+2025-11-09 19:24:02,904 - INFO - Fetching current price for SHIB/USD from primary API
+2025-11-09 19:24:03,118 - INFO - Primary API price for SHIB/USD: $0.0000
+2025-11-09 19:24:03,119 - INFO - Calculated quantity: 92055387.713 coins for $914.11 at $9.93e-06/coin (precision: 3 decimals)
+2025-11-09 19:24:03,119 - INFO - Order details:
+2025-11-09 19:24:03,119 - INFO -   Coin: SHIB
+2025-11-09 19:24:03,119 - INFO -   Quantity: 92055387.713
+2025-11-09 19:24:03,119 - INFO -   Order Type: MARKET
+2025-11-09 19:24:03,119 - INFO -   Price Used: $0.0000
+2025-11-09 19:24:03,119 - INFO -   Estimated Cost: $914.11
+2025-11-09 19:24:03,119 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:03,119 - INFO - Starting aggressive purchase strategy for SHIB with 16 possible attempts
+2025-11-09 19:24:03,119 - INFO - Target value: $914.11 at $0.0000/coin
+2025-11-09 19:24:03,119 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:03,119 - INFO - Aggressive quantity reduction: 92055387.714 -> 92055000 (strategy: thousands)
+2025-11-09 19:24:03,119 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:03,120 - INFO -   Target value: $914.11 (quantity: 92055000.0)
+2025-11-09 19:24:03,435 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$914.10615
+2025-11-09 19:24:03,435 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:03,435 - INFO - Final purchase: 92055000.0 SHIB for $914.11
+2025-11-09 19:24:03,435 - INFO - API confirmed UnitChange: $914.10615
+2025-11-09 19:24:03,436 - INFO - Amount saved due to strategy: $0.00 (0.0%)
+2025-11-09 19:24:03,436 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$914.10615
+2025-11-09 19:24:03,436 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:03,436 - INFO - Final quantity: 92055000.0 SHIB
+2025-11-09 19:24:03,436 - INFO - Actual cost: $914.11
+2025-11-09 19:24:03,436 - INFO - UnitChange from API: $914.10615
+2025-11-09 19:24:03,437 - INFO - Amount saved: $0.00
+2025-11-09 19:24:03,437 - INFO - Attempts required: 1
+2025-11-09 19:24:03,437 - INFO - Updated portfolio allocation: SHIB value changed from $914.11 to $0
+2025-11-09 19:24:03,438 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:03,438 - INFO - Portfolio allocation updated (REAL PURCHASE): SHIB value set to $0
+2025-11-09 19:24:03,438 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$914.10615
+2025-11-09 19:24:03,438 - INFO - SUCCESS: Successfully initiated purchase of SHIB
+2025-11-09 19:24:03,439 - INFO -    Quantity: 92055000.0 SHIB
+2025-11-09 19:24:03,439 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:08,439 - INFO - 
+--- Purchase 14/24: AAVE ---
+2025-11-09 19:24:08,440 - INFO - Purchasing $865.95 worth of AAVE
+2025-11-09 19:24:08,440 - INFO - Starting purchase by value: $865.95 worth of AAVE
+2025-11-09 19:24:08,496 - INFO - Fetching current price for AAVE/USD from primary API
+2025-11-09 19:24:08,832 - INFO - Primary API price for AAVE/USD: $201.7500
+2025-11-09 19:24:08,833 - INFO - Calculated quantity: 4.292 coins for $865.95 at $201.75/coin (precision: 3 decimals)
+2025-11-09 19:24:08,833 - INFO - Order details:
+2025-11-09 19:24:08,833 - INFO -   Coin: AAVE
+2025-11-09 19:24:08,834 - INFO -   Quantity: 4.292
+2025-11-09 19:24:08,834 - INFO -   Order Type: MARKET
+2025-11-09 19:24:08,834 - INFO -   Price Used: $201.7500
+2025-11-09 19:24:08,834 - INFO -   Estimated Cost: $865.91
+2025-11-09 19:24:08,834 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:08,834 - INFO - Starting aggressive purchase strategy for AAVE with 16 possible attempts
+2025-11-09 19:24:08,835 - INFO - Target value: $865.95 at $201.7500/coin
+2025-11-09 19:24:08,835 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:08,835 - INFO - Aggressive quantity reduction: 4.292 -> 4.29 (strategy: 2-decimal)
+2025-11-09 19:24:08,835 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:08,835 - INFO -   Target value: $865.95 (quantity: 4.29)
+2025-11-09 19:24:09,190 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$865.4646
+2025-11-09 19:24:09,190 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:09,190 - INFO - Final purchase: 4.29 AAVE for $865.51
+2025-11-09 19:24:09,190 - INFO - API confirmed UnitChange: $865.4646
+2025-11-09 19:24:09,190 - INFO - Amount saved due to strategy: $0.44 (0.1%)
+2025-11-09 19:24:09,191 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$865.4646
+2025-11-09 19:24:09,191 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:09,191 - INFO - Final quantity: 4.29 AAVE
+2025-11-09 19:24:09,191 - INFO - Actual cost: $865.51
+2025-11-09 19:24:09,191 - INFO - UnitChange from API: $865.4646
+2025-11-09 19:24:09,191 - INFO - Amount saved: $0.44
+2025-11-09 19:24:09,191 - INFO - Attempts required: 1
+2025-11-09 19:24:09,192 - INFO - Updated portfolio allocation: AAVE value changed from $865.95 to $0
+2025-11-09 19:24:09,192 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:09,193 - INFO - Portfolio allocation updated (REAL PURCHASE): AAVE value set to $0
+2025-11-09 19:24:09,193 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$865.4646
+2025-11-09 19:24:09,193 - INFO - SUCCESS: Successfully initiated purchase of AAVE
+2025-11-09 19:24:09,193 - INFO -    Quantity: 4.29 AAVE
+2025-11-09 19:24:09,193 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:14,194 - INFO - 
+--- Purchase 15/24: APT ---
+2025-11-09 19:24:14,194 - INFO - Purchasing $836.28 worth of APT
+2025-11-09 19:24:14,194 - INFO - Starting purchase by value: $836.28 worth of APT
+2025-11-09 19:24:14,194 - INFO - Fetching current price for APT/USD from primary API
+2025-11-09 19:24:14,529 - INFO - Primary API price for APT/USD: $3.0290
+2025-11-09 19:24:14,529 - INFO - Calculated quantity: 276.091 coins for $836.28 at $3.029/coin (precision: 3 decimals)
+2025-11-09 19:24:14,529 - INFO - Order details:
+2025-11-09 19:24:14,529 - INFO -   Coin: APT
+2025-11-09 19:24:14,529 - INFO -   Quantity: 276.091
+2025-11-09 19:24:14,530 - INFO -   Order Type: MARKET
+2025-11-09 19:24:14,530 - INFO -   Price Used: $3.0290
+2025-11-09 19:24:14,530 - INFO -   Estimated Cost: $836.28
+2025-11-09 19:24:14,530 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:14,530 - INFO - Starting aggressive purchase strategy for APT with 16 possible attempts
+2025-11-09 19:24:14,530 - INFO - Target value: $836.28 at $3.0290/coin
+2025-11-09 19:24:14,530 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:14,530 - INFO - Aggressive quantity reduction: 276.091 -> 276.09 (strategy: 2-decimal)
+2025-11-09 19:24:14,530 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:14,530 - INFO -   Target value: $836.28 (quantity: 276.09)
+2025-11-09 19:24:14,789 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$836.2766099999999
+2025-11-09 19:24:14,789 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:14,789 - INFO - Final purchase: 276.09 APT for $836.28
+2025-11-09 19:24:14,789 - INFO - API confirmed UnitChange: $836.2766099999999
+2025-11-09 19:24:14,790 - INFO - Amount saved due to strategy: $0.00 (0.0%)
+2025-11-09 19:24:14,790 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$836.2766099999999
+2025-11-09 19:24:14,790 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:14,790 - INFO - Final quantity: 276.09 APT
+2025-11-09 19:24:14,790 - INFO - Actual cost: $836.28
+2025-11-09 19:24:14,790 - INFO - UnitChange from API: $836.2766099999999
+2025-11-09 19:24:14,791 - INFO - Amount saved: $0.00
+2025-11-09 19:24:14,791 - INFO - Attempts required: 1
+2025-11-09 19:24:14,791 - INFO - Updated portfolio allocation: APT value changed from $836.28 to $0
+2025-11-09 19:24:14,792 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:14,792 - INFO - Portfolio allocation updated (REAL PURCHASE): APT value set to $0
+2025-11-09 19:24:14,792 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$836.2766099999999
+2025-11-09 19:24:14,792 - INFO - SUCCESS: Successfully initiated purchase of APT
+2025-11-09 19:24:14,792 - INFO -    Quantity: 276.09 APT
+2025-11-09 19:24:14,793 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:19,793 - INFO - 
+--- Purchase 16/24: AVAX ---
+2025-11-09 19:24:19,794 - INFO - Purchasing $818.90 worth of AVAX
+2025-11-09 19:24:19,794 - INFO - Starting purchase by value: $818.9 worth of AVAX
+2025-11-09 19:24:19,794 - INFO - Fetching current price for AVAX/USD from primary API
+2025-11-09 19:24:20,007 - INFO - Primary API price for AVAX/USD: $17.2600
+2025-11-09 19:24:20,008 - INFO - Calculated quantity: 47.444 coins for $818.9 at $17.26/coin (precision: 3 decimals)
+2025-11-09 19:24:20,008 - INFO - Order details:
+2025-11-09 19:24:20,008 - INFO -   Coin: AVAX
+2025-11-09 19:24:20,008 - INFO -   Quantity: 47.444
+2025-11-09 19:24:20,008 - INFO -   Order Type: MARKET
+2025-11-09 19:24:20,008 - INFO -   Price Used: $17.2600
+2025-11-09 19:24:20,008 - INFO -   Estimated Cost: $818.88
+2025-11-09 19:24:20,008 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:20,008 - INFO - Starting aggressive purchase strategy for AVAX with 16 possible attempts
+2025-11-09 19:24:20,008 - INFO - Target value: $818.90 at $17.2600/coin
+2025-11-09 19:24:20,008 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:20,008 - INFO - Aggressive quantity reduction: 47.445 -> 47.44 (strategy: 2-decimal)
+2025-11-09 19:24:20,008 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:20,008 - INFO -   Target value: $818.90 (quantity: 47.44)
+2025-11-09 19:24:20,328 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$818.8144000000001
+2025-11-09 19:24:20,328 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:20,329 - INFO - Final purchase: 47.44 AVAX for $818.81
+2025-11-09 19:24:20,329 - INFO - API confirmed UnitChange: $818.8144000000001
+2025-11-09 19:24:20,329 - INFO - Amount saved due to strategy: $0.09 (0.0%)
+2025-11-09 19:24:20,329 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$818.8144000000001
+2025-11-09 19:24:20,329 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:20,329 - INFO - Final quantity: 47.44 AVAX
+2025-11-09 19:24:20,329 - INFO - Actual cost: $818.81
+2025-11-09 19:24:20,329 - INFO - UnitChange from API: $818.8144000000001
+2025-11-09 19:24:20,329 - INFO - Amount saved: $0.09
+2025-11-09 19:24:20,329 - INFO - Attempts required: 1
+2025-11-09 19:24:20,330 - INFO - Updated portfolio allocation: AVAX value changed from $818.9 to $0
+2025-11-09 19:24:20,330 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:20,330 - INFO - Portfolio allocation updated (REAL PURCHASE): AVAX value set to $0
+2025-11-09 19:24:20,330 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$818.8144000000001
+2025-11-09 19:24:20,330 - INFO - SUCCESS: Successfully initiated purchase of AVAX
+2025-11-09 19:24:20,331 - INFO -    Quantity: 47.44 AVAX
+2025-11-09 19:24:20,331 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:25,331 - INFO - 
+--- Purchase 17/24: LINK ---
+2025-11-09 19:24:25,332 - INFO - Purchasing $730.81 worth of LINK
+2025-11-09 19:24:25,332 - INFO - Starting purchase by value: $730.81 worth of LINK
+2025-11-09 19:24:25,332 - INFO - Fetching current price for LINK/USD from primary API
+2025-11-09 19:24:25,637 - INFO - Primary API price for LINK/USD: $15.3800
+2025-11-09 19:24:25,637 - INFO - Calculated quantity: 47.516 coins for $730.81 at $15.38/coin (precision: 3 decimals)
+2025-11-09 19:24:25,637 - INFO - Order details:
+2025-11-09 19:24:25,637 - INFO -   Coin: LINK
+2025-11-09 19:24:25,637 - INFO -   Quantity: 47.516
+2025-11-09 19:24:25,637 - INFO -   Order Type: MARKET
+2025-11-09 19:24:25,637 - INFO -   Price Used: $15.3800
+2025-11-09 19:24:25,637 - INFO -   Estimated Cost: $730.80
+2025-11-09 19:24:25,637 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:25,637 - INFO - Starting aggressive purchase strategy for LINK with 16 possible attempts
+2025-11-09 19:24:25,638 - INFO - Target value: $730.81 at $15.3800/coin
+2025-11-09 19:24:25,638 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:25,638 - INFO - Aggressive quantity reduction: 47.517 -> 47.52 (strategy: 2-decimal)
+2025-11-09 19:24:25,638 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:25,638 - INFO -   Target value: $730.81 (quantity: 47.52)
+2025-11-09 19:24:25,890 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$731.3328
+2025-11-09 19:24:25,890 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:25,891 - INFO - Final purchase: 47.52 LINK for $730.86
+2025-11-09 19:24:25,891 - INFO - API confirmed UnitChange: $731.3328
+2025-11-09 19:24:25,891 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$731.3328
+2025-11-09 19:24:25,891 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:25,891 - INFO - Final quantity: 47.52 LINK
+2025-11-09 19:24:25,891 - INFO - Actual cost: $730.86
+2025-11-09 19:24:25,891 - INFO - UnitChange from API: $731.3328
+2025-11-09 19:24:25,891 - INFO - Attempts required: 1
+2025-11-09 19:24:25,891 - INFO - Updated portfolio allocation: LINK value changed from $730.81 to $0
+2025-11-09 19:24:25,891 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:25,891 - INFO - Portfolio allocation updated (REAL PURCHASE): LINK value set to $0
+2025-11-09 19:24:25,892 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$731.3328
+2025-11-09 19:24:25,892 - INFO - SUCCESS: Successfully initiated purchase of LINK
+2025-11-09 19:24:25,892 - INFO -    Quantity: 47.52 LINK
+2025-11-09 19:24:25,892 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:30,892 - INFO - 
+--- Purchase 18/24: XRP ---
+2025-11-09 19:24:30,892 - INFO - Purchasing $728.98 worth of XRP
+2025-11-09 19:24:30,892 - INFO - Starting purchase by value: $728.98 worth of XRP
+2025-11-09 19:24:30,892 - INFO - Fetching current price for XRP/USD from primary API
+2025-11-09 19:24:31,122 - INFO - Primary API price for XRP/USD: $2.2726
+2025-11-09 19:24:31,123 - INFO - Calculated quantity: 320.769 coins for $728.98 at $2.2726/coin (precision: 3 decimals)
+2025-11-09 19:24:31,123 - INFO - Order details:
+2025-11-09 19:24:31,123 - INFO -   Coin: XRP
+2025-11-09 19:24:31,123 - INFO -   Quantity: 320.769
+2025-11-09 19:24:31,123 - INFO -   Order Type: MARKET
+2025-11-09 19:24:31,123 - INFO -   Price Used: $2.2726
+2025-11-09 19:24:31,123 - INFO -   Estimated Cost: $728.98
+2025-11-09 19:24:31,123 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:31,123 - INFO - Starting aggressive purchase strategy for XRP with 16 possible attempts
+2025-11-09 19:24:31,123 - INFO - Target value: $728.98 at $2.2726/coin
+2025-11-09 19:24:31,123 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:31,123 - INFO - Aggressive quantity reduction: 320.769 -> 320.77 (strategy: 2-decimal)
+2025-11-09 19:24:31,123 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:31,123 - INFO -   Target value: $728.98 (quantity: 320.77)
+2025-11-09 19:24:31,342 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:31,342 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:31,342 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:31,342 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:24:33,343 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:24:33,343 - INFO - Aggressive quantity reduction: 320.769 -> 320.8 (strategy: 1-decimal)
+2025-11-09 19:24:33,343 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:24:33,343 - INFO -   Target value: $728.98 (quantity: 320.8)
+2025-11-09 19:24:33,572 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$729.1784000000001
+2025-11-09 19:24:33,572 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 2
+2025-11-09 19:24:33,573 - INFO - Final purchase: 320.8 XRP for $729.05
+2025-11-09 19:24:33,573 - INFO - API confirmed UnitChange: $729.1784000000001
+2025-11-09 19:24:33,573 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$729.1784000000001
+2025-11-09 19:24:33,573 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 2
+2025-11-09 19:24:33,573 - INFO - Final quantity: 320.8 XRP
+2025-11-09 19:24:33,573 - INFO - Actual cost: $729.05
+2025-11-09 19:24:33,573 - INFO - UnitChange from API: $729.1784000000001
+2025-11-09 19:24:33,573 - INFO - Attempts required: 2
+2025-11-09 19:24:33,574 - INFO - Updated portfolio allocation: XRP value changed from $728.98 to $0
+2025-11-09 19:24:33,574 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:33,574 - INFO - Portfolio allocation updated (REAL PURCHASE): XRP value set to $0
+2025-11-09 19:24:33,574 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$729.1784000000001
+2025-11-09 19:24:33,574 - INFO - SUCCESS: Successfully initiated purchase of XRP
+2025-11-09 19:24:33,575 - INFO -    Quantity: 320.8 XRP
+2025-11-09 19:24:33,575 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:38,575 - INFO - 
+--- Purchase 19/24: ETH ---
+2025-11-09 19:24:38,576 - INFO - Purchasing $612.21 worth of ETH
+2025-11-09 19:24:38,576 - INFO - Starting purchase by value: $612.21 worth of ETH
+2025-11-09 19:24:38,576 - INFO - Fetching current price for ETH/USD from primary API
+2025-11-09 19:24:38,849 - INFO - Primary API price for ETH/USD: $3,422.4200
+2025-11-09 19:24:38,849 - INFO - Calculated quantity: 0.178 coins for $612.21 at $3422.42/coin (precision: 3 decimals)
+2025-11-09 19:24:38,849 - INFO - Order details:
+2025-11-09 19:24:38,850 - INFO -   Coin: ETH
+2025-11-09 19:24:38,850 - INFO -   Quantity: 0.178
+2025-11-09 19:24:38,850 - INFO -   Order Type: MARKET
+2025-11-09 19:24:38,850 - INFO -   Price Used: $3,422.4200
+2025-11-09 19:24:38,850 - INFO -   Estimated Cost: $609.19
+2025-11-09 19:24:38,850 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:38,850 - INFO - Starting aggressive purchase strategy for ETH with 16 possible attempts
+2025-11-09 19:24:38,850 - INFO - Target value: $612.21 at $3422.4200/coin
+2025-11-09 19:24:38,850 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:38,850 - INFO - Aggressive quantity reduction: 0.179 -> 0.18 (strategy: 2-decimal)
+2025-11-09 19:24:38,850 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:38,850 - INFO -   Target value: $612.21 (quantity: 0.18)
+2025-11-09 19:24:39,088 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$616.0373999999999
+2025-11-09 19:24:39,088 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:39,088 - INFO - Final purchase: 0.18 ETH for $616.04
+2025-11-09 19:24:39,088 - INFO - API confirmed UnitChange: $616.0373999999999
+2025-11-09 19:24:39,088 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$616.0373999999999
+2025-11-09 19:24:39,089 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:39,089 - INFO - Final quantity: 0.18 ETH
+2025-11-09 19:24:39,089 - INFO - Actual cost: $616.04
+2025-11-09 19:24:39,089 - INFO - UnitChange from API: $616.0373999999999
+2025-11-09 19:24:39,089 - INFO - Attempts required: 1
+2025-11-09 19:24:39,089 - INFO - Updated portfolio allocation: ETH value changed from $612.21 to $0
+2025-11-09 19:24:39,089 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:39,090 - INFO - Portfolio allocation updated (REAL PURCHASE): ETH value set to $0
+2025-11-09 19:24:39,090 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$616.0373999999999
+2025-11-09 19:24:39,090 - INFO - SUCCESS: Successfully initiated purchase of ETH
+2025-11-09 19:24:39,090 - INFO -    Quantity: 0.18 ETH
+2025-11-09 19:24:39,090 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:44,090 - INFO - 
+--- Purchase 20/24: SOL ---
+2025-11-09 19:24:44,091 - INFO - Purchasing $550.69 worth of SOL
+2025-11-09 19:24:44,091 - INFO - Starting purchase by value: $550.69 worth of SOL
+2025-11-09 19:24:44,091 - INFO - Fetching current price for SOL/USD from primary API
+2025-11-09 19:24:44,408 - INFO - Primary API price for SOL/USD: $158.9300
+2025-11-09 19:24:44,408 - INFO - Calculated quantity: 3.464 coins for $550.69 at $158.93/coin (precision: 3 decimals)
+2025-11-09 19:24:44,408 - INFO - Order details:
+2025-11-09 19:24:44,408 - INFO -   Coin: SOL
+2025-11-09 19:24:44,408 - INFO -   Quantity: 3.464
+2025-11-09 19:24:44,408 - INFO -   Order Type: MARKET
+2025-11-09 19:24:44,409 - INFO -   Price Used: $158.9300
+2025-11-09 19:24:44,409 - INFO -   Estimated Cost: $550.53
+2025-11-09 19:24:44,409 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:44,409 - INFO - Starting aggressive purchase strategy for SOL with 16 possible attempts
+2025-11-09 19:24:44,409 - INFO - Target value: $550.69 at $158.9300/coin
+2025-11-09 19:24:44,409 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:44,409 - INFO - Aggressive quantity reduction: 3.465 -> 3.46 (strategy: 2-decimal)
+2025-11-09 19:24:44,409 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:44,409 - INFO -   Target value: $550.69 (quantity: 3.46)
+2025-11-09 19:24:44,646 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$549.9324
+2025-11-09 19:24:44,675 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:24:44,676 - INFO - Final purchase: 3.46 SOL for $549.90
+2025-11-09 19:24:44,676 - INFO - API confirmed UnitChange: $549.9324
+2025-11-09 19:24:44,676 - INFO - Amount saved due to strategy: $0.79 (0.1%)
+2025-11-09 19:24:44,676 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$549.9324
+2025-11-09 19:24:44,676 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:24:44,676 - INFO - Final quantity: 3.46 SOL
+2025-11-09 19:24:44,676 - INFO - Actual cost: $549.90
+2025-11-09 19:24:44,676 - INFO - UnitChange from API: $549.9324
+2025-11-09 19:24:44,676 - INFO - Amount saved: $0.79
+2025-11-09 19:24:44,676 - INFO - Attempts required: 1
+2025-11-09 19:24:44,677 - INFO - Updated portfolio allocation: SOL value changed from $550.69 to $0
+2025-11-09 19:24:44,677 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:24:44,677 - INFO - Portfolio allocation updated (REAL PURCHASE): SOL value set to $0
+2025-11-09 19:24:44,677 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$549.9324
+2025-11-09 19:24:44,677 - INFO - SUCCESS: Successfully initiated purchase of SOL
+2025-11-09 19:24:44,677 - INFO -    Quantity: 3.46 SOL
+2025-11-09 19:24:44,677 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:24:49,678 - INFO - 
+--- Purchase 21/24: BTC ---
+2025-11-09 19:24:49,678 - INFO - Purchasing $485.56 worth of BTC
+2025-11-09 19:24:49,679 - INFO - Starting purchase by value: $485.56 worth of BTC
+2025-11-09 19:24:49,735 - INFO - Fetching current price for BTC/USD from primary API
+2025-11-09 19:24:50,014 - INFO - Primary API price for BTC/USD: $102,119.7000
+2025-11-09 19:24:50,015 - INFO - Calculated quantity: 0.004 coins for $485.56 at $102119.7/coin (precision: 3 decimals)
+2025-11-09 19:24:50,015 - INFO - Order details:
+2025-11-09 19:24:50,015 - INFO -   Coin: BTC
+2025-11-09 19:24:50,015 - INFO -   Quantity: 0.004
+2025-11-09 19:24:50,015 - INFO -   Order Type: MARKET
+2025-11-09 19:24:50,015 - INFO -   Price Used: $102,119.7000
+2025-11-09 19:24:50,015 - INFO -   Estimated Cost: $408.48
+2025-11-09 19:24:50,015 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:24:50,015 - INFO - Starting aggressive purchase strategy for BTC with 16 possible attempts
+2025-11-09 19:24:50,015 - INFO - Target value: $485.56 at $102119.7000/coin
+2025-11-09 19:24:50,016 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:24:50,016 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: 2-decimal)
+2025-11-09 19:24:50,016 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:24:50,016 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:24:50,290 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:50,290 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:50,290 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:50,290 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:24:52,291 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:24:52,291 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: 1-decimal)
+2025-11-09 19:24:52,292 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:24:52,292 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:24:52,599 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:52,599 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:52,600 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:52,600 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:24:54,600 - INFO - Trying next step size reduction strategy (attempt 3)...
+2025-11-09 19:24:54,601 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: whole)
+2025-11-09 19:24:54,601 - INFO - Attempt 3/16: aggressive quantity pattern 3
+2025-11-09 19:24:54,601 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:24:54,828 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:54,828 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:54,828 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:54,828 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:24:56,829 - INFO - Trying next step size reduction strategy (attempt 4)...
+2025-11-09 19:24:56,829 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: fives)
+2025-11-09 19:24:56,830 - INFO - Attempt 4/16: aggressive quantity pattern 4
+2025-11-09 19:24:56,830 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:24:57,051 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:57,052 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:57,052 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:57,052 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:24:59,052 - INFO - Trying next step size reduction strategy (attempt 5)...
+2025-11-09 19:24:59,053 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: tens)
+2025-11-09 19:24:59,053 - INFO - Attempt 5/16: aggressive quantity pattern 5
+2025-11-09 19:24:59,053 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:24:59,264 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:24:59,264 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:24:59,264 - WARNING - API Error: quantity step size error
+2025-11-09 19:24:59,264 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:01,265 - INFO - Trying next step size reduction strategy (attempt 6)...
+2025-11-09 19:25:01,265 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: twenty-fives)
+2025-11-09 19:25:01,266 - INFO - Attempt 6/16: aggressive quantity pattern 6
+2025-11-09 19:25:01,266 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:25:01,505 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:01,506 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:01,506 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:01,506 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:03,506 - INFO - Trying next step size reduction strategy (attempt 7)...
+2025-11-09 19:25:03,507 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: fifties)
+2025-11-09 19:25:03,507 - INFO - Attempt 7/16: aggressive quantity pattern 7
+2025-11-09 19:25:03,507 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:25:03,735 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:03,735 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:03,735 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:03,735 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:05,735 - INFO - Trying next step size reduction strategy (attempt 8)...
+2025-11-09 19:25:05,736 - INFO - Aggressive quantity reduction: 0.005 -> 0.004755 (strategy: hundreds)
+2025-11-09 19:25:05,736 - INFO - Attempt 8/16: aggressive quantity pattern 8
+2025-11-09 19:25:05,736 - INFO -   Target value: $485.56 (quantity: 0.004755)
+2025-11-09 19:25:05,946 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:05,946 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:05,946 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:05,946 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:07,946 - INFO - Trying next step size reduction strategy (attempt 9)...
+2025-11-09 19:25:07,947 - INFO - Aggressive quantity reduction: 0.005 -> 0.004517 (strategy: whole)
+2025-11-09 19:25:07,947 - INFO - Attempt 9/16: reduced value (95%)
+2025-11-09 19:25:07,947 - INFO -   Target value: $461.28 (quantity: 0.004517)
+2025-11-09 19:25:08,146 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:08,147 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:08,147 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:08,147 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:10,147 - INFO - Trying next step size reduction strategy (attempt 10)...
+2025-11-09 19:25:10,194 - INFO - Aggressive quantity reduction: 0.004 -> 0.004279 (strategy: whole)
+2025-11-09 19:25:10,194 - INFO - Attempt 10/16: reduced value (90%)
+2025-11-09 19:25:10,195 - INFO -   Target value: $437.00 (quantity: 0.004279)
+2025-11-09 19:25:10,410 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:10,410 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:10,410 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:10,410 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:12,411 - INFO - Trying next step size reduction strategy (attempt 11)...
+2025-11-09 19:25:12,411 - INFO - Aggressive quantity reduction: 0.004 -> 0.004042 (strategy: whole)
+2025-11-09 19:25:12,411 - INFO - Attempt 11/16: reduced value (85%)
+2025-11-09 19:25:12,411 - INFO -   Target value: $412.73 (quantity: 0.004042)
+2025-11-09 19:25:12,754 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:12,754 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:12,755 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:12,755 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:14,755 - INFO - Trying next step size reduction strategy (attempt 12)...
+2025-11-09 19:25:14,755 - INFO - Aggressive quantity reduction: 0.004 -> 0.003804 (strategy: whole)
+2025-11-09 19:25:14,755 - INFO - Attempt 12/16: reduced value (80%)
+2025-11-09 19:25:14,755 - INFO -   Target value: $388.45 (quantity: 0.003804)
+2025-11-09 19:25:14,980 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:14,980 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:14,981 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:14,981 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:16,981 - INFO - Trying next step size reduction strategy (attempt 13)...
+2025-11-09 19:25:16,982 - INFO - Aggressive quantity reduction: 0.004 -> 0.003566 (strategy: whole)
+2025-11-09 19:25:16,982 - INFO - Attempt 13/16: emergency purchase (75% value)
+2025-11-09 19:25:16,982 - INFO -   Target value: $364.17 (quantity: 0.003566)
+2025-11-09 19:25:17,221 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:17,221 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:17,221 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:17,221 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:19,221 - INFO - Trying next step size reduction strategy (attempt 14)...
+2025-11-09 19:25:19,222 - INFO - Aggressive quantity reduction: 0.002 -> 0.002377 (strategy: fives)
+2025-11-09 19:25:19,222 - INFO - Attempt 14/16: emergency purchase (50% value)
+2025-11-09 19:25:19,222 - INFO -   Target value: $242.78 (quantity: 0.002377)
+2025-11-09 19:25:19,448 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:19,448 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:19,448 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:19,449 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:21,449 - INFO - Trying next step size reduction strategy (attempt 15)...
+2025-11-09 19:25:21,449 - INFO - Aggressive quantity reduction: 0.001 -> 0.001189 (strategy: tens)
+2025-11-09 19:25:21,449 - INFO - Attempt 15/16: emergency purchase (25% value)
+2025-11-09 19:25:21,449 - INFO -   Target value: $121.39 (quantity: 0.001189)
+2025-11-09 19:25:21,674 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:21,674 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:21,674 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:21,674 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:23,674 - INFO - Trying next step size reduction strategy (attempt 16)...
+2025-11-09 19:25:23,675 - INFO - Aggressive quantity reduction: 0.000 -> 0.000475 (strategy: twenty-fives)
+2025-11-09 19:25:23,675 - INFO - Attempt 16/16: emergency purchase (10% value)
+2025-11-09 19:25:23,675 - INFO -   Target value: $48.56 (quantity: 0.000475)
+2025-11-09 19:25:23,902 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:23,902 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:23,902 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:23,902 - ERROR - All purchase strategies failed
+2025-11-09 19:25:23,902 - ERROR - FAILED: Purchase not confirmed as successful
+2025-11-09 19:25:23,902 - ERROR - Error: Quantity step size error - all purchase strategies failed. Last API error: quantity step size error
+2025-11-09 19:25:23,902 - ERROR - Failed after 16 attempts
+2025-11-09 19:25:23,902 - INFO - Portfolio allocation unchanged for BTC due to purchase failure/unconfirmed status
+2025-11-09 19:25:23,902 - ERROR - FAILED: Failed to purchase BTC: Quantity step size error - all purchase strategies failed. Last API error: quantity step size error
+2025-11-09 19:25:23,902 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:25:28,903 - INFO - 
+--- Purchase 22/24: TON ---
+2025-11-09 19:25:28,903 - INFO - Purchasing $485.56 worth of TON
+2025-11-09 19:25:28,903 - INFO - Starting purchase by value: $485.56 worth of TON
+2025-11-09 19:25:28,904 - INFO - Fetching current price for TON/USD from primary API
+2025-11-09 19:25:29,236 - INFO - Primary API price for TON/USD: $2.0760
+2025-11-09 19:25:29,240 - INFO - Calculated quantity: 233.892 coins for $485.56 at $2.076/coin (precision: 3 decimals)
+2025-11-09 19:25:29,241 - INFO - Order details:
+2025-11-09 19:25:29,242 - INFO -   Coin: TON
+2025-11-09 19:25:29,243 - INFO -   Quantity: 233.892
+2025-11-09 19:25:29,243 - INFO -   Order Type: MARKET
+2025-11-09 19:25:29,243 - INFO -   Price Used: $2.0760
+2025-11-09 19:25:29,244 - INFO -   Estimated Cost: $485.56
+2025-11-09 19:25:29,244 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:25:29,244 - INFO - Starting aggressive purchase strategy for TON with 16 possible attempts
+2025-11-09 19:25:29,245 - INFO - Target value: $485.56 at $2.0760/coin
+2025-11-09 19:25:29,245 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:25:29,245 - INFO - Aggressive quantity reduction: 233.892 -> 233.89 (strategy: 2-decimal)
+2025-11-09 19:25:29,245 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:25:29,246 - INFO -   Target value: $485.56 (quantity: 233.89)
+2025-11-09 19:25:29,557 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$485.78952999999996
+2025-11-09 19:25:29,558 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:25:29,558 - INFO - Final purchase: 233.89 TON for $485.56
+2025-11-09 19:25:29,558 - INFO - API confirmed UnitChange: $485.78952999999996
+2025-11-09 19:25:29,558 - INFO - Amount saved due to strategy: $0.00 (0.0%)
+2025-11-09 19:25:29,558 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$485.78952999999996
+2025-11-09 19:25:29,559 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:25:29,559 - INFO - Final quantity: 233.89 TON
+2025-11-09 19:25:29,559 - INFO - Actual cost: $485.56
+2025-11-09 19:25:29,559 - INFO - UnitChange from API: $485.78952999999996
+2025-11-09 19:25:29,559 - INFO - Amount saved: $0.00
+2025-11-09 19:25:29,560 - INFO - Attempts required: 1
+2025-11-09 19:25:29,560 - INFO - Updated portfolio allocation: TON value changed from $485.56 to $0
+2025-11-09 19:25:29,561 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:25:29,561 - INFO - Portfolio allocation updated (REAL PURCHASE): TON value set to $0
+2025-11-09 19:25:29,561 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$485.78952999999996
+2025-11-09 19:25:29,561 - INFO - SUCCESS: Successfully initiated purchase of TON
+2025-11-09 19:25:29,562 - INFO -    Quantity: 233.89 TON
+2025-11-09 19:25:29,562 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:25:34,562 - INFO - 
+--- Purchase 23/24: TRX ---
+2025-11-09 19:25:34,562 - INFO - Purchasing $485.56 worth of TRX
+2025-11-09 19:25:34,563 - INFO - Starting purchase by value: $485.56 worth of TRX
+2025-11-09 19:25:34,563 - INFO - Fetching current price for TRX/USD from primary API
+2025-11-09 19:25:34,779 - INFO - Primary API price for TRX/USD: $0.2898
+2025-11-09 19:25:34,780 - INFO - Calculated quantity: 1675.5 coins for $485.56 at $0.2898/coin (precision: 3 decimals)
+2025-11-09 19:25:34,780 - INFO - Order details:
+2025-11-09 19:25:34,780 - INFO -   Coin: TRX
+2025-11-09 19:25:34,780 - INFO -   Quantity: 1675.5
+2025-11-09 19:25:34,780 - INFO -   Order Type: MARKET
+2025-11-09 19:25:34,780 - INFO -   Price Used: $0.2898
+2025-11-09 19:25:34,781 - INFO -   Estimated Cost: $485.56
+2025-11-09 19:25:34,781 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:25:34,781 - INFO - Starting aggressive purchase strategy for TRX with 16 possible attempts
+2025-11-09 19:25:34,781 - INFO - Target value: $485.56 at $0.2898/coin
+2025-11-09 19:25:34,781 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:25:34,781 - INFO - Aggressive quantity reduction: 1675.500 -> 1675.5 (strategy: 2-decimal)
+2025-11-09 19:25:34,781 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:25:34,781 - INFO -   Target value: $485.56 (quantity: 1675.5)
+2025-11-09 19:25:35,277 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$485.5599
+2025-11-09 19:25:35,278 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 1
+2025-11-09 19:25:35,278 - INFO - Final purchase: 1675.5 TRX for $485.56
+2025-11-09 19:25:35,278 - INFO - API confirmed UnitChange: $485.5599
+2025-11-09 19:25:35,278 - INFO - Amount saved due to strategy: $0.00 (0.0%)
+2025-11-09 19:25:35,279 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$485.5599
+2025-11-09 19:25:35,279 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 1
+2025-11-09 19:25:35,279 - INFO - Final quantity: 1675.5 TRX
+2025-11-09 19:25:35,280 - INFO - Actual cost: $485.56
+2025-11-09 19:25:35,280 - INFO - UnitChange from API: $485.5599
+2025-11-09 19:25:35,280 - INFO - Amount saved: $0.00
+2025-11-09 19:25:35,280 - INFO - Attempts required: 1
+2025-11-09 19:25:35,281 - INFO - Updated portfolio allocation: TRX value changed from $485.56 to $0
+2025-11-09 19:25:35,281 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:25:35,281 - INFO - Portfolio allocation updated (REAL PURCHASE): TRX value set to $0
+2025-11-09 19:25:35,282 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$485.5599
+2025-11-09 19:25:35,282 - INFO - SUCCESS: Successfully initiated purchase of TRX
+2025-11-09 19:25:35,282 - INFO -    Quantity: 1675.5 TRX
+2025-11-09 19:25:35,282 - INFO - Waiting 5 seconds before next purchase...
+2025-11-09 19:25:40,282 - INFO - 
+--- Purchase 24/24: HBAR ---
+2025-11-09 19:25:40,283 - INFO - Purchasing $485.56 worth of HBAR
+2025-11-09 19:25:40,283 - INFO - Starting purchase by value: $485.56 worth of HBAR
+2025-11-09 19:25:40,283 - INFO - Fetching current price for HBAR/USD from primary API
+2025-11-09 19:25:40,590 - INFO - Primary API price for HBAR/USD: $0.1714
+2025-11-09 19:25:40,590 - INFO - Calculated quantity: 2832.905 coins for $485.56 at $0.1714/coin (precision: 3 decimals)
+2025-11-09 19:25:40,590 - INFO - Order details:
+2025-11-09 19:25:40,590 - INFO -   Coin: HBAR
+2025-11-09 19:25:40,590 - INFO -   Quantity: 2832.905
+2025-11-09 19:25:40,590 - INFO -   Order Type: MARKET
+2025-11-09 19:25:40,591 - INFO -   Price Used: $0.1714
+2025-11-09 19:25:40,591 - INFO -   Estimated Cost: $485.56
+2025-11-09 19:25:40,591 - INFO - Placing order with progressive precision handling...
+2025-11-09 19:25:40,591 - INFO - Starting aggressive purchase strategy for HBAR with 16 possible attempts
+2025-11-09 19:25:40,591 - INFO - Target value: $485.56 at $0.1714/coin
+2025-11-09 19:25:40,591 - INFO - Changed to API directory: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/crypto-roostoo-api
+2025-11-09 19:25:40,591 - INFO - Aggressive quantity reduction: 2832.905 -> 2832.91 (strategy: 2-decimal)
+2025-11-09 19:25:40,591 - INFO - Attempt 1/16: aggressive quantity pattern 1
+2025-11-09 19:25:40,591 - INFO -   Target value: $485.56 (quantity: 2832.91)
+2025-11-09 19:25:40,912 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:40,912 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:40,912 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:40,912 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:42,913 - INFO - Trying next step size reduction strategy (attempt 2)...
+2025-11-09 19:25:42,913 - INFO - Aggressive quantity reduction: 2832.905 -> 2832.9 (strategy: 1-decimal)
+2025-11-09 19:25:42,914 - INFO - Attempt 2/16: aggressive quantity pattern 2
+2025-11-09 19:25:42,914 - INFO -   Target value: $485.56 (quantity: 2832.9)
+2025-11-09 19:25:43,224 - WARNING - API reports Success=false - ErrMsg='quantity step size error'
+2025-11-09 19:25:43,224 - WARNING - Quantity step size error detected from API response
+2025-11-09 19:25:43,225 - WARNING - API Error: quantity step size error
+2025-11-09 19:25:43,225 - INFO - Sleeping 2 seconds to avoid API overload before next attempt...
+2025-11-09 19:25:45,225 - INFO - Trying next step size reduction strategy (attempt 3)...
+2025-11-09 19:25:45,225 - INFO - Aggressive quantity reduction: 2832.905 -> 2832 (strategy: whole)
+2025-11-09 19:25:45,225 - INFO - Attempt 3/16: aggressive quantity pattern 3
+2025-11-09 19:25:45,225 - INFO -   Target value: $485.56 (quantity: 2832.0)
+2025-11-09 19:25:45,553 - INFO - CONFIRMED SUCCESS: Order completed with UnitChange=$485.43312000000003
+2025-11-09 19:25:45,553 - INFO - CONFIRMED PURCHASE SUCCESS with aggressive quantity pattern 3
+2025-11-09 19:25:45,553 - INFO - Final purchase: 2832.0 HBAR for $485.40
+2025-11-09 19:25:45,554 - INFO - API confirmed UnitChange: $485.43312000000003
+2025-11-09 19:25:45,554 - INFO - Amount saved due to strategy: $0.16 (0.0%)
+2025-11-09 19:25:45,554 - INFO - All success criteria met: Success=true, ErrMsg='', OrderDetail.UnitChange=$485.43312000000003
+2025-11-09 19:25:45,554 - INFO - CONFIRMED SUCCESS: Purchase completed using aggressive quantity pattern 3
+2025-11-09 19:25:45,554 - INFO - Final quantity: 2832.0 HBAR
+2025-11-09 19:25:45,555 - INFO - Actual cost: $485.40
+2025-11-09 19:25:45,555 - INFO - UnitChange from API: $485.43312000000003
+2025-11-09 19:25:45,555 - INFO - Amount saved: $0.16
+2025-11-09 19:25:45,555 - INFO - Attempts required: 3
+2025-11-09 19:25:45,556 - INFO - Updated portfolio allocation: HBAR value changed from $485.56 to $0
+2025-11-09 19:25:45,557 - INFO - Portfolio allocation file updated: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:25:45,557 - INFO - Portfolio allocation updated (REAL PURCHASE): HBAR value set to $0
+2025-11-09 19:25:45,557 - INFO - Purchase confirmed with Success=true, ErrMsg='', UnitChange=$485.43312000000003
+2025-11-09 19:25:45,557 - INFO - SUCCESS: Successfully initiated purchase of HBAR
+2025-11-09 19:25:45,557 - INFO -    Quantity: 2832.0 HBAR
+2025-11-09 19:25:45,557 - INFO - 
+============================================================
+2025-11-09 19:25:45,558 - INFO - PORTFOLIO PURCHASE SUMMARY
+2025-11-09 19:25:45,558 - INFO - ============================================================
+2025-11-09 19:25:45,558 - INFO - Total cryptocurrencies: 24
+2025-11-09 19:25:45,558 - INFO - Successful purchases: 23
+2025-11-09 19:25:45,558 - INFO - Failed purchases: 1
+2025-11-09 19:25:45,558 - INFO - Success rate: 95.8%
+2025-11-09 19:25:45,559 - INFO - Total execution time: 188.07 seconds (3.1 minutes)
+2025-11-09 19:25:45,559 - INFO - ============================================================
+2025-11-09 19:25:45,559 - INFO - Automated portfolio purchases completed
+2025-11-09 19:25:45,559 - INFO - Trade execution took 188.07 seconds
+2025-11-09 19:25:45,560 - INFO - Waiting additional 111.93 seconds to complete 5.0 minute startup delay...
+2025-11-09 19:26:27,608 - INFO - Received signal 2. Initiating graceful shutdown...
+2025-11-09 19:26:27,608 - INFO - ============================================================
+2025-11-09 19:26:27,608 - INFO - EMERGENCY SELL ALL CURRENCIES ON SHUTDOWN
+2025-11-09 19:26:27,608 - INFO - ============================================================
+2025-11-09 19:26:27,609 - INFO - Fetching current account balance for shutdown sell...
+2025-11-09 19:26:27,948 - INFO - Found 23 currencies to sell on shutdown:
+2025-11-09 19:26:27,949 - INFO -   AAVE: 4.291
+2025-11-09 19:26:27,949 - INFO -   ADA: 1787.1
+2025-11-09 19:26:27,949 - INFO -   APT: 276.08
+2025-11-09 19:26:27,949 - INFO -   ARB: 3276.5
+2025-11-09 19:26:27,949 - INFO -   AVAX: 47.44
+2025-11-09 19:26:27,949 - INFO -   CRV: 2781.7
+2025-11-09 19:26:27,949 - INFO -   DOGE: 5541.0
+2025-11-09 19:26:27,949 - INFO -   DOT: 418.94
+2025-11-09 19:26:27,949 - INFO -   ETH: 0.18
+2025-11-09 19:26:27,949 - INFO -   FET: 12337.5
+2025-11-09 19:26:27,950 - INFO -   FIL: 1027.29
+2025-11-09 19:26:27,950 - INFO -   HBAR: 2832.0
+2025-11-09 19:26:27,950 - INFO -   ICP: 199.27
+2025-11-09 19:26:27,950 - INFO -   LINK: 47.52
+2025-11-09 19:26:27,950 - INFO -   LTC: 19.05
+2025-11-09 19:26:27,950 - INFO -   NEAR: 1259.6
+2025-11-09 19:26:27,950 - INFO -   SEI: 7193.7
+2025-11-09 19:26:27,950 - INFO -   SHIB: 92055000.0
+2025-11-09 19:26:27,950 - INFO -   SOL: 3.46
+2025-11-09 19:26:27,950 - INFO -   TON: 233.89
+2025-11-09 19:26:27,950 - INFO -   TRX: 1675.5
+2025-11-09 19:26:27,950 - INFO -   UNI: 272.14
+2025-11-09 19:26:27,950 - INFO -   XRP: 320.8
+2025-11-09 19:26:27,950 - INFO - SHUTDOWN SELL: Selling 4.291 AAVE
+2025-11-09 19:26:28,484 - INFO - SHUTDOWN SELL: Order placed for AAVE
+2025-11-09 19:26:28,484 - INFO - SHUTDOWN SELL: Received $867.38 USD from AAVE sale
+2025-11-09 19:26:28,484 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:28,485 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:28,485 - INFO - SHUTDOWN SELL: Looking for key: AAVE
+2025-11-09 19:26:28,485 - INFO - SHUTDOWN SELL: Current value for AAVE: 0
+2025-11-09 19:26:28,485 - INFO - SHUTDOWN SELL: Updated portfolio allocation for AAVE from $0 to $867.38 (USD received from sale)
+2025-11-09 19:26:28,485 - INFO - SHUTDOWN SELL: Verification - AAVE value after update: 867.38
+2025-11-09 19:26:29,486 - INFO - SHUTDOWN SELL: Selling 1787.1 ADA
+2025-11-09 19:26:29,747 - INFO - SHUTDOWN SELL: Order placed for ADA
+2025-11-09 19:26:29,748 - INFO - SHUTDOWN SELL: Received $1005.24 USD from ADA sale
+2025-11-09 19:26:29,748 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:29,749 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:29,749 - INFO - SHUTDOWN SELL: Looking for key: ADA
+2025-11-09 19:26:29,749 - INFO - SHUTDOWN SELL: Current value for ADA: 0
+2025-11-09 19:26:29,750 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ADA from $0 to $1005.24 (USD received from sale)
+2025-11-09 19:26:29,750 - INFO - SHUTDOWN SELL: Verification - ADA value after update: 1005.24
+2025-11-09 19:26:30,751 - INFO - SHUTDOWN SELL: Selling 276.08 APT
+2025-11-09 19:26:31,018 - INFO - SHUTDOWN SELL: Order placed for APT
+2025-11-09 19:26:31,020 - INFO - SHUTDOWN SELL: Received $839.01 USD from APT sale
+2025-11-09 19:26:31,020 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:31,021 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:31,021 - INFO - SHUTDOWN SELL: Looking for key: APT
+2025-11-09 19:26:31,021 - INFO - SHUTDOWN SELL: Current value for APT: 0
+2025-11-09 19:26:31,022 - INFO - SHUTDOWN SELL: Updated portfolio allocation for APT from $0 to $839.01 (USD received from sale)
+2025-11-09 19:26:31,023 - INFO - SHUTDOWN SELL: Verification - APT value after update: 839.01
+2025-11-09 19:26:32,023 - INFO - SHUTDOWN SELL: Selling 3276.5 ARB
+2025-11-09 19:26:32,294 - INFO - SHUTDOWN SELL: Order placed for ARB
+2025-11-09 19:26:32,295 - INFO - SHUTDOWN SELL: Received $961.98 USD from ARB sale
+2025-11-09 19:26:32,295 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:32,295 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:32,296 - INFO - SHUTDOWN SELL: Looking for key: ARB
+2025-11-09 19:26:32,296 - INFO - SHUTDOWN SELL: Current value for ARB: 0
+2025-11-09 19:26:32,297 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ARB from $0 to $961.98 (USD received from sale)
+2025-11-09 19:26:32,297 - INFO - SHUTDOWN SELL: Verification - ARB value after update: 961.98
+2025-11-09 19:26:33,298 - INFO - SHUTDOWN SELL: Selling 47.44 AVAX
+2025-11-09 19:26:33,613 - INFO - SHUTDOWN SELL: Order placed for AVAX
+2025-11-09 19:26:33,615 - INFO - SHUTDOWN SELL: Received $819.76 USD from AVAX sale
+2025-11-09 19:26:33,615 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:33,616 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:33,616 - INFO - SHUTDOWN SELL: Looking for key: AVAX
+2025-11-09 19:26:33,616 - INFO - SHUTDOWN SELL: Current value for AVAX: 0
+2025-11-09 19:26:33,617 - INFO - SHUTDOWN SELL: Updated portfolio allocation for AVAX from $0 to $819.76 (USD received from sale)
+2025-11-09 19:26:33,617 - INFO - SHUTDOWN SELL: Verification - AVAX value after update: 819.76
+2025-11-09 19:26:34,618 - INFO - SHUTDOWN SELL: Selling 2781.7 CRV
+2025-11-09 19:26:34,860 - INFO - SHUTDOWN SELL: Order placed for CRV
+2025-11-09 19:26:34,861 - INFO - SHUTDOWN SELL: Received $1329.10 USD from CRV sale
+2025-11-09 19:26:34,862 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:34,862 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:34,862 - INFO - SHUTDOWN SELL: Looking for key: CRV
+2025-11-09 19:26:34,863 - INFO - SHUTDOWN SELL: Current value for CRV: 0
+2025-11-09 19:26:34,864 - INFO - SHUTDOWN SELL: Updated portfolio allocation for CRV from $0 to $1329.10 (USD received from sale)
+2025-11-09 19:26:34,864 - INFO - SHUTDOWN SELL: Verification - CRV value after update: 1329.1
+2025-11-09 19:26:35,864 - INFO - SHUTDOWN SELL: Selling 5541.0 DOGE
+2025-11-09 19:26:36,130 - INFO - SHUTDOWN SELL: Order placed for DOGE
+2025-11-09 19:26:36,131 - INFO - SHUTDOWN SELL: Received $971.61 USD from DOGE sale
+2025-11-09 19:26:36,132 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:36,132 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:36,133 - INFO - SHUTDOWN SELL: Looking for key: DOGE
+2025-11-09 19:26:36,133 - INFO - SHUTDOWN SELL: Current value for DOGE: 0
+2025-11-09 19:26:36,134 - INFO - SHUTDOWN SELL: Updated portfolio allocation for DOGE from $0 to $971.61 (USD received from sale)
+2025-11-09 19:26:36,134 - INFO - SHUTDOWN SELL: Verification - DOGE value after update: 971.61
+2025-11-09 19:26:37,134 - INFO - SHUTDOWN SELL: Selling 418.94 DOT
+2025-11-09 19:26:37,368 - INFO - SHUTDOWN SELL: Order placed for DOT
+2025-11-09 19:26:37,369 - INFO - SHUTDOWN SELL: Received $1310.03 USD from DOT sale
+2025-11-09 19:26:37,369 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:37,370 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:37,370 - INFO - SHUTDOWN SELL: Looking for key: DOT
+2025-11-09 19:26:37,370 - INFO - SHUTDOWN SELL: Current value for DOT: 0
+2025-11-09 19:26:37,371 - INFO - SHUTDOWN SELL: Updated portfolio allocation for DOT from $0 to $1310.03 (USD received from sale)
+2025-11-09 19:26:37,371 - INFO - SHUTDOWN SELL: Verification - DOT value after update: 1310.03
+2025-11-09 19:26:38,372 - INFO - SHUTDOWN SELL: Selling 0.18 ETH
+2025-11-09 19:26:38,614 - INFO - SHUTDOWN SELL: Order placed for ETH
+2025-11-09 19:26:38,615 - INFO - SHUTDOWN SELL: Received $616.35 USD from ETH sale
+2025-11-09 19:26:38,615 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:38,615 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:38,615 - INFO - SHUTDOWN SELL: Looking for key: ETH
+2025-11-09 19:26:38,615 - INFO - SHUTDOWN SELL: Current value for ETH: 0
+2025-11-09 19:26:38,616 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ETH from $0 to $616.35 (USD received from sale)
+2025-11-09 19:26:38,616 - INFO - SHUTDOWN SELL: Verification - ETH value after update: 616.35
+2025-11-09 19:26:39,616 - INFO - SHUTDOWN SELL: Selling 12337.5 FET
+2025-11-09 19:26:39,867 - INFO - SHUTDOWN SELL: Order placed for FET
+2025-11-09 19:26:39,867 - INFO - SHUTDOWN SELL: Received $3894.95 USD from FET sale
+2025-11-09 19:26:39,867 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:39,868 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:39,868 - INFO - SHUTDOWN SELL: Looking for key: FET
+2025-11-09 19:26:39,868 - INFO - SHUTDOWN SELL: Current value for FET: 0
+2025-11-09 19:26:39,869 - INFO - SHUTDOWN SELL: Updated portfolio allocation for FET from $0 to $3894.95 (USD received from sale)
+2025-11-09 19:26:39,869 - INFO - SHUTDOWN SELL: Verification - FET value after update: 3894.95
+2025-11-09 19:26:40,869 - INFO - SHUTDOWN SELL: Selling 1027.29 FIL
+2025-11-09 19:26:41,101 - INFO - SHUTDOWN SELL: Order placed for FIL
+2025-11-09 19:26:41,101 - INFO - SHUTDOWN SELL: Received $2718.21 USD from FIL sale
+2025-11-09 19:26:41,102 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:41,102 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:41,102 - INFO - SHUTDOWN SELL: Looking for key: FIL
+2025-11-09 19:26:41,102 - INFO - SHUTDOWN SELL: Current value for FIL: 0
+2025-11-09 19:26:41,103 - INFO - SHUTDOWN SELL: Updated portfolio allocation for FIL from $0 to $2718.21 (USD received from sale)
+2025-11-09 19:26:41,103 - INFO - SHUTDOWN SELL: Verification - FIL value after update: 2718.21
+2025-11-09 19:26:42,103 - INFO - SHUTDOWN SELL: Selling 2832.0 HBAR
+2025-11-09 19:26:42,360 - INFO - SHUTDOWN SELL: Order placed for HBAR
+2025-11-09 19:26:42,362 - INFO - SHUTDOWN SELL: Received $485.86 USD from HBAR sale
+2025-11-09 19:26:42,362 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:42,362 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:42,363 - INFO - SHUTDOWN SELL: Looking for key: HBAR
+2025-11-09 19:26:42,363 - INFO - SHUTDOWN SELL: Current value for HBAR: 0
+2025-11-09 19:26:42,364 - INFO - SHUTDOWN SELL: Updated portfolio allocation for HBAR from $0 to $485.86 (USD received from sale)
+2025-11-09 19:26:42,364 - INFO - SHUTDOWN SELL: Verification - HBAR value after update: 485.86
+2025-11-09 19:26:43,365 - INFO - SHUTDOWN SELL: Selling 199.27 ICP
+2025-11-09 19:26:43,611 - INFO - SHUTDOWN SELL: Order placed for ICP
+2025-11-09 19:26:43,611 - INFO - SHUTDOWN SELL: Received $1424.18 USD from ICP sale
+2025-11-09 19:26:43,612 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:43,612 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:43,612 - INFO - SHUTDOWN SELL: Looking for key: ICP
+2025-11-09 19:26:43,612 - INFO - SHUTDOWN SELL: Current value for ICP: 0
+2025-11-09 19:26:43,613 - INFO - SHUTDOWN SELL: Updated portfolio allocation for ICP from $0 to $1424.18 (USD received from sale)
+2025-11-09 19:26:43,614 - INFO - SHUTDOWN SELL: Verification - ICP value after update: 1424.18
+2025-11-09 19:26:44,614 - INFO - SHUTDOWN SELL: Selling 47.52 LINK
+2025-11-09 19:26:44,865 - INFO - SHUTDOWN SELL: Order placed for LINK
+2025-11-09 19:26:44,865 - INFO - SHUTDOWN SELL: Received $731.81 USD from LINK sale
+2025-11-09 19:26:44,866 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:44,866 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:44,866 - INFO - SHUTDOWN SELL: Looking for key: LINK
+2025-11-09 19:26:44,866 - INFO - SHUTDOWN SELL: Current value for LINK: 0
+2025-11-09 19:26:44,867 - INFO - SHUTDOWN SELL: Updated portfolio allocation for LINK from $0 to $731.81 (USD received from sale)
+2025-11-09 19:26:44,867 - INFO - SHUTDOWN SELL: Verification - LINK value after update: 731.81
+2025-11-09 19:26:45,867 - INFO - SHUTDOWN SELL: Selling 19.05 LTC
+2025-11-09 19:26:46,109 - INFO - SHUTDOWN SELL: Order placed for LTC
+2025-11-09 19:26:46,110 - INFO - SHUTDOWN SELL: Received $1999.49 USD from LTC sale
+2025-11-09 19:26:46,110 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:46,111 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:46,111 - INFO - SHUTDOWN SELL: Looking for key: LTC
+2025-11-09 19:26:46,111 - INFO - SHUTDOWN SELL: Current value for LTC: 0
+2025-11-09 19:26:46,112 - INFO - SHUTDOWN SELL: Updated portfolio allocation for LTC from $0 to $1999.49 (USD received from sale)
+2025-11-09 19:26:46,113 - INFO - SHUTDOWN SELL: Verification - LTC value after update: 1999.49
+2025-11-09 19:26:47,113 - INFO - SHUTDOWN SELL: Selling 1259.6 NEAR
+2025-11-09 19:26:47,372 - INFO - SHUTDOWN SELL: Order placed for NEAR
+2025-11-09 19:26:47,372 - INFO - SHUTDOWN SELL: Received $3497.91 USD from NEAR sale
+2025-11-09 19:26:47,372 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:47,373 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:47,373 - INFO - SHUTDOWN SELL: Looking for key: NEAR
+2025-11-09 19:26:47,374 - INFO - SHUTDOWN SELL: Current value for NEAR: 0
+2025-11-09 19:26:47,375 - INFO - SHUTDOWN SELL: Updated portfolio allocation for NEAR from $0 to $3497.91 (USD received from sale)
+2025-11-09 19:26:47,375 - INFO - SHUTDOWN SELL: Verification - NEAR value after update: 3497.91
+2025-11-09 19:26:48,375 - INFO - SHUTDOWN SELL: Selling 7193.7 SEI
+2025-11-09 19:26:48,644 - INFO - SHUTDOWN SELL: Order placed for SEI
+2025-11-09 19:26:48,645 - INFO - SHUTDOWN SELL: Received $1266.09 USD from SEI sale
+2025-11-09 19:26:48,645 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:48,702 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:48,703 - INFO - SHUTDOWN SELL: Looking for key: SEI
+2025-11-09 19:26:48,703 - INFO - SHUTDOWN SELL: Current value for SEI: 0
+2025-11-09 19:26:48,704 - INFO - SHUTDOWN SELL: Updated portfolio allocation for SEI from $0 to $1266.09 (USD received from sale)
+2025-11-09 19:26:48,704 - INFO - SHUTDOWN SELL: Verification - SEI value after update: 1266.09
+2025-11-09 19:26:49,705 - INFO - SHUTDOWN SELL: Selling 92055000.0 SHIB
+2025-11-09 19:26:49,929 - INFO - SHUTDOWN SELL: Order placed for SHIB
+2025-11-09 19:26:49,930 - INFO - SHUTDOWN SELL: Received $914.11 USD from SHIB sale
+2025-11-09 19:26:49,930 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:49,930 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:49,930 - INFO - SHUTDOWN SELL: Looking for key: SHIB
+2025-11-09 19:26:49,931 - INFO - SHUTDOWN SELL: Current value for SHIB: 0
+2025-11-09 19:26:49,931 - INFO - SHUTDOWN SELL: Updated portfolio allocation for SHIB from $0 to $914.11 (USD received from sale)
+2025-11-09 19:26:49,932 - INFO - SHUTDOWN SELL: Verification - SHIB value after update: 914.11
+2025-11-09 19:26:50,932 - INFO - SHUTDOWN SELL: Selling 3.46 SOL
+2025-11-09 19:26:51,170 - INFO - SHUTDOWN SELL: Order placed for SOL
+2025-11-09 19:26:51,171 - INFO - SHUTDOWN SELL: Received $551.14 USD from SOL sale
+2025-11-09 19:26:51,171 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:51,172 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:51,172 - INFO - SHUTDOWN SELL: Looking for key: SOL
+2025-11-09 19:26:51,172 - INFO - SHUTDOWN SELL: Current value for SOL: 0
+2025-11-09 19:26:51,173 - INFO - SHUTDOWN SELL: Updated portfolio allocation for SOL from $0 to $551.14 (USD received from sale)
+2025-11-09 19:26:51,173 - INFO - SHUTDOWN SELL: Verification - SOL value after update: 551.14
+2025-11-09 19:26:52,174 - INFO - SHUTDOWN SELL: Selling 233.89 TON
+2025-11-09 19:26:52,480 - INFO - SHUTDOWN SELL: Order placed for TON
+2025-11-09 19:26:52,480 - INFO - SHUTDOWN SELL: Received $485.79 USD from TON sale
+2025-11-09 19:26:52,480 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:52,481 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:52,481 - INFO - SHUTDOWN SELL: Looking for key: TON
+2025-11-09 19:26:52,481 - INFO - SHUTDOWN SELL: Current value for TON: 0
+2025-11-09 19:26:52,481 - INFO - SHUTDOWN SELL: Updated portfolio allocation for TON from $0 to $485.79 (USD received from sale)
+2025-11-09 19:26:52,481 - INFO - SHUTDOWN SELL: Verification - TON value after update: 485.79
+2025-11-09 19:26:53,482 - INFO - SHUTDOWN SELL: Selling 1675.5 TRX
+2025-11-09 19:26:53,724 - INFO - SHUTDOWN SELL: Order placed for TRX
+2025-11-09 19:26:53,725 - INFO - SHUTDOWN SELL: Received $485.39 USD from TRX sale
+2025-11-09 19:26:53,782 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:53,783 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:53,783 - INFO - SHUTDOWN SELL: Looking for key: TRX
+2025-11-09 19:26:53,783 - INFO - SHUTDOWN SELL: Current value for TRX: 0
+2025-11-09 19:26:53,784 - INFO - SHUTDOWN SELL: Updated portfolio allocation for TRX from $0 to $485.39 (USD received from sale)
+2025-11-09 19:26:53,784 - INFO - SHUTDOWN SELL: Verification - TRX value after update: 485.39
+2025-11-09 19:26:54,785 - INFO - SHUTDOWN SELL: Selling 272.14 UNI
+2025-11-09 19:26:55,009 - INFO - SHUTDOWN SELL: Order placed for UNI
+2025-11-09 19:26:55,010 - INFO - SHUTDOWN SELL: Received $1737.89 USD from UNI sale
+2025-11-09 19:26:55,010 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:55,011 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:55,011 - INFO - SHUTDOWN SELL: Looking for key: UNI
+2025-11-09 19:26:55,011 - INFO - SHUTDOWN SELL: Current value for UNI: 0
+2025-11-09 19:26:55,012 - INFO - SHUTDOWN SELL: Updated portfolio allocation for UNI from $0 to $1737.89 (USD received from sale)
+2025-11-09 19:26:55,012 - INFO - SHUTDOWN SELL: Verification - UNI value after update: 1737.89
+2025-11-09 19:26:56,013 - INFO - SHUTDOWN SELL: Selling 320.8 XRP
+2025-11-09 19:26:56,265 - INFO - SHUTDOWN SELL: Order placed for XRP
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Received $729.95 USD from XRP sale
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Attempting to update portfolio file: /home/minipc/Documents/development/HackathonWeb/WEB3-Hackathon/output/simple_portfolio_allocation.json
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Current portfolio data keys: ['FET', 'NEAR', 'FIL', 'LTC', 'UNI', 'ICP', 'CRV', 'DOT', 'SEI', 'ADA', 'DOGE', 'ARB', 'SHIB', 'AAVE', 'APT', 'AVAX', 'LINK', 'XRP', 'ETH', 'SOL', 'BTC', 'TON', 'TRX', 'HBAR']
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Looking for key: XRP
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Current value for XRP: 0
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Updated portfolio allocation for XRP from $0 to $729.95 (USD received from sale)
+2025-11-09 19:26:56,266 - INFO - SHUTDOWN SELL: Verification - XRP value after update: 729.95
+2025-11-09 19:26:57,267 - INFO - SHUTDOWN SELL COMPLETE: 23 currencies processed
+2025-11-09 19:26:57,267 - INFO - ============================================================
+2025-11-09 19:26:57,268 - INFO - SHUTDOWN SELL PROCESS COMPLETED
+2025-11-09 19:26:57,268 - INFO - ============================================================
+2025-11-09 19:26:57,268 - INFO - Startup delay completed, entering monitoring loop...
+2025-11-09 19:26:57,268 - INFO - ============================================================
+2025-11-09 19:26:57,269 - INFO - Monitor Bot shutting down after 0 cycles
+2025-11-09 19:26:57,269 - INFO - ============================================================

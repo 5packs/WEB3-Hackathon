@@ -229,8 +229,8 @@ def update_portfolio_allocation_after_purchase(coin: str, success: bool = True) 
 
 def calculate_quantity_with_step_size_reduction(total_value: float, price: float, attempt: int = 0) -> float:
     """
-    Calculate quantity with aggressive step size reduction strategy.
-    Uses common trading quantity patterns that exchanges typically accept.
+    Calculate quantity with intelligent step size reduction strategy.
+    Adapts strategies based on coin price and resulting quantity size.
     
     Args:
         total_value (float): Total USD amount to spend
@@ -248,77 +248,126 @@ def calculate_quantity_with_step_size_reduction(total_value: float, price: float
     # Calculate base quantity
     base_quantity = total_value / price
     
-    # Define aggressive quantity rounding strategies
-    # These are common patterns that exchanges often accept
-    rounding_strategies = [
-        # Strategy 0: Small decimal reduction
-        lambda q: round(q, 2),
-        # Strategy 1: Round to 1 decimal  
-        lambda q: round(q, 1),
-        # Strategy 2: Round down to whole numbers
-        lambda q: int(q),
-        # Strategy 3: Round to nearest 5
-        lambda q: int(q // 5) * 5,
-        # Strategy 4: Round to nearest 10
-        lambda q: int(q // 10) * 10,
-        # Strategy 5: Round to nearest 25  
-        lambda q: int(q // 25) * 25,
-        # Strategy 6: Round to nearest 50
-        lambda q: int(q // 50) * 50,
-        # Strategy 7: Round to nearest 100
-        lambda q: int(q // 100) * 100
-    ]
-    
-    # Handle very large quantities (like SHIB) with special large-number strategies
-    if base_quantity > 1_000_000:
+    # Choose strategy based on coin price and resulting quantity
+    if price > 50000:  # Very expensive coins like BTC (>$50k)
+        # For expensive coins, use high-precision decimal strategies
+        precision_strategies = [
+            lambda q: round(q, 6),   # 6 decimals
+            lambda q: round(q, 5),   # 5 decimals  
+            lambda q: round(q, 4),   # 4 decimals
+            lambda q: round(q, 3),   # 3 decimals
+            lambda q: round(q, 2),   # 2 decimals
+            lambda q: round(q, 1),   # 1 decimal
+            # Try stepping down by small amounts
+            lambda q: max(0.001, q * 0.95),   # 95% of original
+            lambda q: max(0.0005, q * 0.90)   # 90% of original
+        ]
+        
+        if attempt < len(precision_strategies):
+            strategy_func = precision_strategies[attempt]
+            result = strategy_func(base_quantity)
+            precisions = ["6-decimal", "5-decimal", "4-decimal", "3-decimal", "2-decimal", "1-decimal", "95% reduced", "90% reduced"]
+            strategy_name = precisions[attempt] if attempt < len(precisions) else f"fallback-{attempt}"
+            
+    elif price > 1000:  # Expensive coins like ETH ($1k-$50k)
+        # Medium precision for mid-expensive coins
+        strategies = [
+            lambda q: round(q, 4),   # 4 decimals
+            lambda q: round(q, 3),   # 3 decimals
+            lambda q: round(q, 2),   # 2 decimals
+            lambda q: round(q, 1),   # 1 decimal
+            lambda q: round(q * 0.95, 4),  # 95% with precision
+            lambda q: round(q * 0.90, 3),  # 90% with precision
+            lambda q: round(q * 0.85, 2),  # 85% with precision
+            lambda q: round(q * 0.80, 2)   # 80% with precision
+        ]
+        
+        if attempt < len(strategies):
+            strategy_func = strategies[attempt]
+            result = strategy_func(base_quantity)
+            names = ["4-decimal", "3-decimal", "2-decimal", "1-decimal", "95% reduced", "90% reduced", "85% reduced", "80% reduced"]
+            strategy_name = names[attempt] if attempt < len(names) else f"fallback-{attempt}"
+            
+    elif base_quantity > 1_000_000:  # Very large quantities (cheap coins like SHIB)
+        # Large number strategies for very cheap coins
         large_strategies = [
             lambda q: int(q // 1000) * 1000,    # Round to thousands
             lambda q: int(q // 10000) * 10000,  # Round to ten-thousands  
             lambda q: int(q // 100000) * 100000, # Round to hundred-thousands
-            lambda q: int(q // 1000000) * 1000000 # Round to millions
+            lambda q: int(q // 1000000) * 1000000, # Round to millions
+            lambda q: int(q // 500000) * 500000,  # Round to half-millions
+            lambda q: int(q // 250000) * 250000,  # Round to quarter-millions
+            lambda q: int(q // 100000) * 100000,  # Round to hundred-thousands again
+            lambda q: int(q // 50000) * 50000     # Round to fifty-thousands
         ]
-        rounding_strategies = large_strategies + rounding_strategies[2:]  # Skip decimal strategies for large numbers
-    
-    # Apply the appropriate rounding strategy
-    if attempt < len(rounding_strategies):
-        strategy_func = rounding_strategies[attempt]
-        reduced_quantity = strategy_func(base_quantity)
         
-        # Ensure we don't round to zero
-        if reduced_quantity <= 0:
-            reduced_quantity = 1.0 if base_quantity >= 1 else round(base_quantity, 6)
-        
-        strategy_name = f"pattern {attempt + 1}"
-        if base_quantity > 1_000_000:
-            patterns = ["thousands", "ten-thousands", "hundred-thousands", "millions", "whole", "fives", "tens", "twenties-fives"]
-        else:
-            patterns = ["2-decimal", "1-decimal", "whole", "fives", "tens", "twenty-fives", "fifties", "hundreds"]
-        
-        if attempt < len(patterns):
-            strategy_name = patterns[attempt]
+        if attempt < len(large_strategies):
+            strategy_func = large_strategies[attempt]
+            result = strategy_func(base_quantity)
+            names = ["thousands", "ten-thousands", "hundred-thousands", "millions", "half-millions", "quarter-millions", "hundred-thousands-2", "fifty-thousands"]
+            strategy_name = names[attempt] if attempt < len(names) else f"large-fallback-{attempt}"
             
-        logger.info(f"Aggressive quantity reduction: {base_quantity:.3f} -> {reduced_quantity} (strategy: {strategy_name})")
-        return float(reduced_quantity)
+    elif base_quantity > 1000:  # Medium quantities (mid-price coins)
+        # Standard rounding for medium quantities
+        medium_strategies = [
+            lambda q: round(q, 2),           # 2 decimals
+            lambda q: round(q, 1),           # 1 decimal
+            lambda q: int(q),                # Whole numbers
+            lambda q: int(q // 5) * 5,       # Nearest 5
+            lambda q: int(q // 10) * 10,     # Nearest 10
+            lambda q: int(q // 25) * 25,     # Nearest 25
+            lambda q: int(q // 50) * 50,     # Nearest 50
+            lambda q: int(q // 100) * 100    # Nearest 100
+        ]
+        
+        if attempt < len(medium_strategies):
+            strategy_func = medium_strategies[attempt]
+            result = strategy_func(base_quantity)
+            names = ["2-decimal", "1-decimal", "whole", "fives", "tens", "twenty-fives", "fifties", "hundreds"]
+            strategy_name = names[attempt] if attempt < len(names) else f"medium-fallback-{attempt}"
+            
+    else:  # Small quantities (most coins $1-$1000)
+        # Decimal precision strategies for smaller quantities
+        small_strategies = [
+            lambda q: round(q, 3),           # 3 decimals
+            lambda q: round(q, 2),           # 2 decimals
+            lambda q: round(q, 1),           # 1 decimal
+            lambda q: int(q),                # Whole numbers
+            lambda q: max(1, int(q // 5) * 5),     # Nearest 5 (min 1)
+            lambda q: max(1, int(q // 10) * 10),   # Nearest 10 (min 1)
+            lambda q: max(1, int(q // 25) * 25),   # Nearest 25 (min 1)
+            lambda q: max(1, int(q // 50) * 50)    # Nearest 50 (min 1)
+        ]
+        
+        if attempt < len(small_strategies):
+            strategy_func = small_strategies[attempt]
+            result = strategy_func(base_quantity)
+            names = ["3-decimal", "2-decimal", "1-decimal", "whole", "fives", "tens", "twenty-fives", "fifties"]
+            strategy_name = names[attempt] if attempt < len(names) else f"small-fallback-{attempt}"
     
-    # If all strategies exhausted, try very small fallback quantities  
-    fallback_quantities = [1.0, 5.0, 10.0, 25.0, 50.0, 100.0]
-    fallback_index = attempt - len(rounding_strategies)
+    # Apply the strategy if one was selected above
+    if 'result' in locals():
+        # Ensure we don't round to zero
+        if result <= 0:
+            result = 0.001 if price > 1000 else 1.0
+            strategy_name = f"{strategy_name}-emergency-minimum"
+        
+        logger.info(f"Intelligent quantity reduction: {base_quantity:.6f} -> {result} (strategy: {strategy_name})")
+        return float(result)
     
-    if fallback_index < len(fallback_quantities):
-        fallback_qty = fallback_quantities[fallback_index]
-        if fallback_qty < base_quantity:
-            logger.info(f"Fallback quantity: {base_quantity:.3f} -> {fallback_qty} (minimum viable purchase)")
-            return fallback_qty
+    # Final emergency fallbacks if all strategies are exhausted
+    emergency_quantities = [0.001, 0.005, 0.01, 0.05, 0.1, 1.0, 5.0, 10.0]
+    emergency_index = attempt - 8  # Since we have 8 strategies per category
     
-    # Final fallback - try to buy at least 1 coin if price allows
-    if total_value >= price:
-        logger.info(f"Final fallback: {base_quantity:.3f} -> 1.0 (single coin purchase)")
-        return 1.0
+    if emergency_index < len(emergency_quantities):
+        emergency_qty = emergency_quantities[emergency_index]
+        if emergency_qty * price <= total_value:  # Only if we can afford it
+            logger.info(f"Emergency quantity: {base_quantity:.6f} -> {emergency_qty} (emergency fallback)")
+            return emergency_qty
     
-    # If even 1 coin is too expensive, try tiny fraction
-    tiny_quantity = 0.1
-    logger.info(f"Tiny quantity fallback: {base_quantity:.3f} -> {tiny_quantity} (emergency minimum)")
-    return tiny_quantity
+    # Absolute final fallback
+    logger.info(f"Absolute minimum fallback: {base_quantity:.6f} -> 0.001 (last resort)")
+    return 0.001
 
 
 def calculate_quantity(total_value: float, price: float, precision: int = 3) -> float:
