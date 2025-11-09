@@ -1,18 +1,22 @@
 # WEB3-Hackathon Python Requirements
 # All dependencies needed for the complete project
 
-# Core API and Bot Dependencies
-requests>=2.31.0
-python-dotenv>=1.0.0
+# Core API and HTTP Dependencies
+requests>=2.31.0           # HTTP requests for API calls (crypto-roostoo-api, sma-prediction/prices.py, trading-bot)
+python-dotenv>=1.0.0       # Environment variable management (crypto-roostoo-api)
 
-# Data Analysis and Trading Strategy Dependencies
-pandas>=2.0.0
-numpy>=1.24.0
+# Data Analysis and Trading Strategy Dependencies  
+pandas>=2.0.0              # Data manipulation and analysis (sma-prediction, backtest)
+numpy>=1.24.0              # Numerical computations (sma-prediction, backtest, trading strategy)
 
 # Visualization and Plotting
-matplotlib>=3.5.0
+matplotlib>=3.5.0          # Plotting and data visualization (sma-prediction/backtest_sma.py)
 
 # Standard library modules used (no pip install needed):
-# - os, sys, time, signal, logging, datetime
-# - hmac, hashlib, json
-# - typing, dataclasses
+# Built-in Python modules that don't require installation:
+# - os, sys, time, signal, logging       # System operations and logging
+# - datetime, decimal                    # Date/time and precision arithmetic  
+# - hmac, hashlib                        # Cryptographic functions for API authentication
+# - json                                 # JSON data handling
+# - typing, dataclasses                  # Type hints and data structures
+# - functools, itertools                 # Functional programming utilities
